@@ -1,0 +1,328 @@
+{
+  "personal": {
+    "name": "A Masrur Ahmed",
+    "title": "PhD",
+    "tagline": "Data Scientist | Applied AI Researcher",
+    "bio": "A dedicated data scientist with experience in applied AI (deep and machine learning) techniques for air quality, bias correction, hydrology, water resources, and climate extremes. My professional experience in building robust Machine Learning solutions for business and my PhD research experience has helped me to gain in-depth knowledge of hydrology and water resources. I have an ever-evolving research profile with ten years of experience. I am keen to build a career in applied data science and artificial intelligence to understand data and make impactful data-driven decisions.",
+    "contact": {
+      "phone": "+61 405 632 553",
+      "email": "masrur@outlook.com.au",
+      "workEmail": "masrur.ahmed@environment.nsw.gov.au",
+      "linkedin": "linkedin.com/in/engrmasrur"
+    }
+  },
+  "research": {
+    "orcid": "0000-0002-7941-3902",
+    "googleScholar": "https://bit.ly/3H9LeAl",
+    "metrics": {
+      "citations": 1048,
+      "hIndex": 16,
+      "i10Index": 25
+    },
+    "roles": [
+      "Review/Guest Editor: Frontiers in Artificial Intelligence",
+      "Journal of Land (Special Edition)"
+    ]
+  },
+  "education": [
+    {
+      "degree": "PhD in Applied Artificial Intelligence",
+      "institution": "University of Southern Queensland, Australia",
+      "period": "2019 – 2022",
+      "thesis": "Development of Deep Learning Hybrid Models for Hydrological Prediction"
+    },
+    {
+      "degree": "MSc in Civil & Environmental Engineering",
+      "institution": "Shahjalal University of Science & Technology",
+      "period": "2011 – 2017",
+      "thesis": "Development of ANN model to predict the DO concentration of the Surma River"
+    },
+    {
+      "degree": "BSc in Civil & Environmental Engineering",
+      "institution": "Shahjalal University of Science & Technology",
+      "period": "2005 – 2009",
+      "thesis": ""
+    }
+  ],
+  "experience": [
+    {
+      "title": "Scientist Climate and Atmospheric Science",
+      "organization": "Economics, and Insights Division, Department of Climate Change, Energy, the Environment and Water",
+      "period": "JAN/2024 – to date",
+      "description": "Developing machine learning and deep learning models to gain deeper insights into climate and atmospheric conditions, focusing on emission modelling and air quality forecasting.",
+      "highlights": []
+    },
+    {
+      "title": "Research Fellow in Water Resource Modelling",
+      "organization": "The University of Melbourne, Australia",
+      "period": "FEB/2022 – JAN/2024",
+      "description": "Conducting cutting edge research in water demand forecasting under an ARC linkage project titled 'water availability and demand: better forecasts, better management', partnered by CSIRO, BOM, MDBA, ECMWF and UniMELB etc.",
+      "highlights": [
+        "Developed a monthly water demand model from annual demand",
+        "Probabilistic deep learning model for water demand prediction",
+        "Crop Coefficient (Kc) determination",
+        "Water demand under global warming scenarios",
+        "Reviewing Kc values for Australian crops",
+        "Using the output of agricultural water market of sMDB"
+      ]
+    },
+    {
+      "title": "Research Scholar",
+      "organization": "University of Southern Queensland (UniSQ), Australia",
+      "period": "FEB/2019 – FEB/2022",
+      "description": "Developed cutting edge hybrid deep learning algorithms for early warning forecasting hydrological scenarios for the Australian Murray Darling Basin.",
+      "highlights": [
+        "Predicting hydrological variables (water level, rainfall, and soil moisture)",
+        "Developed hybrid deep learning models (i.e., LSTM, GRU, CNN-LSTM)",
+        "Worked with multiple ML methods (i.e., MLA, MARS, SVR and RF)",
+        "Applied multiple feature selection approaches (i.e., PSO, GA and GWO)",
+        "Used different feature decomposition methods (EEMD and CEEMDAN)",
+        "Used different datasets from ECMWF, GCM, AWRA, SILO and BOM"
+      ]
+    },
+    {
+      "title": "Research Assistant",
+      "organization": "UniSQ, Australia",
+      "period": "NOV/2020 – OCT/2021",
+      "description": "Developed hybrid deep learning model for mean sea level forecasting. Dealt with NCEP and ECMWF reanalysis datasets.",
+      "highlights": []
+    },
+    {
+      "title": "Research Scholar (Australian Postgraduate Research Internship)",
+      "organization": "UniSQ and CS Energy, Australia",
+      "period": "FEB/2021 – FEB/2021",
+      "description": "Bias correction and solar energy forecasting for Queensland solar farms.",
+      "highlights": [
+        "Developed cutting edge machine learning models for bias correction of cloud cover",
+        "Used Global Forecast System Model datasets for solar farms of QLD, Australia"
+      ]
+    },
+    {
+      "title": "Assistant Professor",
+      "organization": "Leading University, Bangladesh",
+      "period": "NOV/2013 – MAR/2022",
+      "description": "Taught courses like research methods, hydrology, fluid mechanics, water resources engineering. I led different research projects. Also served as a Head (acting) of the Civil Engineering Department.",
+      "highlights": []
+    },
+    {
+      "title": "Research Assistant",
+      "organization": "Shahjalal University of Science & Technology",
+      "period": "JUL/2012 – JUN/2013",
+      "description": "Development of Artificial Neural Networks (ANN) model to predict the dissolved oxygen concentration of the Surma River.",
+      "highlights": []
+    }
+  ],
+  "skills": {
+    "programming": ["Python", "R", "Matlab", "MySQL"],
+    "frameworks": ["Tensorflow", "Pytorch", "Torch", "Keras", "Theano"],
+    "tools": ["Git", "AWS", "Pyspark", "MS Azure", "Power BI"],
+    "languages": ["English", "Bengali", "Hindi"]
+  },
+  "researchAreas": [
+    "Water Demand Forecasting",
+    "Future projections under global warming scenarios (RCP4.5 & RCP 8.5)",
+    "Bias correction in NWP, GCM simulated data for energy, hydrology, and climate change studies",
+    "Changes in hydro-meteorological events (e.g., drought and extreme rainfall)",
+    "Hybrid deep-learning for energy, hydrology, and climatology",
+    "Statistical Downscaling using AI"
+  ],
+  "expertise": [
+    "Work with stakeholders to develop a data-driven solution to bring a positive outcome for any business",
+    "Data Wrangling, Database Management, Exploratory Data Analysis, Data Visualization, Statistical Analysis, and Predictive Modelling using cutting-edge Machine Learning models",
+    "Probabilistic and Bayesian Deep Learning model for weather and climate",
+    "GAN, Graph NN and Physics based ML",
+    "Building and delivering live cloud-based ML-based system following industry practice"
+  ],
+  "memberships": [
+    "Australian Water Association",
+    "Australian Data Science Network",
+    "Institute of Engineers, Bangladesh",
+    "Bangladesh Earthquake Society"
+  ],
+  "awards": [
+    "Global Talent by Australian Government",
+    "USQ-CAS Postgraduate Research Scholarship",
+    "Research Excellence Award in PhD",
+    "Turkish Government Scholarship",
+    "IPRS Scholarship (Declined)"
+  ],
+  "training": [
+    {
+      "name": "ECMWF–ESA Workshop on Machine Learning for Earth Observation and Prediction",
+      "organizer": "ECMWF–ESA",
+      "date": "17 November 2022"
+    },
+    {
+      "name": "MOOC Machine Learning in Weather & Climate",
+      "organizer": "ECMWF–ESA",
+      "date": "09 JAN-30 Apr 2023"
+    },
+    {
+      "name": "Master SQL for Data Science",
+      "organizer": "",
+      "date": ""
+    }
+  ],
+  "publications": [
+    {
+      "title": "Monthly disaggregation of annual irrigation water demand in the southern Murray Darling Basin",
+      "authors": "AAM Ahmed, QJ Wang et al.",
+      "year": 2024,
+      "journal": "Agricultural Water Management",
+      "volume": "302",
+      "pages": "108961"
+    },
+    {
+      "title": "Advanced Instruments for Air Quality Research and Modelling In New South Wales",
+      "authors": "HN Duc, M Riley, AAM Ahmed",
+      "year": 2024,
+      "journal": "Air Quality and Climate Change",
+      "volume": "58 (2)",
+      "pages": "35-44"
+    },
+    {
+      "title": "Hybrid deep learning model for wave height prediction in Australia's wave energy region",
+      "authors": "AAM Ahmed, SJJ Jui, R Saha, RC Deo, SK Saha",
+      "year": 2024,
+      "journal": "Applied Soft Computing",
+      "volume": "150",
+      "pages": "111003"
+    },
+    {
+      "title": "An advanced deep learning predictive model for air quality index forecasting with remote satellite-derived hydro-climatological variables",
+      "authors": "AAM Ahmed, SJJ Jui, E Sharma, MH Ahmed, N Raj, A Bose",
+      "year": 2024,
+      "journal": "Science of The Total Environment",
+      "volume": "906",
+      "pages": "167234"
+    },
+    {
+      "title": "Global control of electrical supply: A variational mode decomposition-aided DL model for energy consumption prediction",
+      "authors": "AAM Ahmed et al.",
+      "year": 2023,
+      "journal": "Energy Reports",
+      "volume": "10",
+      "pages": "2152-2165"
+    },
+    {
+      "title": "Cloud covers bias correction in numerical weather models for solar energy monitoring and forecasting systems with KRR",
+      "authors": "RC Deo, AAM Ahmed et al.",
+      "year": 2023,
+      "journal": "Renewable Energy",
+      "volume": "203",
+      "pages": "113-130"
+    },
+    {
+      "title": "The development of dissolved oxygen forecast model using hybrid ML algorithm with hydro-meteorological variables",
+      "authors": "AAM Ahmed et al.",
+      "year": 2022,
+      "journal": "Environmental Science and Pollution Research",
+      "volume": "30(3)",
+      "pages": "7851-73"
+    },
+    {
+      "title": "Optimization algorithms as training approach with hybrid DL methods to develop an ultraviolet forecasting model",
+      "authors": "AAM Ahmed et al.",
+      "year": 2022,
+      "journal": "Stochastic Environmental Research and Risk Assessment",
+      "volume": "36 (10)",
+      "pages": "3011-39"
+    },
+    {
+      "title": "Introductory engineering mathematics students' weighted score predictions utilising a novel MARS model",
+      "authors": "AAM Ahmed et al.",
+      "year": 2022,
+      "journal": "Sustainability",
+      "volume": "14 (17)",
+      "pages": "11070"
+    },
+    {
+      "title": "Hybrid intelligence models for comp strength prediction of MPC composites & parametric analysis with SHAP algorithm",
+      "authors": "MA Haque, AAM Ahmed et al.",
+      "year": 2023,
+      "journal": "Materials Today Communications",
+      "volume": "35",
+      "pages": "105547"
+    },
+    {
+      "title": "New double decomposition deep learning methods for river water level forecasting",
+      "authors": "AAM Ahmed, RC Deo et al.",
+      "year": 2022,
+      "journal": "Science of The Total Environment",
+      "volume": "831",
+      "pages": "154722"
+    },
+    {
+      "title": "Kernel ridge regression hybrid method for wheat yield prediction with satellite-derived predictors",
+      "authors": "AAM Ahmed et al.",
+      "year": 2022,
+      "journal": "Remote Sensing",
+      "volume": "14 (5)",
+      "pages": "1136"
+    },
+    {
+      "title": "Assessment and prediction of sea level trend in the South Pacific Region",
+      "authors": "N Raj, AAM Ahmed, Y Stepanyants",
+      "year": 2022,
+      "journal": "Remote Sensing",
+      "volume": "14 (4)",
+      "pages": "986"
+    },
+    {
+      "title": "Spatiotemporal hybrid random forest model for tea yield prediction using satellite-derived variables",
+      "authors": "SJJ Jui, AAM Ahmed et al.",
+      "year": 2022,
+      "journal": "Remote Sensing",
+      "volume": "14 (3)",
+      "pages": "805"
+    },
+    {
+      "title": "LSTM integrated with Boruta-random forest optimiser for soil moisture estimation under RCP4.5 and RCP8.5 global warming scenarios",
+      "authors": "AAM Ahmed et al.",
+      "year": 2021,
+      "journal": "Stochastic Environmental Research and Risk Assessment",
+      "volume": "35",
+      "pages": "1851-1881"
+    },
+    {
+      "title": "Hybrid deep learning method for a week-ahead evapotranspiration forecasting",
+      "authors": "AAM Ahmed, RC Deo et al.",
+      "year": 2022,
+      "journal": "Stochastic Environmental Research and Risk Assessment",
+      "volume": "36",
+      "pages": "831-849"
+    },
+    {
+      "title": "Deep learning hybrid model with Boruta-RF algorithm for streamflow forecasting with climate mode indices, rainfall, and periodicity",
+      "authors": "AAM Ahmed et al.",
+      "year": 2022,
+      "journal": "Journal of Hydrology",
+      "volume": "599",
+      "pages": "126350"
+    },
+    {
+      "title": "Deep learning forecasts of soil moisture: CNN and GRU models coupled with satellite-derived MODIS, observations, and synoptic-scale",
+      "authors": "AAM Ahmed et al.",
+      "year": 2021,
+      "journal": "Remote Sensing",
+      "volume": "13 (4)",
+      "pages": "554"
+    },
+    {
+      "title": "Application of adaptive neuro-fuzzy inference system (ANFIS) to estimate the biochemical oxygen demand of Surma River",
+      "authors": "AAM Ahmed et al.",
+      "year": 2017,
+      "journal": "Journal of King Saud University - Engineering Sciences",
+      "volume": "29 (3)",
+      "pages": "237-243"
+    },
+    {
+      "title": "Prediction of dissolved oxygen in Surma River by BOD and COD using the artificial neural networks (ANNs)",
+      "authors": "AAM Ahmed",
+      "year": 2017,
+      "journal": "Journal of King Saud University - Engineering Sciences",
+      "volume": "29(2)",
+      "pages": "151-158"
+    }
+  ]
+}
