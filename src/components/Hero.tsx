@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import profileImage from '@/assets/images/profile.jpg'
 import { QuickAccessCards } from './QuickAccessCards'
+import { RightSidebar } from './RightSidebar'
 
 interface Publication {
   title: string
@@ -102,8 +103,9 @@ export function Hero({ data, contact, publications }: HeroProps) {
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 pb-16 md:pt-28 md:pb-24"
         style={{ y, opacity }}
       >
-        <div className="grid grid-cols-1 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <motion.div
+            className="lg:col-span-2"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -289,6 +291,13 @@ export function Hero({ data, contact, publications }: HeroProps) {
               </motion.div>
             </div>
           </motion.div>
+
+          <aside className="lg:col-span-1">
+            <RightSidebar 
+              publications={publications}
+              contact={contact}
+            />
+          </aside>
         </div>
       </motion.div>
 

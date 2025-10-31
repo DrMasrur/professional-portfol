@@ -9,7 +9,6 @@ import { Education } from './components/Education'
 import { Experience } from './components/Experience'
 import { Skills } from './components/Skills'
 import { Awards } from './components/Awards'
-import { RightSidebar } from './components/RightSidebar'
 import { Separator } from './components/ui/separator'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs'
 import { Toaster } from './components/ui/sonner'
@@ -69,8 +68,8 @@ function App() {
       <Hero data={profileData.personal} contact={profileData.personal.contact} publications={profileData.publications} />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <main className="lg:col-span-2">
+        <div className="grid grid-cols-1 gap-8">
+          <main className="w-full">
             <section className="py-16 md:py-20">
               <ResearchFocus />
             </section>
@@ -136,15 +135,6 @@ function App() {
               <p className="mt-2">Last updated: {new Date().toLocaleDateString()}</p>
             </footer>
           </main>
-
-          <aside className="lg:col-span-1">
-            <div className="py-16 md:py-20">
-              <RightSidebar 
-                publications={profileData.publications}
-                contact={profileData.personal.contact}
-              />
-            </div>
-          </aside>
         </div>
       </div>
     </div>
