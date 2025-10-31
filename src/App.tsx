@@ -62,7 +62,7 @@ function App() {
     }
   }
 
-  const filteredPublications = (publications || []).filter(pub => {
+  const filteredPublications = (publications && publications.length > 0 ? publications : profileData.publications).filter(pub => {
     if (!publicationsSearchQuery) return true
     const query = publicationsSearchQuery.toLowerCase()
     return (
@@ -154,7 +154,13 @@ function App() {
       </AnimatePresence>
 
       <section id="home">
-        <Hero data={profileData.personal} contact={profileData.personal.contact} publications={publications || profileData.publications} metrics={metrics} />
+        <Hero 
+          data={profileData.personal} 
+          contact={profileData.personal.contact} 
+          publications={(publications && publications.length > 0) ? publications : profileData.publications} 
+          metrics={metrics || profileData.research.metrics}
+          isLoadingMetrics={isRefreshing && !metrics}
+        />
       </section>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -234,7 +240,7 @@ function App() {
               publications={filteredPublications}
               searchQuery={publicationsSearchQuery}
               onSearchChange={setPublicationsSearchQuery}
-              totalCount={publications?.length || 0}
+              totalCount={(publications && publications.length > 0) ? publications.length : profileData.publications.length}
               onRefresh={handleRefreshPublications}
               isRefreshing={isRefreshing}
               lastUpdated={lastUpdated}

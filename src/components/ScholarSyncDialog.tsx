@@ -43,11 +43,11 @@ export function ScholarSyncDialog() {
           <div className="flex items-start gap-4 p-4 rounded-lg bg-primary/5 border border-primary/20">
             <Info size={24} className="text-primary flex-shrink-0 mt-0.5" weight="duotone" />
             <div className="space-y-2">
-              <h4 className="font-semibold text-foreground">How it works</h4>
+              <h4 className="font-semibold text-foreground">Automatic Synchronization</h4>
               <p className="text-sm text-muted-foreground">
-                Click the "Sync Scholar" button in the Publications section to fetch the latest publications
-                from Google Scholar using AI-powered data extraction. Your publications will be stored locally
-                and persist across sessions.
+                Your publications are automatically synced from Google Scholar when you first visit. The data is 
+                fetched using AI-powered extraction and stored locally for instant access. You can manually refresh 
+                anytime using the "Sync Scholar" button in the Publications section.
               </p>
             </div>
           </div>
@@ -60,23 +60,23 @@ export function ScholarSyncDialog() {
             <ul className="space-y-2 text-sm text-muted-foreground ml-7">
               <li className="flex items-start gap-2">
                 <span className="text-accent">•</span>
-                <span>Automatically fetch new publications from your Google Scholar profile</span>
+                <span>Publications are synced automatically on your first visit</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-accent">•</span>
-                <span>Sync citation counts and h-index in real-time</span>
+                <span>Live citation counts and metrics from Google Scholar</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-accent">•</span>
-                <span>Updated metrics display in the hero section</span>
+                <span>Real-time h-index and i10-index updates</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-accent">•</span>
-                <span>Publications persist locally - no data loss between sessions</span>
+                <span>All data persists locally - no data loss between sessions</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-accent">•</span>
-                <span>Manual refresh control - sync whenever you want</span>
+                <span>Manual refresh control - sync whenever you need</span>
               </li>
             </ul>
           </div>
@@ -85,12 +85,13 @@ export function ScholarSyncDialog() {
             <div className="flex items-start gap-3">
               <Badge variant="secondary" className="mt-0.5">TIP</Badge>
               <p className="text-sm text-muted-foreground">
-                Scroll down to the Publications section and click the 
+                Your initial sync is happening now! Check the Research Impact section in the hero to see live metrics. 
+                You can manually refresh at any time using the 
                 <span className="inline-flex items-center gap-1 mx-1 px-2 py-0.5 rounded bg-background border border-border text-xs font-medium">
                   <GoogleLogo size={14} weight="bold" />
                   Sync Scholar
                 </span>
-                button to try it now!
+                button in the Publications section.
               </p>
             </div>
           </div>

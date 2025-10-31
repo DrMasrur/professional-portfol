@@ -37,9 +37,10 @@ interface HeroProps {
   }
   publications: Publication[]
   metrics?: ScholarMetrics
+  isLoadingMetrics?: boolean
 }
 
-export function Hero({ data, contact, publications, metrics }: HeroProps) {
+export function Hero({ data, contact, publications, metrics, isLoadingMetrics }: HeroProps) {
   const [showProfileDialog, setShowProfileDialog] = useState(false)
   const heroRef = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -217,8 +218,17 @@ export function Hero({ data, contact, publications, metrics }: HeroProps) {
                     <Brain size={22} weight="duotone" className="text-primary" />
                   </div>
                   <div>
-                    <div className="text-xl font-bold text-foreground">{metrics?.citations ? metrics.citations.toLocaleString() : '1000+'}</div>
-                    <div className="text-xs text-muted-foreground">Citations</div>
+                    {isLoadingMetrics ? (
+                      <>
+                        <div className="h-6 w-20 bg-muted animate-pulse rounded mb-1" />
+                        <div className="h-3 w-16 bg-muted animate-pulse rounded" />
+                      </>
+                    ) : (
+                      <>
+                        <div className="text-xl font-bold text-foreground">{metrics?.citations ? metrics.citations.toLocaleString() : '1000+'}</div>
+                        <div className="text-xs text-muted-foreground">Citations</div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -229,8 +239,17 @@ export function Hero({ data, contact, publications, metrics }: HeroProps) {
                     <ChartLine size={22} weight="duotone" className="text-accent" />
                   </div>
                   <div>
-                    <div className="text-xl font-bold text-foreground">h-index: {metrics?.hIndex || 16}</div>
-                    <div className="text-xs text-muted-foreground">h-index</div>
+                    {isLoadingMetrics ? (
+                      <>
+                        <div className="h-6 w-24 bg-muted animate-pulse rounded mb-1" />
+                        <div className="h-3 w-16 bg-muted animate-pulse rounded" />
+                      </>
+                    ) : (
+                      <>
+                        <div className="text-xl font-bold text-foreground">h-index: {metrics?.hIndex || 16}</div>
+                        <div className="text-xs text-muted-foreground">h-index</div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -410,8 +429,17 @@ export function Hero({ data, contact, publications, metrics }: HeroProps) {
                     <Brain size={36} weight="duotone" className="text-primary" />
                   </div>
                   <div>
-                    <div className="text-4xl font-bold text-foreground">{metrics?.citations ? metrics.citations.toLocaleString() : '1000+'}</div>
-                    <div className="text-sm text-muted-foreground">Citations</div>
+                    {isLoadingMetrics ? (
+                      <>
+                        <div className="h-10 w-32 bg-muted animate-pulse rounded mb-2" />
+                        <div className="h-4 w-20 bg-muted animate-pulse rounded" />
+                      </>
+                    ) : (
+                      <>
+                        <div className="text-4xl font-bold text-foreground">{metrics?.citations ? metrics.citations.toLocaleString() : '1000+'}</div>
+                        <div className="text-sm text-muted-foreground">Citations</div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -422,8 +450,17 @@ export function Hero({ data, contact, publications, metrics }: HeroProps) {
                     <ChartLine size={36} weight="duotone" className="text-accent" />
                   </div>
                   <div>
-                    <div className="text-4xl font-bold text-foreground">h-index: {metrics?.hIndex || 16}</div>
-                    <div className="text-sm text-muted-foreground">h-index</div>
+                    {isLoadingMetrics ? (
+                      <>
+                        <div className="h-10 w-36 bg-muted animate-pulse rounded mb-2" />
+                        <div className="h-4 w-20 bg-muted animate-pulse rounded" />
+                      </>
+                    ) : (
+                      <>
+                        <div className="text-4xl font-bold text-foreground">h-index: {metrics?.hIndex || 16}</div>
+                        <div className="text-sm text-muted-foreground">h-index</div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

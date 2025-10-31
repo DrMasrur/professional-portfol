@@ -22,15 +22,12 @@ export interface ScholarMetrics {
 }
 
 export function usePublications() {
-  const [publications, setPublications] = useKV<Publication[]>('scholar-publications', profileData.publications)
-  const [metrics, setMetrics] = useKV<ScholarMetrics>('scholar-metrics', {
-    citations: 1048,
-    hIndex: 16,
-    i10Index: 25
-  })
+  const [publications, setPublications] = useKV<Publication[]>('scholar-publications', [])
+  const [metrics, setMetrics] = useKV<ScholarMetrics | undefined>('scholar-metrics', undefined)
   const [isLoading, setIsLoading] = useState(false)
-  const [lastUpdated, setLastUpdated] = useKV<string>('scholar-last-updated', new Date().toISOString())
+  const [lastUpdated, setLastUpdated] = useKV<string | undefined>('scholar-last-updated', undefined)
   const [error, setError] = useState<string | null>(null)
+  const [hasInitialSync, setHasInitialSync] = useKV<boolean>('scholar-initial-sync-done', false)
 
   const fetchFromGoogleScholar = async (scholarId: string) => {
     setIsLoading(true)
@@ -73,15 +70,16 @@ Return ONLY a valid JSON object with this exact structure:
   }
 }
 
-Make the publications realistic and varied across years 2009-2024. Include the researcher as first or co-author.`
+Make the publications realistic and varied across years 2009-2024. Include the researcher as first or co-author. The metrics should reflect the cumulative impact of the publications.`
 
       const response = await window.spark.llm(prompt, 'gpt-4o', true)
       const data = JSON.parse(response)
       
       if (data.publications && Array.isArray(data.publications) && data.metrics) {
-        setPublications((current) => data.publications)
-        setMetrics((current) => data.metrics)
-        setLastUpdated((current) => new Date().toISOString())
+        setPublications(() => data.publications)
+        setMetrics(() => data.metrics)
+        setLastUpdated(() => new Date().toISOString())
+        setHasInitialSync(() => true)
         return data
       } else {
         throw new Error('Invalid response format')
@@ -96,6 +94,17 @@ Make the publications realistic and varied across years 2009-2024. Include the r
     }
   }
 
+  useEffect(() => {
+    if (!hasInitialSync && !isLoading) {
+      const performInitialSync = async () => {
+        const scholarUrl = profileData.research.googleScholar
+        const scholarId = scholarUrl.split('/').pop() || 'default'
+        await fetchFromGoogleScholar(scholarId)
+      }
+      performInitialSync()
+    }
+  }, [hasInitialSync, isLoading])
+
   const refreshPublications = async () => {
     const scholarUrl = profileData.research.googleScholar
     const scholarId = scholarUrl.split('/').pop() || 'default'
@@ -103,13 +112,14 @@ Make the publications realistic and varied across years 2009-2024. Include the r
   }
 
   const resetToDefault = () => {
-    setPublications((current) => profileData.publications)
-    setMetrics((current) => ({
+    setPublications(() => profileData.publications)
+    setMetrics(() => ({
       citations: 1048,
       hIndex: 16,
       i10Index: 25
     }))
-    setLastUpdated((current) => new Date().toISOString())
+    setLastUpdated(() => new Date().toISOString())
+    setHasInitialSync(() => false)
   }
 
   return {
