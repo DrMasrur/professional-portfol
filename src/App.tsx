@@ -1,6 +1,8 @@
 import { useState, useMemo } from 'react'
 import profileData from './data/profile.json'
 import { Hero } from './components/Hero'
+import { ResearchFocus } from './components/ResearchFocus'
+import { TechnologyStack } from './components/TechnologyStack'
 import { ResearchHighlights } from './components/ResearchHighlights'
 import { Education } from './components/Education'
 import { Experience } from './components/Experience'
@@ -32,11 +34,23 @@ function App() {
       
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <section className="py-16 md:py-20">
+          <ResearchFocus />
+        </section>
+
+        <Separator className="my-12" />
+
+        <section className="py-16 md:py-20">
           <ResearchHighlights 
             research={profileData.research} 
             areas={profileData.researchAreas}
             expertise={profileData.expertise}
           />
+        </section>
+
+        <Separator className="my-12" />
+
+        <section className="py-16 md:py-20">
+          <TechnologyStack />
         </section>
 
         <Separator className="my-12" />

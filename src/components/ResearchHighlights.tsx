@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { Badge } from './ui/badge'
 import { Button } from './ui/button'
-import { ChartBar, GraduationCap } from '@phosphor-icons/react'
+import { ChartBar, GraduationCap, Wind, Cloud, Brain, ChartLineUp, Cpu, TreeStructure, Globe, CloudArrowUp } from '@phosphor-icons/react'
 
 interface ResearchHighlightsProps {
   research: {
@@ -19,8 +19,34 @@ interface ResearchHighlightsProps {
 }
 
 export function ResearchHighlights({ research, areas, expertise }: ResearchHighlightsProps) {
+  const researchIcons = [
+    { icon: Wind, title: 'Air Quality', gradient: 'from-blue-400 to-cyan-500' },
+    { icon: CloudArrowUp, title: 'Emissions', gradient: 'from-gray-400 to-slate-500' },
+    { icon: Brain, title: 'Deep Learning', gradient: 'from-purple-400 to-pink-500' },
+    { icon: TreeStructure, title: 'Machine Learning', gradient: 'from-green-400 to-emerald-500' },
+  ]
+
   return (
     <div className="space-y-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        {researchIcons.map((item, idx) => (
+          <div 
+            key={idx}
+            className="relative group cursor-pointer"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity rounded-xl blur-xl from-primary/20 to-accent/20" />
+            <Card className="relative border-2 hover:border-primary/50 transition-all hover:shadow-xl">
+              <CardContent className="p-6 flex flex-col items-center gap-3">
+                <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg`}>
+                  <item.icon className="text-white" size={32} weight="duotone" />
+                </div>
+                <span className="text-sm font-semibold text-center text-foreground">{item.title}</span>
+              </CardContent>
+            </Card>
+          </div>
+        ))}
+      </div>
+
       <div>
         <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
           Research Impact
