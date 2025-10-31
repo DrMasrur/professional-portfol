@@ -17,15 +17,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs'
 import { Toaster } from './components/ui/sonner'
 import { Button } from './components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUp, BookOpen, Article, Envelope } from '@phosphor-icons/react'
+import { ArrowUp, BookOpen, Article, Envelope, Briefcase, GraduationCap, Lightbulb, Trophy } from '@phosphor-icons/react'
+import { cn } from './lib/utils'
 
 function App() {
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [publicationsSearchQuery, setPublicationsSearchQuery] = useState('')
+  const [activeTab, setActiveTab] = useState('publications')
+  const [isMenuSticky, setIsMenuSticky] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 500)
+      setIsMenuSticky(window.scrollY > 100)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -49,6 +53,70 @@ function App() {
   return (
     <div className="min-h-screen bg-background">
       <Toaster />
+      
+      <div className={cn(
+        "sticky top-0 z-50 transition-all duration-300",
+        isMenuSticky ? "bg-background/95 backdrop-blur-sm border-b border-border shadow-sm" : ""
+      )}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="w-full h-14 bg-transparent justify-start gap-2 border-b-0 p-0">
+              <TabsTrigger 
+                value="publications" 
+                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6 py-2 rounded-md"
+              >
+                <BookOpen size={18} className="mr-2" />
+                <span className="hidden sm:inline">Publications</span>
+                <span className="sm:hidden">Pubs</span>
+              </TabsTrigger>
+              <TabsTrigger 
+                value="blogs"
+                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6 py-2 rounded-md"
+              >
+                <Article size={18} className="mr-2" />
+                Blogs
+              </TabsTrigger>
+              <TabsTrigger 
+                value="contact"
+                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6 py-2 rounded-md"
+              >
+                <Envelope size={18} className="mr-2" />
+                Contact
+              </TabsTrigger>
+              <TabsTrigger 
+                value="experience"
+                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6 py-2 rounded-md"
+              >
+                <Briefcase size={18} className="mr-2" />
+                <span className="hidden sm:inline">Experience</span>
+                <span className="sm:hidden">Exp</span>
+              </TabsTrigger>
+              <TabsTrigger 
+                value="education"
+                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6 py-2 rounded-md"
+              >
+                <GraduationCap size={18} className="mr-2" />
+                <span className="hidden sm:inline">Education</span>
+                <span className="sm:hidden">Edu</span>
+              </TabsTrigger>
+              <TabsTrigger 
+                value="skills"
+                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6 py-2 rounded-md"
+              >
+                <Lightbulb size={18} className="mr-2" />
+                Skills
+              </TabsTrigger>
+              <TabsTrigger 
+                value="awards"
+                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6 py-2 rounded-md"
+              >
+                <Trophy size={18} className="mr-2" />
+                Awards
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
+      </div>
       
       <AnimatePresence>
         {showBackToTop && (
@@ -75,42 +143,65 @@ function App() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8">
           <main className="w-full">
-            <section className="py-16 md:py-20">
-              <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
-                Resources & Contact
-              </h2>
-              <Tabs defaultValue="publications" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 mb-8">
-                  <TabsTrigger value="publications">
-                    <BookOpen size={18} className="mr-2" />
-                    <span className="hidden sm:inline">Publications ({profileData.publications.length})</span>
-                    <span className="sm:hidden">Pubs</span>
-                  </TabsTrigger>
-                  <TabsTrigger value="blogs">
-                    <Article size={18} className="mr-2" />
-                    Blogs
-                  </TabsTrigger>
-                  <TabsTrigger value="contact">
-                    <Envelope size={18} className="mr-2" />
-                    Contact
-                  </TabsTrigger>
-                </TabsList>
-                <TabsContent value="publications">
-                  <Publications 
-                    publications={filteredPublications}
-                    searchQuery={publicationsSearchQuery}
-                    onSearchChange={setPublicationsSearchQuery}
-                    totalCount={profileData.publications.length}
-                  />
-                </TabsContent>
-                <TabsContent value="blogs">
-                  <Blogs />
-                </TabsContent>
-                <TabsContent value="contact">
-                  <ContactUs contact={profileData.personal.contact} />
-                </TabsContent>
-              </Tabs>
-            </section>
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+              <TabsContent value="publications" className="mt-8">
+                <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
+                  Publications
+                </h2>
+                <Publications 
+                  publications={filteredPublications}
+                  searchQuery={publicationsSearchQuery}
+                  onSearchChange={setPublicationsSearchQuery}
+                  totalCount={profileData.publications.length}
+                />
+              </TabsContent>
+              
+              <TabsContent value="blogs" className="mt-8">
+                <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
+                  Blogs & Articles
+                </h2>
+                <Blogs />
+              </TabsContent>
+              
+              <TabsContent value="contact" className="mt-8">
+                <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
+                  Contact Information
+                </h2>
+                <ContactUs contact={profileData.personal.contact} />
+              </TabsContent>
+              
+              <TabsContent value="experience" className="mt-8">
+                <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
+                  Professional Experience
+                </h2>
+                <Experience data={profileData.experience} />
+              </TabsContent>
+              
+              <TabsContent value="education" className="mt-8">
+                <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
+                  Education
+                </h2>
+                <Education data={profileData.education} />
+              </TabsContent>
+              
+              <TabsContent value="skills" className="mt-8">
+                <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
+                  Skills & Expertise
+                </h2>
+                <Skills 
+                  skills={profileData.skills}
+                  memberships={profileData.memberships}
+                  training={profileData.training}
+                />
+              </TabsContent>
+              
+              <TabsContent value="awards" className="mt-8">
+                <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
+                  Awards & Recognition
+                </h2>
+                <Awards awards={profileData.awards} />
+              </TabsContent>
+            </Tabs>
 
             <Separator className="my-12" />
             <section className="py-16 md:py-20">
@@ -137,40 +228,6 @@ function App() {
 
             <section className="py-16 md:py-20">
               <TechnologyStack />
-            </section>
-
-            <Separator className="my-12" />
-
-            <section className="py-16 md:py-20">
-              <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
-                Professional Journey
-              </h2>
-              <Tabs defaultValue="experience" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 mb-8">
-                  <TabsTrigger value="experience">Experience</TabsTrigger>
-                  <TabsTrigger value="education">Education</TabsTrigger>
-                  <TabsTrigger value="skills">Skills</TabsTrigger>
-                </TabsList>
-                <TabsContent value="experience">
-                  <Experience data={profileData.experience} />
-                </TabsContent>
-                <TabsContent value="education">
-                  <Education data={profileData.education} />
-                </TabsContent>
-                <TabsContent value="skills">
-                  <Skills 
-                    skills={profileData.skills}
-                    memberships={profileData.memberships}
-                    training={profileData.training}
-                  />
-                </TabsContent>
-              </Tabs>
-            </section>
-
-            <Separator className="my-12" />
-
-            <section className="py-16 md:py-20">
-              <Awards awards={profileData.awards} />
             </section>
 
             <footer className="py-12 text-center text-muted-foreground text-sm">
