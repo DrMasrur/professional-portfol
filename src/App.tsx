@@ -13,17 +13,11 @@ import { Separator } from './components/ui/separator'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs'
 import { Toaster } from './components/ui/sonner'
 import { Button } from './components/ui/button'
-import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUp } from '@phosphor-icons/react'
 
 function App() {
   const [showBackToTop, setShowBackToTop] = useState(false)
-  const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  })
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,10 +33,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background">
-      <motion.div 
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary z-50 origin-left"
-        style={{ scaleX }}
-      />
       <Toaster />
       
       <AnimatePresence>

@@ -1,4 +1,4 @@
-import { Envelope, LinkedinLogo, Brain, Cpu, Network, CloudArrowUp, ChartLine, Database, Sparkle, X } from '@phosphor-icons/react'
+import { Envelope, LinkedinLogo, Brain, ChartLine, Sparkle, X } from '@phosphor-icons/react'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
 import { motion, useScroll, useTransform, PanInfo, useMotionValue } from 'framer-motion'
@@ -53,15 +53,6 @@ export function Hero({ data, contact, publications }: HeroProps) {
     }
   }
 
-  const floatingElements = [
-    { Icon: Brain, size: 64, className: 'top-20 left-[10%] text-primary/20', delay: 0, duration: 8 },
-    { Icon: CloudArrowUp, size: 72, className: 'top-32 right-[15%] text-accent/30', delay: 0.3, duration: 10 },
-    { Icon: Cpu, size: 56, className: 'bottom-40 left-[15%] text-primary/15', delay: 0.6, duration: 9 },
-    { Icon: Network, size: 68, className: 'bottom-32 right-[20%] text-accent/20', delay: 0.9, duration: 11 },
-    { Icon: Database, size: 60, className: 'top-1/2 right-[8%] text-primary/25', delay: 1.2, duration: 7 },
-    { Icon: ChartLine, size: 52, className: 'top-1/3 left-[5%] text-accent/25', delay: 1.5, duration: 8.5 }
-  ]
-
   const keywords = [
     'Machine Learning',
     'Deep Learning', 
@@ -72,104 +63,33 @@ export function Hero({ data, contact, publications }: HeroProps) {
   ]
 
   return (
-    <section ref={heroRef} className="relative min-h-[85vh] bg-gradient-to-br from-background via-secondary/30 to-accent/10 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,_var(--primary)_0%,_transparent_50%)] opacity-[0.03]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,_var(--accent)_0%,_transparent_50%)] opacity-[0.04]" />
+    <section ref={heroRef} className="relative bg-background overflow-hidden border-b border-border">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,_var(--primary)_0%,_transparent_60%)] opacity-[0.02]" />
       
-      <div className="absolute inset-0 pointer-events-none">
-        {floatingElements.map(({ Icon, size, className, delay, duration }, idx) => (
-          <motion.div
-            key={idx}
-            className={`absolute ${className}`}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ 
-              opacity: 1, 
-              scale: 1,
-              y: [0, -30, 0],
-              rotate: [0, 10, -10, 0],
-            }}
-            transition={{
-              opacity: { duration: 0.8, delay },
-              scale: { duration: 0.8, delay },
-              y: { 
-                duration, 
-                repeat: Infinity, 
-                ease: "easeInOut",
-                delay 
-              },
-              rotate: { 
-                duration: duration * 1.2, 
-                repeat: Infinity, 
-                ease: "easeInOut",
-                delay 
-              }
-            }}
-          >
-            <Icon size={size} weight="duotone" />
-          </motion.div>
-        ))}
-      </div>
-
       <motion.div 
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 pb-16 md:pt-28 md:pb-24"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 md:py-20"
         style={{ y, opacity }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
           <motion.div
             className="lg:col-span-2"
-            initial={{ opacity: 0, y: -50 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6 }}
           >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mb-6 text-center"
-            >
-              <Badge variant="secondary" className="mb-4 px-4 py-1.5 text-sm font-medium">
-                <Sparkle className="mr-2 inline" size={16} weight="fill" />
-                Available for Collaboration
-              </Badge>
-            </motion.div>
-
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-6 mt-8">
+            <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
               <motion.div
-                className="relative cursor-pointer"
-                initial={{ opacity: 0, scale: 0.9 }}
+                className="relative cursor-pointer flex-shrink-0"
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
                 onClick={() => setShowProfileDialog(true)}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.03 }}
               >
-                <motion.div
-                  className="absolute -inset-2 bg-gradient-to-br from-primary/30 via-accent/30 to-primary/30 rounded-full blur-xl"
-                  animate={{
-                    scale: [1, 1.1, 1],
-                    rotate: [0, 180, 360]
-                  }}
-                  transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                
                 <motion.div 
-                  className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden shadow-2xl ring-4 ring-primary/20"
-                  transition={{ duration: 0.3 }}
+                  className="relative w-28 h-28 md:w-32 md:h-32 rounded-2xl overflow-hidden shadow-lg ring-1 ring-border"
+                  transition={{ duration: 0.2 }}
                 >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 z-10"
-                    animate={{
-                      opacity: [0.2, 0.4, 0.2]
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  />
                   <img 
                     src={profileImage} 
                     alt={data.name}
@@ -178,131 +98,136 @@ export function Hero({ data, contact, publications }: HeroProps) {
                 </motion.div>
               </motion.div>
 
-              <motion.h1 
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center md:text-left font-[family-name:var(--font-heading)] leading-tight cursor-pointer"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                onClick={() => setShowProfileDialog(true)}
-                whileHover={{ scale: 1.02 }}
-              >
-                {data.name}
-                <span className="block text-primary mt-2">{data.title}</span>
-              </motion.h1>
+              <div className="flex-1 min-w-0">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="mb-3"
+                >
+                  <Badge variant="secondary" className="px-3 py-1 text-xs font-medium">
+                    <Sparkle className="mr-1.5 inline" size={14} weight="fill" />
+                    Available for Collaboration
+                  </Badge>
+                </motion.div>
+
+                <motion.h1 
+                  className="text-3xl md:text-4xl font-bold text-foreground font-[family-name:var(--font-heading)] leading-tight mb-2"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.25 }}
+                >
+                  {data.name}
+                </motion.h1>
+
+                <motion.p
+                  className="text-lg md:text-xl text-primary font-semibold font-[family-name:var(--font-heading)] mb-4"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  {data.title}
+                </motion.p>
+
+                <motion.p
+                  className="text-base text-muted-foreground leading-relaxed mb-6"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.35 }}
+                >
+                  {data.tagline}
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="mb-6"
+                >
+                  <div className="flex flex-wrap gap-2">
+                    {keywords.map((keyword, idx) => (
+                      <Badge key={keyword} variant="outline" className="px-2.5 py-1 text-xs">
+                        {keyword}
+                      </Badge>
+                    ))}
+                  </div>
+                </motion.div>
+                
+                <motion.div 
+                  className="flex flex-wrap gap-3"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.45 }}
+                >
+                  <Button 
+                    variant="default" 
+                    size="default"
+                    asChild 
+                    className="shadow-sm"
+                  >
+                    <a href={`mailto:${contact.email}`}>
+                      <Envelope className="mr-2" size={18} />
+                      Get in Touch
+                    </a>
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="default"
+                    asChild
+                  >
+                    <a href={`https://${contact.linkedin}`} target="_blank" rel="noopener noreferrer">
+                      <LinkedinLogo className="mr-2" size={18} />
+                      LinkedIn
+                    </a>
+                  </Button>
+                </motion.div>
+              </div>
             </div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="mb-6 text-center max-w-4xl mx-auto"
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="mb-8"
             >
-              <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-medium">
-                {data.tagline}
+              <p className="text-sm text-foreground/80 leading-relaxed">
+                {data.bio}
               </p>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="mb-8 flex justify-center"
+              transition={{ duration: 0.5, delay: 0.55 }}
+              className="grid grid-cols-2 gap-4 mb-8"
             >
-              <div className="flex flex-wrap gap-2 justify-center">
-                {keywords.map((keyword, idx) => (
-                  <motion.span
-                    key={keyword}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: 0.7 + idx * 0.1 }}
-                  >
-                    <Badge variant="outline" className="px-3 py-1.5 text-sm hover:bg-primary/10 transition-colors">
-                      {keyword}
-                    </Badge>
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              className="flex flex-wrap gap-3 mb-8 justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              <Button 
-                variant="default" 
-                size="lg" 
-                asChild 
-                className="hover:scale-105 hover:shadow-lg transition-all"
-              >
-                <a href={`mailto:${contact.email}`}>
-                  <Envelope className="mr-2" size={20} />
-                  Get in Touch
-                </a>
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                asChild 
-                className="hover:scale-105 hover:shadow-md transition-all"
-              >
-                <a href={`https://${contact.linkedin}`} target="_blank" rel="noopener noreferrer">
-                  <LinkedinLogo className="mr-2" size={20} />
-                  LinkedIn
-                </a>
-              </Button>
-            </motion.div>
-
-            <motion.p 
-              className="text-base md:text-lg text-foreground/70 leading-relaxed max-w-3xl mx-auto text-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.9 }}
-            >
-              {data.bio}
-            </motion.p>
-
-            <div className="mt-8">
-              <QuickAccessCards publications={publications} contact={contact} />
-            </div>
-
-            <div className="mt-12 flex flex-wrap gap-6 justify-center">
-              <motion.div
-                className="bg-card/95 backdrop-blur-sm rounded-2xl shadow-xl p-4 border border-border"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.0 }}
-                whileHover={{ scale: 1.05 }}
-              >
+              <div className="bg-card border border-border rounded-xl p-4">
                 <div className="flex items-center gap-3">
-                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Brain size={28} weight="duotone" className="text-primary" />
+                  <div className="h-10 w-10 rounded-lg bg-primary/5 flex items-center justify-center">
+                    <Brain size={22} weight="duotone" className="text-primary" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-foreground">1000+</div>
+                    <div className="text-xl font-bold text-foreground">1000+</div>
                     <div className="text-xs text-muted-foreground">Citations</div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                className="bg-card/95 backdrop-blur-sm rounded-2xl shadow-xl p-4 border border-border"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.1 }}
-                whileHover={{ scale: 1.05 }}
-              >
+              <div className="bg-card border border-border rounded-xl p-4">
                 <div className="flex items-center gap-3">
-                  <div className="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center">
-                    <ChartLine size={28} weight="duotone" className="text-accent" />
+                  <div className="h-10 w-10 rounded-lg bg-accent/5 flex items-center justify-center">
+                    <ChartLine size={22} weight="duotone" className="text-accent" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-foreground">h-16</div>
+                    <div className="text-xl font-bold text-foreground">h-16</div>
                     <div className="text-xs text-muted-foreground">Index</div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
+            </motion.div>
+
+            <div>
+              <QuickAccessCards publications={publications} contact={contact} />
             </div>
           </motion.div>
 
@@ -312,20 +237,6 @@ export function Hero({ data, contact, publications }: HeroProps) {
               contact={contact}
             />
           </aside>
-        </div>
-      </motion.div>
-
-      <motion.div 
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex items-start justify-center p-2">
-          <motion.div
-            className="w-1.5 h-1.5 bg-muted-foreground/50 rounded-full"
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          />
         </div>
       </motion.div>
 

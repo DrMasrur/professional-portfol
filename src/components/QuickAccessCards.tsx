@@ -1,13 +1,11 @@
 import { useState } from 'react'
-import { Card } from './ui/card'
 import { Badge } from './ui/badge'
 import { Button } from './ui/button'
-import { PublicationsSidebar } from './PublicationsSidebar'
 import { Publications } from './Publications'
 import { Blogs } from './Blogs'
 import { ContactUs } from './ContactUs'
 import { motion } from 'framer-motion'
-import { BookOpen, Article, Envelope, ArrowsOut } from '@phosphor-icons/react'
+import { BookOpen, Article, Envelope } from '@phosphor-icons/react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from './ui/tabs'
 
@@ -89,59 +87,32 @@ export function QuickAccessCards({ publications, contact }: QuickAccessCardsProp
   return (
     <>
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1.2 }}
-        className="flex flex-wrap gap-3 justify-center"
+        transition={{ duration: 0.5, delay: 0.6 }}
+        className="flex flex-wrap gap-3"
       >
         {cards.map((card, index) => (
           <motion.div
             key={card.id}
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 1.2 + index * 0.1 }}
+            transition={{ duration: 0.3, delay: 0.6 + index * 0.05 }}
           >
-            <Card 
-              className="overflow-hidden border-primary/20 shadow-lg backdrop-blur-sm bg-card/95 cursor-pointer transition-all hover:shadow-xl hover:scale-105"
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-auto px-3 py-2 hover:bg-accent/5 transition-colors"
               onClick={() => openFullPage(card.id)}
             >
-              <motion.div 
-                className={`bg-gradient-to-br ${card.gradient} p-4 min-w-[180px]`}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <div 
-                      className="h-10 w-10 rounded-xl bg-background/80 backdrop-blur-sm flex items-center justify-center shadow-md"
-                    >
-                      <card.icon size={20} className={card.iconColor} weight="duotone" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground text-sm">{card.title}</h3>
-                      {card.count !== null && (
-                        <p className="text-xs text-muted-foreground">
-                          {card.count} {card.count === 1 ? 'item' : 'items'}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                  
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      openFullPage(card.id)
-                    }}
-                    className="h-8 w-8 hover:bg-background/60"
-                    title="Open full view"
-                  >
-                    <ArrowsOut size={16} className="text-muted-foreground" />
-                  </Button>
-                </div>
-              </motion.div>
-            </Card>
+              <card.icon size={16} className={`mr-2 ${card.iconColor}`} weight="duotone" />
+              <span className="text-sm font-medium">{card.title}</span>
+              {card.count !== null && (
+                <Badge variant="secondary" className="ml-2 h-5 px-1.5 text-xs">
+                  {card.count}
+                </Badge>
+              )}
+            </Button>
           </motion.div>
         ))}
       </motion.div>
