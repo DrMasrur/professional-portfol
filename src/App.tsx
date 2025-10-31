@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import profileData from './data/profile.json'
 import { Hero } from './components/Hero'
 import { ResearchFocus } from './components/ResearchFocus'
@@ -8,8 +8,8 @@ import { ResearchHighlights } from './components/ResearchHighlights'
 import { Education } from './components/Education'
 import { Experience } from './components/Experience'
 import { Skills } from './components/Skills'
-import { Publications } from './components/Publications'
 import { Awards } from './components/Awards'
+import { RightSidebar } from './components/RightSidebar'
 import { Separator } from './components/ui/separator'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs'
 import { Toaster } from './components/ui/sonner'
@@ -18,7 +18,6 @@ import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion'
 import { ArrowUp } from '@phosphor-icons/react'
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState('')
   const [showBackToTop, setShowBackToTop] = useState(false)
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, {
@@ -38,17 +37,6 @@ function App() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
-
-  const filteredPublications = useMemo(() => {
-    if (!searchQuery) return profileData.publications
-    const query = searchQuery.toLowerCase()
-    return profileData.publications.filter(pub => 
-      pub.title.toLowerCase().includes(query) ||
-      pub.authors.toLowerCase().includes(query) ||
-      pub.journal.toLowerCase().includes(query) ||
-      pub.year.toString().includes(query)
-    )
-  }, [searchQuery])
 
   return (
     <div className="min-h-screen bg-background">
@@ -80,81 +68,85 @@ function App() {
 
       <Hero data={profileData.personal} contact={profileData.personal.contact} />
       
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <section className="py-16 md:py-20">
-          <ResearchFocus />
-        </section>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <main className="lg:col-span-2">
+            <section className="py-16 md:py-20">
+              <ResearchFocus />
+            </section>
 
-        <Separator className="my-12" />
+            <Separator className="my-12" />
 
-        <section className="py-16 md:py-20">
-          <ResearchHighlights 
-            research={profileData.research} 
-            areas={profileData.researchAreas}
-            expertise={profileData.expertise}
-          />
-        </section>
-      </main>
-
-      <ResearchGallery />
-
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Separator className="my-12" />
-
-        <section className="py-16 md:py-20">
-          <TechnologyStack />
-        </section>
-
-        <Separator className="my-12" />
-
-        <section className="py-16 md:py-20">
-          <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
-            Professional Journey
-          </h2>
-          <Tabs defaultValue="experience" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
-              <TabsTrigger value="experience">Experience</TabsTrigger>
-              <TabsTrigger value="education">Education</TabsTrigger>
-              <TabsTrigger value="skills">Skills</TabsTrigger>
-            </TabsList>
-            <TabsContent value="experience">
-              <Experience data={profileData.experience} />
-            </TabsContent>
-            <TabsContent value="education">
-              <Education data={profileData.education} />
-            </TabsContent>
-            <TabsContent value="skills">
-              <Skills 
-                skills={profileData.skills}
-                memberships={profileData.memberships}
-                training={profileData.training}
+            <section className="py-16 md:py-20">
+              <ResearchHighlights 
+                research={profileData.research} 
+                areas={profileData.researchAreas}
+                expertise={profileData.expertise}
               />
-            </TabsContent>
-          </Tabs>
-        </section>
+            </section>
 
-        <Separator className="my-12" />
+            <Separator className="my-12" />
 
-        <section className="py-16 md:py-20">
-          <Awards awards={profileData.awards} />
-        </section>
+            <section className="py-16 md:py-20">
+              <ResearchGallery />
+            </section>
 
-        <Separator className="my-12" />
+            <Separator className="my-12" />
 
-        <section className="py-16 md:py-20">
-          <Publications 
-            publications={filteredPublications}
-            searchQuery={searchQuery}
-            onSearchChange={setSearchQuery}
-            totalCount={profileData.publications.length}
-          />
-        </section>
+            <section className="py-16 md:py-20">
+              <TechnologyStack />
+            </section>
 
-        <footer className="py-12 text-center text-muted-foreground text-sm">
-          <p>© {new Date().getFullYear()} {profileData.personal.name}. All rights reserved.</p>
-          <p className="mt-2">Last updated: {new Date().toLocaleDateString()}</p>
-        </footer>
-      </main>
+            <Separator className="my-12" />
+
+            <section className="py-16 md:py-20">
+              <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
+                Professional Journey
+              </h2>
+              <Tabs defaultValue="experience" className="w-full">
+                <TabsList className="grid w-full grid-cols-3 mb-8">
+                  <TabsTrigger value="experience">Experience</TabsTrigger>
+                  <TabsTrigger value="education">Education</TabsTrigger>
+                  <TabsTrigger value="skills">Skills</TabsTrigger>
+                </TabsList>
+                <TabsContent value="experience">
+                  <Experience data={profileData.experience} />
+                </TabsContent>
+                <TabsContent value="education">
+                  <Education data={profileData.education} />
+                </TabsContent>
+                <TabsContent value="skills">
+                  <Skills 
+                    skills={profileData.skills}
+                    memberships={profileData.memberships}
+                    training={profileData.training}
+                  />
+                </TabsContent>
+              </Tabs>
+            </section>
+
+            <Separator className="my-12" />
+
+            <section className="py-16 md:py-20">
+              <Awards awards={profileData.awards} />
+            </section>
+
+            <footer className="py-12 text-center text-muted-foreground text-sm">
+              <p>© {new Date().getFullYear()} {profileData.personal.name}. All rights reserved.</p>
+              <p className="mt-2">Last updated: {new Date().toLocaleDateString()}</p>
+            </footer>
+          </main>
+
+          <aside className="lg:col-span-1">
+            <div className="py-16 md:py-20">
+              <RightSidebar 
+                publications={profileData.publications}
+                contact={profileData.personal.contact}
+              />
+            </div>
+          </aside>
+        </div>
+      </div>
     </div>
   )
 }
