@@ -99,7 +99,7 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="lg:sticky lg:top-6 h-fit space-y-2"
+        className="lg:sticky lg:top-6 h-fit space-y-1.5 w-20"
       >
         {cards.map((card, index) => (
           <motion.div
@@ -109,52 +109,55 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
             transition={{ duration: 0.4, delay: 0.1 * index }}
           >
             <Card 
-              className="overflow-hidden border-primary/20 shadow-sm backdrop-blur-sm bg-card/95 cursor-pointer transition-all hover:shadow-md hover:border-primary/40"
+              className="overflow-hidden border-primary/20 shadow-sm backdrop-blur-sm bg-card/95 cursor-pointer transition-all hover:shadow-lg hover:border-primary/40 hover:-translate-y-0.5 group"
               onClick={() => openFullPage(card.id)}
             >
               <motion.div 
-                className={`bg-gradient-to-br ${card.gradient} p-3 flex items-center justify-between`}
-                whileHover={{ scale: 1.02 }}
+                className={`bg-gradient-to-br ${card.gradient} p-2.5 flex flex-col items-center justify-center gap-1.5 relative`}
+                whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="flex items-center gap-2.5">
-                  <motion.div 
-                    className="h-9 w-9 rounded-lg bg-background/80 backdrop-blur-sm flex items-center justify-center shadow-sm"
-                    whileHover={{ rotate: [0, -10, 10, 0] }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <card.icon size={18} className={card.iconColor} weight="duotone" />
-                  </motion.div>
-                  <div>
-                    <h3 className="font-semibold text-foreground text-sm">{card.title}</h3>
-                    {card.count !== null && (
-                      <p className="text-xs text-muted-foreground">
-                        {card.count} {card.count === 1 ? 'item' : 'items'}
-                      </p>
-                    )}
-                  </div>
-                </div>
+                <motion.div 
+                  className="h-10 w-10 rounded-lg bg-background/80 backdrop-blur-sm flex items-center justify-center shadow-sm"
+                  whileHover={{ rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <card.icon size={20} className={card.iconColor} weight="duotone" />
+                </motion.div>
                 
-                <div className="flex items-center gap-2">
-                  {card.count !== null && (
-                    <Badge variant="secondary" className="h-5 min-w-[20px] px-1.5 text-xs font-bold">
-                      {card.count}
-                    </Badge>
-                  )}
-                  <motion.div
-                    whileHover={{ scale: 1.2 }}
-                  >
-                    <ArrowsOut size={16} className="text-muted-foreground" />
-                  </motion.div>
-                </div>
+                {card.count !== null && (
+                  <Badge variant="secondary" className="h-4 min-w-[20px] px-1 text-[10px] font-bold">
+                    {card.count}
+                  </Badge>
+                )}
+                
+                <motion.div
+                  className="absolute -top-1 -right-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                  whileHover={{ scale: 1.2 }}
+                >
+                  <div className="bg-background rounded-full p-0.5 shadow-md">
+                    <ArrowsOut size={12} className="text-primary" />
+                  </div>
+                </motion.div>
               </motion.div>
             </Card>
           </motion.div>
         ))}
+        
+        <motion.div
+          className="pt-1 text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
+          <p className="text-[9px] text-muted-foreground leading-tight">
+            Click to expand
+          </p>
+        </motion.div>
       </motion.div>
 
       <Dialog open={!!fullPageSection} onOpenChange={closeFullPage}>
-        <DialogContent className="max-w-7xl h-[90vh] overflow-hidden p-0">
+        <DialogContent className="max-w-[95vw] w-full h-[95vh] overflow-hidden p-0 gap-0">
           <motion.div
             drag="y"
             dragConstraints={{ top: 0, bottom: 0 }}
@@ -165,7 +168,7 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
           >
             <div className="lg:hidden w-12 h-1 bg-muted-foreground/30 rounded-full mx-auto mt-2 mb-1" />
             
-            <DialogHeader className="px-6 pt-4 lg:pt-6 pb-4 border-b border-border relative">
+            <DialogHeader className="px-6 pt-4 lg:pt-6 pb-4 border-b border-border relative flex-shrink-0">
               <div className="flex items-center justify-between">
                 <DialogTitle className="text-2xl lg:text-3xl font-semibold font-[family-name:var(--font-heading)]">
                   {cards.find(c => c.id === fullPageSection)?.title}
@@ -183,8 +186,8 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
               </div>
             </DialogHeader>
             
-            <Tabs value={fullPageSection || 'publications'} onValueChange={setFullPageSection} className="flex-1 flex flex-col overflow-hidden">
-              <TabsList className="mx-6 mt-4 w-fit">
+            <Tabs value={fullPageSection || 'publications'} onValueChange={setFullPageSection} className="flex-1 flex flex-col overflow-hidden min-h-0">
+              <TabsList className="mx-6 mt-4 w-fit flex-shrink-0">
                 {cards.map((card) => (
                   <TabsTrigger key={card.id} value={card.id}>
                     <card.icon size={18} className="mr-2" />
@@ -194,7 +197,7 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
                 ))}
               </TabsList>
 
-              <TabsContent value="publications" className="flex-1 overflow-y-auto px-6 pb-6 mt-4">
+              <TabsContent value="publications" className="flex-1 overflow-y-auto px-6 pb-6 mt-4 min-h-0">
                 <Publications
                   publications={filteredPublications}
                   searchQuery={searchQuery}
@@ -203,11 +206,11 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
                 />
               </TabsContent>
 
-              <TabsContent value="blogs" className="flex-1 overflow-y-auto px-6 pb-6 mt-4">
+              <TabsContent value="blogs" className="flex-1 overflow-y-auto px-6 pb-6 mt-4 min-h-0">
                 <Blogs />
               </TabsContent>
 
-              <TabsContent value="contact" className="flex-1 overflow-y-auto px-6 pb-6 mt-4">
+              <TabsContent value="contact" className="flex-1 overflow-y-auto px-6 pb-6 mt-4 min-h-0">
                 <ContactUs contact={contact} />
               </TabsContent>
             </Tabs>
