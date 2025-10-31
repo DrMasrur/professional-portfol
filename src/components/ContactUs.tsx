@@ -4,7 +4,7 @@ import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
 import { motion } from 'framer-motion'
-import { EnvelopeSimple, Phone, LinkedinLogo, PaperPlaneTilt, CheckCircle } from '@phosphor-icons/react'
+import { EnvelopeSimple, LinkedinLogo, PaperPlaneTilt, CheckCircle } from '@phosphor-icons/react'
 import { toast } from 'sonner'
 
 interface ContactInfo {
@@ -86,25 +86,6 @@ export function ContactUs({ contact }: ContactUsProps) {
               <div className="flex-1 min-w-0">
                 <p className="text-xs text-muted-foreground">Work Email</p>
                 <p className="text-sm font-medium truncate">{contact.workEmail}</p>
-              </div>
-            </motion.a>
-
-            <motion.a
-              href={`tel:${contact.phone}`}
-              className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent/50 transition-colors group relative overflow-hidden"
-              whileHover={{ x: 2 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <motion.div 
-                className="h-9 w-9 rounded-full bg-green-500/10 flex items-center justify-center group-hover:bg-green-500/20 transition-colors relative z-10"
-                whileHover={{ rotate: [0, 15, -15, 0], scale: 1.1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Phone size={18} className="text-green-600" />
-              </motion.div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs text-muted-foreground">Phone</p>
-                <p className="text-sm font-medium">{contact.phone}</p>
               </div>
             </motion.a>
 
