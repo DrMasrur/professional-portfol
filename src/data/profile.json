@@ -163,166 +163,571 @@
       "date": ""
     }
   ],
+  "researchFocusAreas": [
+    {
+      "id": "air-quality",
+      "title": "Air Quality Monitoring & Forecasting",
+      "description": "Advanced forecasting models for air quality index prediction using satellite-derived hydro-climatological variables and deep learning techniques.",
+      "highlight": true,
+      "color": "sky",
+      "overview": "Developing state-of-the-art deep learning models for air quality prediction and monitoring, with focus on real-time forecasting systems and sensor calibration using satellite data and atmospheric variables.",
+      "papers": [
+        "advanced-aqi-2024",
+        "air-quality-instruments-2024",
+        "bayesian-purpleair-2024",
+        "tsp-prediction-2025",
+        "dempster-shafer-2025",
+        "ensemble-air-nowcast-2025"
+      ]
+    },
+    {
+      "id": "deep-learning-hydrology",
+      "title": "Deep Learning for Hydrological Predictions",
+      "description": "Hybrid deep learning architectures including LSTM, GRU, CNN-LSTM for environmental predictions with innovative decomposition methods.",
+      "highlight": true,
+      "color": "purple",
+      "overview": "Pioneering hybrid deep learning methods combining multiple architectures (LSTM, GRU, CNN) with feature decomposition techniques (EEMD, CEEMDAN) for accurate hydrological forecasting across various temporal scales.",
+      "papers": [
+        "streamflow-boruta-2021",
+        "soil-moisture-lstm-2021",
+        "soil-moisture-cnn-gru-2021",
+        "water-level-decomp-2022",
+        "evapotranspiration-2022",
+        "flood-index-2024",
+        "wave-height-2024"
+      ]
+    },
+    {
+      "id": "water-resources",
+      "title": "Water Resources & Demand Forecasting",
+      "description": "Cutting-edge research in water demand modeling, irrigation forecasting, and water quality prediction using AI techniques.",
+      "highlight": true,
+      "color": "emerald",
+      "overview": "Developing advanced models for water demand disaggregation, crop coefficient determination, and water quality forecasting to support sustainable water management under climate change scenarios.",
+      "papers": [
+        "water-demand-2024",
+        "do-forecast-2023",
+        "do-anfis-2017",
+        "do-ann-2017",
+        "do-ann-application-2013",
+        "water-quality-ccme-2013",
+        "surma-deterioration-2010",
+        "surma-factor-2010"
+      ]
+    },
+    {
+      "id": "climate-energy",
+      "title": "Climate Science & Energy Forecasting",
+      "description": "Machine learning models for climate extremes, renewable energy forecasting, and bias correction in numerical weather predictions.",
+      "highlight": true,
+      "color": "amber",
+      "overview": "Applying advanced ML techniques for solar energy forecasting, cloud cover bias correction, energy consumption prediction, and ultraviolet index modeling with optimization algorithms.",
+      "papers": [
+        "energy-consumption-2023",
+        "solar-bias-correction-2023",
+        "electricity-price-2025",
+        "uv-index-2022"
+      ]
+    },
+    {
+      "id": "remote-sensing",
+      "title": "Remote Sensing & Satellite Applications",
+      "description": "Utilizing satellite-derived variables and remote sensing data for agricultural, environmental, and climate predictions.",
+      "highlight": false,
+      "color": "indigo",
+      "overview": "Leveraging satellite data (MODIS, Sentinel) for crop yield prediction, soil moisture estimation, and vegetation monitoring using machine learning approaches.",
+      "papers": [
+        "wheat-yield-2022",
+        "tea-yield-2022"
+      ]
+    },
+    {
+      "id": "ocean-climate",
+      "title": "Ocean & Sea Level Monitoring",
+      "description": "Sea level trend analysis and prediction in Pacific regions using advanced time series models.",
+      "highlight": false,
+      "color": "cyan",
+      "overview": "Analyzing and forecasting sea level changes using reanalysis datasets and hybrid deep learning models.",
+      "papers": [
+        "sea-level-2022"
+      ]
+    },
+    {
+      "id": "materials-engineering",
+      "title": "Materials Science Applications",
+      "description": "AI-driven prediction models for material properties with explainable AI techniques.",
+      "highlight": false,
+      "color": "rose",
+      "overview": "Applying hybrid intelligence models and SHAP algorithms for material property prediction and parametric analysis.",
+      "papers": [
+        "mpc-composites-2023"
+      ]
+    },
+    {
+      "id": "education-analytics",
+      "title": "Educational Data Analytics",
+      "description": "Predictive models for academic performance using machine learning regression techniques.",
+      "highlight": false,
+      "color": "violet",
+      "overview": "Developing novel multivariate adaptive regression models for student performance prediction.",
+      "papers": [
+        "student-mars-2022"
+      ]
+    },
+    {
+      "id": "environmental-legacy",
+      "title": "Environmental Impact & Legacy Research",
+      "description": "Early research on environmental assessment, waste management, and pollution monitoring in Bangladesh.",
+      "highlight": false,
+      "color": "slate",
+      "overview": "Foundational work in environmental impact assessment, solid waste management, and pollution control for industrial and urban areas.",
+      "papers": [
+        "arsenic-impact-2011",
+        "thermal-power-2011",
+        "ewaste-2013",
+        "nox-dhaka-2012",
+        "oil-gas-eia-2010",
+        "solid-waste-2010",
+        "stone-dust-2010",
+        "stone-powder-2009",
+        "pavement-evaluation-2010",
+        "highway-rating-2011",
+        "drift-analysis-2012",
+        "peak-flow-ann-2017",
+        "sanitation-slums-2010"
+      ]
+    }
+  ],
   "publications": [
     {
-      "title": "Monthly disaggregation of annual irrigation water demand in the southern Murray Darling Basin",
-      "authors": "AAM Ahmed, QJ Wang et al.",
-      "year": 2024,
-      "journal": "Agricultural Water Management",
-      "volume": "302",
-      "pages": "108961"
-    },
-    {
-      "title": "Advanced Instruments for Air Quality Research and Modelling In New South Wales",
-      "authors": "HN Duc, M Riley, AAM Ahmed",
-      "year": 2024,
-      "journal": "Air Quality and Climate Change",
-      "volume": "58 (2)",
-      "pages": "35-44"
-    },
-    {
-      "title": "Hybrid deep learning model for wave height prediction in Australia's wave energy region",
-      "authors": "AAM Ahmed, SJJ Jui, R Saha, RC Deo, SK Saha",
-      "year": 2024,
-      "journal": "Applied Soft Computing",
-      "volume": "150",
-      "pages": "111003"
-    },
-    {
+      "id": "advanced-aqi-2024",
       "title": "An advanced deep learning predictive model for air quality index forecasting with remote satellite-derived hydro-climatological variables",
       "authors": "AAM Ahmed, SJJ Jui, E Sharma, MH Ahmed, N Raj, A Bose",
       "year": 2024,
       "journal": "Science of The Total Environment",
       "volume": "906",
-      "pages": "167234"
+      "pages": "167234",
+      "citations": 50
     },
     {
-      "title": "Global control of electrical supply: A variational mode decomposition-aided DL model for energy consumption prediction",
-      "authors": "AAM Ahmed et al.",
-      "year": 2023,
-      "journal": "Energy Reports",
-      "volume": "10",
-      "pages": "2152-2165"
+      "id": "air-quality-instruments-2024",
+      "title": "Advanced Instruments for Air Quality Research and Modelling In New South Wales",
+      "authors": "HN Duc, M Riley, M Azzi, B Fiszter, G Gunashanhar, N Ross, Glenn, Jiang, AAM Ahmed",
+      "year": 2024,
+      "journal": "Air Quality and Climate Change",
+      "volume": "58 (2)",
+      "pages": "35-44",
+      "citations": 1
     },
     {
-      "title": "Cloud covers bias correction in numerical weather models for solar energy monitoring and forecasting systems with KRR",
-      "authors": "RC Deo, AAM Ahmed et al.",
-      "year": 2023,
-      "journal": "Renewable Energy",
-      "volume": "203",
-      "pages": "113-130"
+      "id": "bayesian-purpleair-2024",
+      "title": "A Bayesian-Optimized Surrogate Model Integrating Deep Learning Algorithms for Correcting PurpleAir Sensor Measurements",
+      "authors": "M Ahmed, J Kong, N Jiang, HN Duc, P Puppala, M Azzi, M Riley, AAM Ahmed",
+      "year": 2024,
+      "journal": "Environmental Monitoring and Assessment",
+      "volume": "",
+      "pages": "",
+      "citations": 2
     },
     {
-      "title": "The development of dissolved oxygen forecast model using hybrid ML algorithm with hydro-meteorological variables",
-      "authors": "AAM Ahmed et al.",
-      "year": 2022,
-      "journal": "Environmental Science and Pollution Research",
-      "volume": "30(3)",
-      "pages": "7851-73"
+      "id": "tsp-prediction-2025",
+      "title": "Explainable deep learning hybrid modeling framework for total suspended particles concentrations prediction",
+      "authors": "S Ghimire, RC Deo, N Jiang, AAM Ahmed, SS Prasad, D Casillas-Perez, S Salcedo-Sanz",
+      "year": 2025,
+      "journal": "Atmospheric Environment",
+      "volume": "347",
+      "pages": "121079",
+      "citations": 2
     },
     {
-      "title": "Optimization algorithms as training approach with hybrid DL methods to develop an ultraviolet forecasting model",
-      "authors": "AAM Ahmed et al.",
-      "year": 2022,
-      "journal": "Stochastic Environmental Research and Risk Assessment",
-      "volume": "36 (10)",
-      "pages": "3011-39"
+      "id": "dempster-shafer-2025",
+      "title": "Dependable Dempster-Shafer Inference Framework for Urban Air Quality Monitoring",
+      "authors": "TH Le, HAD Nguyen, QP Ha, M Ahmed, X Barthelemy, N Jiang, H Duc, M Riley, M Azzi, AAM Ahmed",
+      "year": 2025,
+      "journal": "IEEE Sensors Journal",
+      "volume": "",
+      "pages": "",
+      "citations": 0
     },
     {
-      "title": "Introductory engineering mathematics students' weighted score predictions utilising a novel MARS model",
-      "authors": "AAM Ahmed et al.",
-      "year": 2022,
-      "journal": "Sustainability",
-      "volume": "14 (17)",
-      "pages": "11070"
+      "id": "ensemble-air-nowcast-2025",
+      "title": "Dempster-Shafer ensemble learning framework for air pollution nowcasting",
+      "authors": "TH Le, M Ahmed, J Kong, X Barthelemy, H Duc, N Jiang, M Azzi, M Riley, AAM Ahmed",
+      "year": 2025,
+      "journal": "E3S Web of Conferences",
+      "volume": "626",
+      "pages": "01003",
+      "citations": 0
     },
     {
-      "title": "Hybrid intelligence models for comp strength prediction of MPC composites & parametric analysis with SHAP algorithm",
-      "authors": "MA Haque, AAM Ahmed et al.",
-      "year": 2023,
-      "journal": "Materials Today Communications",
-      "volume": "35",
-      "pages": "105547"
+      "id": "streamflow-boruta-2021",
+      "title": "Deep learning hybrid model with Boruta-Random forest optimiser algorithm for streamflow forecasting with climate mode indices, rainfall, and periodicity",
+      "authors": "AAM Ahmed, RC Deo, Q Feng, A Ghahramani, N Raj, Z Yin, L Yang",
+      "year": 2021,
+      "journal": "Journal of Hydrology",
+      "volume": "599",
+      "pages": "126350",
+      "citations": 155
     },
     {
-      "title": "New double decomposition deep learning methods for river water level forecasting",
-      "authors": "AAM Ahmed, RC Deo et al.",
-      "year": 2022,
-      "journal": "Science of The Total Environment",
-      "volume": "831",
-      "pages": "154722"
-    },
-    {
-      "title": "Kernel ridge regression hybrid method for wheat yield prediction with satellite-derived predictors",
-      "authors": "AAM Ahmed et al.",
-      "year": 2022,
-      "journal": "Remote Sensing",
-      "volume": "14 (5)",
-      "pages": "1136"
-    },
-    {
-      "title": "Assessment and prediction of sea level trend in the South Pacific Region",
-      "authors": "N Raj, AAM Ahmed, Y Stepanyants",
-      "year": 2022,
-      "journal": "Remote Sensing",
-      "volume": "14 (4)",
-      "pages": "986"
-    },
-    {
-      "title": "Spatiotemporal hybrid random forest model for tea yield prediction using satellite-derived variables",
-      "authors": "SJJ Jui, AAM Ahmed et al.",
-      "year": 2022,
-      "journal": "Remote Sensing",
-      "volume": "14 (3)",
-      "pages": "805"
-    },
-    {
+      "id": "soil-moisture-lstm-2021",
       "title": "LSTM integrated with Boruta-random forest optimiser for soil moisture estimation under RCP4.5 and RCP8.5 global warming scenarios",
-      "authors": "AAM Ahmed et al.",
+      "authors": "AAM Ahmed, RC Deo, A Ghahramani, N Raj, Q Feng, Z Yin, L Yang",
       "year": 2021,
       "journal": "Stochastic Environmental Research and Risk Assessment",
       "volume": "35",
-      "pages": "1851-1881"
+      "pages": "1851-1881",
+      "citations": 86
     },
     {
-      "title": "Hybrid deep learning method for a week-ahead evapotranspiration forecasting",
-      "authors": "AAM Ahmed, RC Deo et al.",
-      "year": 2022,
-      "journal": "Stochastic Environmental Research and Risk Assessment",
-      "volume": "36",
-      "pages": "831-849"
-    },
-    {
-      "title": "Deep learning hybrid model with Boruta-RF algorithm for streamflow forecasting with climate mode indices, rainfall, and periodicity",
-      "authors": "AAM Ahmed et al.",
-      "year": 2022,
-      "journal": "Journal of Hydrology",
-      "volume": "599",
-      "pages": "126350"
-    },
-    {
-      "title": "Deep learning forecasts of soil moisture: CNN and GRU models coupled with satellite-derived MODIS, observations, and synoptic-scale",
-      "authors": "AAM Ahmed et al.",
+      "id": "soil-moisture-cnn-gru-2021",
+      "title": "Deep learning forecasts of soil moisture: convolutional neural network and gated recurrent unit models coupled with satellite-derived MODIS, observations and synoptic-scale climate indices",
+      "authors": "AAM Ahmed, RC Deo, N Raj, A Ghahramani, Q Feng, Z Yin, L Yang",
       "year": 2021,
       "journal": "Remote Sensing",
       "volume": "13 (4)",
-      "pages": "554"
+      "pages": "554",
+      "citations": 86
     },
     {
-      "title": "Application of adaptive neuro-fuzzy inference system (ANFIS) to estimate the biochemical oxygen demand of Surma River",
-      "authors": "AAM Ahmed et al.",
+      "id": "water-level-decomp-2022",
+      "title": "New double decomposition deep learning methods for river water level forecasting",
+      "authors": "AAM Ahmed, RC Deo, A Ghahramani, Q Feng, N Raj, Z Yin, L Yang",
+      "year": 2022,
+      "journal": "Science of The Total Environment",
+      "volume": "831",
+      "pages": "154722",
+      "citations": 71
+    },
+    {
+      "id": "evapotranspiration-2022",
+      "title": "Hybrid deep learning method for a week-ahead evapotranspiration forecasting",
+      "authors": "AAM Ahmed, RC Deo, Q Feng, A Ghahramani, N Raj, Z Yin, L Yang",
+      "year": 2022,
+      "journal": "Stochastic Environmental Research and Risk Assessment",
+      "volume": "36 (3)",
+      "pages": "831-849",
+      "citations": 60
+    },
+    {
+      "id": "flood-index-2024",
+      "title": "Real-time prediction of the week-ahead flood index using hybrid deep learning algorithms with synoptic climate mode indices",
+      "authors": "AAM Ahmed, S Akther, T Nguyen-Huy, N Raj, SJJ Jui, SZ Farzana",
+      "year": 2024,
+      "journal": "Journal of Hydro-environment Research",
+      "volume": "57",
+      "pages": "12-26",
+      "citations": 7
+    },
+    {
+      "id": "wave-height-2024",
+      "title": "Hybrid deep learning model for wave height prediction in Australia's wave energy region",
+      "authors": "AAM Ahmed, SJJ Jui, MS Al-Musaylh, N Raj, R Saha, RC Deo, SK Saha",
+      "year": 2024,
+      "journal": "Applied Soft Computing",
+      "volume": "150",
+      "pages": "111003",
+      "citations": 41
+    },
+    {
+      "id": "water-demand-2024",
+      "title": "Monthly disaggregation of annual irrigation water demand in the southern Murray Darling Basin",
+      "authors": "AAM Ahmed, QJ Wang, AW Western, TDJ Graham, W Wu",
+      "year": 2024,
+      "journal": "Agricultural Water Management",
+      "volume": "302",
+      "pages": "108961",
+      "citations": 5
+    },
+    {
+      "id": "do-forecast-2023",
+      "title": "The development of dissolved oxygen forecast model using hybrid machine learning algorithm with hydro-meteorological variables",
+      "authors": "AAM Ahmed, SJJ Jui, MAI Chowdhury, O Ahmed, A Sutradha",
+      "year": 2023,
+      "journal": "Environmental Science and Pollution Research",
+      "volume": "30 (3)",
+      "pages": "7851-7873",
+      "citations": 34
+    },
+    {
+      "id": "do-anfis-2017",
+      "title": "Application of adaptive neuro-fuzzy inference system (ANFIS) to estimate the biochemical oxygen demand (BOD) of Surma River",
+      "authors": "AAM Ahmed, SMA Shah",
       "year": 2017,
-      "journal": "Journal of King Saud University - Engineering Sciences",
+      "journal": "Journal of King Saud University-Engineering Sciences",
       "volume": "29 (3)",
-      "pages": "237-243"
+      "pages": "237-243",
+      "citations": 199
     },
     {
-      "title": "Prediction of dissolved oxygen in Surma River by BOD and COD using the artificial neural networks (ANNs)",
+      "id": "do-ann-2017",
+      "title": "Prediction of dissolved oxygen in Surma River by biochemical oxygen demand and chemical oxygen demand using the artificial neural networks (ANNs)",
       "authors": "AAM Ahmed",
       "year": 2017,
       "journal": "Journal of King Saud University - Engineering Sciences",
       "volume": "29(2)",
-      "pages": "151-158"
+      "pages": "151-158",
+      "citations": 166
+    },
+    {
+      "id": "do-ann-application-2013",
+      "title": "Application of artificial neural network models for predicting dissolved oxygen concentration for Surma River, Bangladesh",
+      "authors": "AA Ahmed, MI Hossain, MT Rahman, MAI Chowdhury",
+      "year": 2013,
+      "journal": "Journal of Applied Technology in Environmental Sanitation",
+      "volume": "3 (3)",
+      "pages": "",
+      "citations": 6
+    },
+    {
+      "id": "water-quality-ccme-2013",
+      "title": "A Canadian water quality guideline-water quality index (CCME-WQI) based assessment study of water quality in Surma River",
+      "authors": "GM Munna, MMI Chowdhury, AAM Ahmed, S Chowdhury, MM Alom",
+      "year": 2013,
+      "journal": "Journal of Civil Engineering and Construction Technology",
+      "volume": "4 (3)",
+      "pages": "81-89",
+      "citations": 57
+    },
+    {
+      "id": "surma-deterioration-2010",
+      "title": "Deterioration of water quality of Surma River influenced by natural canals passing through Sylhet city of Bangladesh",
+      "authors": "M Ahmed, AAM Ahmed, RK Mazumder",
+      "year": 2010,
+      "journal": "International Conference on Environmental Aspects of Bangladesh (ICEAB10)",
+      "volume": "",
+      "pages": "",
+      "citations": 14
+    },
+    {
+      "id": "surma-factor-2010",
+      "title": "Evaluation of surface water quality of Surma river using factor analysis",
+      "authors": "MJB Alam, AAM Ahmed, E Ali, AAM Ahmed",
+      "year": 2010,
+      "journal": "International Conference on Environmental Aspects of Bangladesh",
+      "volume": "10",
+      "pages": "186-188",
+      "citations": 12
+    },
+    {
+      "id": "energy-consumption-2023",
+      "title": "Global control of electrical supply: A variational mode decomposition-aided deep learning model for energy consumption prediction",
+      "authors": "AAM Ahmed, N Bailek, L Abualigah, K Bouchouicha, A Kuriqi, A Sharifi",
+      "year": 2023,
+      "journal": "Energy Reports",
+      "volume": "10",
+      "pages": "2152-2165",
+      "citations": 19
+    },
+    {
+      "id": "solar-bias-correction-2023",
+      "title": "Cloud cover bias correction in numerical weather models for solar energy monitoring and forecasting systems with kernel ridge regression",
+      "authors": "RC Deo, AAM Ahmed, D Casillas-Pérez, SA Pourmousavi, G Segal, Y Yu",
+      "year": 2023,
+      "journal": "Renewable Energy",
+      "volume": "203",
+      "pages": "113-130",
+      "citations": 23
+    },
+    {
+      "id": "electricity-price-2025",
+      "title": "Novel deep hybrid model for electricity price prediction based on dual decomposition",
+      "authors": "S Ghimire, T Nguyen-Huy, RC Deo, D Casillas-Pérez, AAM Ahmed, S Salcedo-Sanz",
+      "year": 2025,
+      "journal": "Applied Energy",
+      "volume": "395",
+      "pages": "126197",
+      "citations": 3
+    },
+    {
+      "id": "uv-index-2022",
+      "title": "Optimization algorithms as training approach with hybrid deep learning methods to develop an ultraviolet index forecasting model",
+      "authors": "AAM Ahmed, MH Ahmed, SK Saha, O Ahmed, A Sutradhar",
+      "year": 2022,
+      "journal": "Stochastic Environmental Research and Risk Assessment",
+      "volume": "36 (10)",
+      "pages": "3011-3039",
+      "citations": 26
+    },
+    {
+      "id": "wheat-yield-2022",
+      "title": "Kernel ridge regression hybrid method for wheat yield prediction with satellite-derived predictors",
+      "authors": "AAM Ahmed, E Sharma, SJJ Jui, RC Deo, T Nguyen-Huy, M Ali",
+      "year": 2022,
+      "journal": "Remote Sensing",
+      "volume": "14 (5)",
+      "pages": "1136",
+      "citations": 44
+    },
+    {
+      "id": "tea-yield-2022",
+      "title": "Spatiotemporal hybrid random forest model for tea yield prediction using satellite-derived variables",
+      "authors": "SJJ Jui, AAM Ahmed, A Bose, N Raj, E Sharma, J Soar, MWI Chowdhury",
+      "year": 2022,
+      "journal": "Remote Sensing",
+      "volume": "14 (3)",
+      "pages": "805",
+      "citations": 38
+    },
+    {
+      "id": "sea-level-2022",
+      "title": "Assessment and prediction of sea level trend in the South Pacific Region",
+      "authors": "N Raj, Z Gharineiat, AAM Ahmed, Y Stepanyants",
+      "year": 2022,
+      "journal": "Remote Sensing",
+      "volume": "14 (4)",
+      "pages": "986",
+      "citations": 30
+    },
+    {
+      "id": "mpc-composites-2023",
+      "title": "Hybrid intelligence models for compressive strength prediction of MPC composites and parametric analysis with SHAP algorithm",
+      "authors": "MA Haque, B Chen, A Kashem, T Qureshi, AAM Ahmed",
+      "year": 2023,
+      "journal": "Materials Today Communications",
+      "volume": "35",
+      "pages": "105547",
+      "citations": 69
+    },
+    {
+      "id": "student-mars-2022",
+      "title": "Introductory engineering mathematics students' weighted score predictions utilising a novel multivariate adaptive regression spline model",
+      "authors": "AAM Ahmed, RC Deo, S Ghimire, NJ Downs, A Devi, PD Barua",
+      "year": 2022,
+      "journal": "Sustainability",
+      "volume": "14 (17)",
+      "pages": "11070",
+      "citations": 8
+    },
+    {
+      "id": "arsenic-impact-2011",
+      "title": "Evaluation of socio-economic impact of arsenic contamination in Bangladesh",
+      "authors": "AAM Ahmed, MJB Alam, AM Ahmed",
+      "year": 2011,
+      "journal": "J. Toxicol. Environ. Health Sci",
+      "volume": "3 (10)",
+      "pages": "298-307",
+      "citations": 30
+    },
+    {
+      "id": "thermal-power-2011",
+      "title": "Evaluation of possible environmental impacts for Barapukuria thermal power plant and coal mine",
+      "authors": "MJ Alam, AAM Ahmed, MJH Khan, B Ahmed",
+      "year": 2011,
+      "journal": "J Soil Sci Environ Manag",
+      "volume": "2 (5)",
+      "pages": "126-131",
+      "citations": 28
+    },
+    {
+      "id": "ewaste-2013",
+      "title": "Prioritizing e-waste management needs for mitigating hazardous pollutants in north-east zone, Bangladesh",
+      "authors": "MMI Chowdhury, AA Ahmed, GM Munna",
+      "year": 2013,
+      "journal": "Journal of Applied Technology in Environmental Sanitation",
+      "volume": "3 (1)",
+      "pages": "",
+      "citations": 6
+    },
+    {
+      "id": "nox-dhaka-2012",
+      "title": "Simulation of NOx Concentration of Dhaka City by Regional Air Model",
+      "authors": "AAM Ahmed, JB Alam",
+      "year": 2012,
+      "journal": "American Journal of Environmental Engineering",
+      "volume": "2 (2)",
+      "pages": "39-44",
+      "citations": 0
+    },
+    {
+      "id": "oil-gas-eia-2010",
+      "title": "Environmental impact assessment of oil and gas sector: A case study of Magurchara gas field",
+      "authors": "JB Alam, AAM Ahmed, GM Munna, AAM Ahmed",
+      "year": 2010,
+      "journal": "J. Soil Sci. Environ. Manage",
+      "volume": "1 (5)",
+      "pages": "86-91",
+      "citations": 12
+    },
+    {
+      "id": "solid-waste-2010",
+      "title": "Solid waste management through bartering—a case study in Sylhet",
+      "authors": "AAM Ahmed, AAM Ahmed, MJB Alam, AG Tithi",
+      "year": 2010,
+      "journal": "Proceedings of International Conference on Environmental Aspects of Bangladesh",
+      "volume": "",
+      "pages": "",
+      "citations": 9
+    },
+    {
+      "id": "stone-dust-2010",
+      "title": "Minimizing the stone dust through a sustainable way: a case study of stone crushing industry of Sylhet",
+      "authors": "AA Masrur Ahmed, HMA Mahzuz, MA Yusuf",
+      "year": 2010,
+      "journal": "Proceedings of the International Conference on Environmental Aspects of Bangladesh",
+      "volume": "",
+      "pages": "",
+      "citations": 15
+    },
+    {
+      "id": "stone-powder-2009",
+      "title": "Using of stone powder as an alternative of sand",
+      "authors": "AAM Ahmed, MA Yusuf",
+      "year": 2009,
+      "journal": "B. Sc. Eng. Thesis, Civil and Environmental Engineering Department",
+      "volume": "",
+      "pages": "",
+      "citations": 5
+    },
+    {
+      "id": "pavement-evaluation-2010",
+      "title": "Evaluation of existing pavement of Sylhet-Sunamjong Road by dynamic cone penetrometer",
+      "authors": "JB Alam, GM Munna, AAM Ahmed",
+      "year": 2010,
+      "journal": "J. Environ. Res. Dev",
+      "volume": "5 (1)",
+      "pages": "1-11",
+      "citations": 1
+    },
+    {
+      "id": "highway-rating-2011",
+      "title": "A techno-economic rating system for highways using discrete multi-criteria analysis",
+      "authors": "MJB Alam, AAM Ahmed, B Ahmed",
+      "year": 2011,
+      "journal": "Journal of Civil Engineering and Construction Technology",
+      "volume": "2 (1)",
+      "pages": "1-5",
+      "citations": 1
+    },
+    {
+      "id": "drift-analysis-2012",
+      "title": "Drift analysis due to earthquake load on tall structures",
+      "authors": "A Rahman, AAM Ahmed, MR Mamun",
+      "year": 2012,
+      "journal": "Journal of civil engineering and Construction Technology",
+      "volume": "4 (5)",
+      "pages": "154-158",
+      "citations": 18
+    },
+    {
+      "id": "peak-flow-ann-2017",
+      "title": "Application of artificial neural networks to predict peak flow of Surma River in Sylhet Zone of Bangladesh",
+      "authors": "AAM Ahmed, SMA Shah",
+      "year": 2017,
+      "journal": "International Journal of Water",
+      "volume": "11 (4)",
+      "pages": "363-375",
+      "citations": 16
+    },
+    {
+      "id": "sanitation-slums-2010",
+      "title": "Evaluation of Sanitation Hygiene: A case study of slums in Sylhet",
+      "authors": "AAM Ahmed, MJB Alam, AAM Ahmed",
+      "year": 2010,
+      "journal": "Proceeding of Regional Conference on Appropriate Water front Supply and Sanitation",
+      "volume": "",
+      "pages": "",
+      "citations": 4
     }
   ]
 }

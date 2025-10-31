@@ -40,6 +40,13 @@ A comprehensive academic portfolio website showcasing Dr. Masrur Ahmed's researc
 - Progression: Metrics displayed with visual emphasis → Research areas listed → Links to profiles
 - Success criteria: Research impact immediately clear through prominent metric display
 
+**Interactive Research Focus Areas with Paper Linking**
+- Functionality: Categorized research focus areas (4 major highlights + additional areas) with linked publications that open in detailed dialog view
+- Purpose: Organize research output by theme and make it easy to explore related work
+- Trigger: Click on any research focus area card
+- Progression: Focus area clicked → Dialog opens → Overview displayed → Related papers listed with citations → Papers browsable
+- Success criteria: All papers properly categorized, clicking area shows relevant publications with full details
+
 **Publications List**
 - Functionality: Searchable/filterable list of academic publications with full citations
 - Purpose: Showcase research output and enable easy reference access
