@@ -3,7 +3,7 @@ import { Card, CardContent } from './ui/card'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
-import { MagnifyingGlass, Copy, Check } from '@phosphor-icons/react'
+import { MagnifyingGlass, Copy, Check, ArrowsClockwise, GoogleLogo } from '@phosphor-icons/react'
 import { toast } from 'sonner'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -12,8 +12,9 @@ interface Publication {
   authors: string
   year: number
   journal: string
-  volume: string
-  pages: string
+  volume?: string
+  pages?: string
+  citations?: number
 }
 
 interface PublicationsProps {
@@ -21,9 +22,12 @@ interface PublicationsProps {
   searchQuery: string
   onSearchChange: (query: string) => void
   totalCount: number
+  onRefresh?: () => Promise<void>
+  isRefreshing?: boolean
+  lastUpdated?: string
 }
 
-export function Publications({ publications, searchQuery, onSearchChange, totalCount }: PublicationsProps) {
+export function Publications({ publications, searchQuery, onSearchChange, totalCount, onRefresh, isRefreshing, lastUpdated }: PublicationsProps) {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
   const [showAll, setShowAll] = useState(false)
 
@@ -45,34 +49,73 @@ export function Publications({ publications, searchQuery, onSearchChange, totalC
   return (
     <div className="space-y-6">
       <motion.div 
-        className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+        className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl md:text-4xl font-semibold text-foreground font-[family-name:var(--font-heading)]">
-          Publications
-          <Badge variant="secondary" className="ml-3 text-base">
-            {publications.length} {publications.length !== totalCount ? `of ${totalCount}` : ''}
-          </Badge>
-        </h2>
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-3">
+            <h2 className="text-3xl md:text-4xl font-semibold text-foreground font-[family-name:var(--font-heading)]">
+              Publications
+            </h2>
+            <Badge variant="secondary" className="text-base">
+              {publications.length} {publications.length !== totalCount ? `of ${totalCount}` : ''}
+            </Badge>
+          </div>
+          {lastUpdated && (
+            <p className="text-xs text-muted-foreground">
+              Last synced: {new Date(lastUpdated).toLocaleDateString()} at {new Date(lastUpdated).toLocaleTimeString()}
+            </p>
+          )}
+        </div>
         
-        <motion.div 
-          className="relative w-full sm:w-80"
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: true }}
-        >
-          <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
-          <Input
-            placeholder="Search publications..."
-            value={searchQuery}
-            onChange={(e) => onSearchChange(e.target.value)}
-            className="pl-10"
-          />
-        </motion.div>
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto">
+          <motion.div 
+            className="relative flex-1 sm:w-80"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
+            <Input
+              placeholder="Search publications..."
+              value={searchQuery}
+              onChange={(e) => onSearchChange(e.target.value)}
+              className="pl-10"
+            />
+          </motion.div>
+          
+          {onRefresh && (
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              viewport={{ once: true }}
+            >
+              <Button
+                onClick={onRefresh}
+                disabled={isRefreshing}
+                variant="outline"
+                className="gap-2 hover:bg-primary hover:text-primary-foreground transition-all"
+              >
+                <motion.div
+                  animate={{ rotate: isRefreshing ? 360 : 0 }}
+                  transition={{ 
+                    duration: 1, 
+                    repeat: isRefreshing ? Infinity : 0,
+                    ease: "linear" 
+                  }}
+                >
+                  {isRefreshing ? <ArrowsClockwise size={18} /> : <GoogleLogo size={18} weight="bold" />}
+                </motion.div>
+                {isRefreshing ? 'Syncing...' : 'Sync Scholar'}
+              </Button>
+            </motion.div>
+          )}
+        </div>
       </motion.div>
 
       {publications.length === 0 ? (
@@ -125,6 +168,13 @@ export function Publications({ publications, searchQuery, onSearchChange, totalC
                                 {pub.volume && `, ${pub.volume}`}
                                 {pub.pages && `, ${pub.pages}`}
                               </p>
+                              {pub.citations !== undefined && pub.citations > 0 && (
+                                <p className="text-xs text-muted-foreground mt-1">
+                                  <Badge variant="secondary" className="text-xs">
+                                    {pub.citations} citations
+                                  </Badge>
+                                </p>
+                              )}
                             </div>
                           </div>
                         </div>

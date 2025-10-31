@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import profileData from './data/profile.json'
+import { usePublications } from './hooks/use-publications'
 import { Hero } from './components/Hero'
 import { ResearchFocus } from './components/ResearchFocus'
 import { ResearchGallery } from './components/ResearchGallery'
@@ -12,17 +13,27 @@ import { Awards } from './components/Awards'
 import { Publications } from './components/Publications'
 import { Blogs } from './components/Blogs'
 import { ContactUs } from './components/ContactUs'
+import { ScholarSyncDialog } from './components/ScholarSyncDialog'
 import { Separator } from './components/ui/separator'
 import { Toaster } from './components/ui/sonner'
 import { Button } from './components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUp, BookOpen, Article, Envelope, Briefcase, GraduationCap, Lightbulb, Trophy, House, ChartBar } from '@phosphor-icons/react'
 import { cn } from './lib/utils'
+import { toast } from 'sonner'
 
 function App() {
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [publicationsSearchQuery, setPublicationsSearchQuery] = useState('')
   const [activeSection, setActiveSection] = useState('home')
+  
+  const {
+    publications,
+    isLoading: isRefreshing,
+    lastUpdated,
+    error,
+    refreshPublications,
+  } = usePublications()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,7 +61,7 @@ function App() {
     }
   }
 
-  const filteredPublications = profileData.publications.filter(pub => {
+  const filteredPublications = (publications || []).filter(pub => {
     if (!publicationsSearchQuery) return true
     const query = publicationsSearchQuery.toLowerCase()
     return (
@@ -60,6 +71,15 @@ function App() {
       pub.year.toString().includes(query)
     )
   })
+  
+  const handleRefreshPublications = async () => {
+    const result = await refreshPublications()
+    if (result) {
+      toast.success('Publications synced successfully from Google Scholar!')
+    } else if (error) {
+      toast.error(`Failed to sync: ${error}`)
+    }
+  }
 
   const menuItems = [
     { id: 'home', label: 'Home', icon: House },
@@ -76,6 +96,7 @@ function App() {
   return (
     <div className="min-h-screen bg-background">
       <Toaster />
+      <ScholarSyncDialog />
       
       <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -132,7 +153,7 @@ function App() {
       </AnimatePresence>
 
       <section id="home">
-        <Hero data={profileData.personal} contact={profileData.personal.contact} publications={profileData.publications} />
+        <Hero data={profileData.personal} contact={profileData.personal.contact} publications={publications || profileData.publications} />
       </section>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -212,7 +233,10 @@ function App() {
               publications={filteredPublications}
               searchQuery={publicationsSearchQuery}
               onSearchChange={setPublicationsSearchQuery}
-              totalCount={profileData.publications.length}
+              totalCount={publications?.length || 0}
+              onRefresh={handleRefreshPublications}
+              isRefreshing={isRefreshing}
+              lastUpdated={lastUpdated}
             />
           </motion.div>
         </section>

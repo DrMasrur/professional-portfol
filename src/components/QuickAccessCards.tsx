@@ -14,8 +14,8 @@ interface Publication {
   authors: string
   year: number
   journal: string
-  volume: string
-  pages: string
+  volume?: string
+  pages?: string
 }
 
 interface ContactInfo {

@@ -19,6 +19,13 @@ A comprehensive academic portfolio website showcasing Dr. Masrur Ahmed's researc
 - Progression: JSON file parsed → Data structures created → Components render with data → Updates to JSON instantly reflect on reload
 - Success criteria: Changing any value in JSON file updates the corresponding UI element
 
+**Google Scholar Integration**
+- Functionality: AI-powered sync with Google Scholar profile to automatically fetch and update publications
+- Purpose: Keep publication list current without manual JSON editing - one-click sync from Google Scholar
+- Trigger: Click "Sync Scholar" button in Publications section
+- Progression: Button clicked → Loading state shown → AI extracts publications from Scholar profile → Publications updated in persistent storage → Success notification → UI updates with new data
+- Success criteria: Publications fetch successfully, persist across sessions, and display with citation counts and full metadata
+
 **Hero Section with Professional Identity**
 - Functionality: Display name, title, contact information, and professional photo placeholder
 - Purpose: Immediate professional impression with all key contact methods
@@ -48,11 +55,11 @@ A comprehensive academic portfolio website showcasing Dr. Masrur Ahmed's researc
 - Success criteria: All papers properly categorized, clicking area shows relevant publications with full details
 
 **Publications List**
-- Functionality: Searchable/filterable list of academic publications with full citations
-- Purpose: Showcase research output and enable easy reference access
-- Trigger: Navigate to publications section or search
-- Progression: Publications displayed → Filter/search applied → Results update → Citations accessible
-- Success criteria: All publications easily browsable with working search functionality
+- Functionality: Searchable/filterable list of academic publications with full citations and Google Scholar integration
+- Purpose: Showcase research output, enable easy reference access, and keep publications automatically synced
+- Trigger: Navigate to publications section, search, or click "Sync Scholar" button
+- Progression: Publications displayed → Filter/search applied → Results update → Citations accessible → Sync Scholar clicked → AI fetches latest publications → Publications updated and persisted
+- Success criteria: All publications easily browsable with working search functionality and one-click Google Scholar sync
 
 **Skills & Technical Competencies**
 - Functionality: Organized display of programming languages, frameworks, tools, and domain expertise
