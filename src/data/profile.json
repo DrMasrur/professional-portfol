@@ -46,17 +46,23 @@
   ],
   "experience": [
     {
-      "title": "Scientist Climate and Atmospheric Science",
-      "organization": "Economics, and Insights Division, Department of Climate Change, Energy, the Environment and Water",
-      "period": "JAN/2024 – to date",
+      "title": "Scientist Climate & Atmospheric Science",
+      "organization": "NSW Department of Climate Change, Energy, the Environment and Water",
+      "location": "Lidcombe, New South Wales, Australia (Hybrid)",
+      "period": "JAN/2024 – Present",
+      "duration": "1 yr 10 mos",
+      "type": "Full-time",
       "description": "Developing machine learning and deep learning models to gain deeper insights into climate and atmospheric conditions, focusing on emission modelling and air quality forecasting.",
       "highlights": []
     },
     {
-      "title": "Research Fellow in Water Resource Modelling",
-      "organization": "The University of Melbourne, Australia",
+      "title": "Postdoctoral Research Fellow",
+      "organization": "University of Melbourne",
+      "location": "Melbourne, Victoria, Australia",
       "period": "FEB/2022 – JAN/2024",
-      "description": "Conducting cutting edge research in water demand forecasting under an ARC linkage project titled 'water availability and demand: better forecasts, better management', partnered by CSIRO, BOM, MDBA, ECMWF and UniMELB etc.",
+      "duration": "2 yrs",
+      "type": "Full-time",
+      "description": "Conducting cutting edge research in water demand forecasting under an ARC linkage project titled 'water availability and demand: better forecasts, better management', partnered by CSIRO, BOM, MDBA, ECMWF and UniMELB.",
       "highlights": [
         "Developed a monthly water demand model from annual demand",
         "Probabilistic deep learning model for water demand prediction",
@@ -67,10 +73,15 @@
       ]
     },
     {
-      "title": "Research Scholar",
-      "organization": "University of Southern Queensland (UniSQ), Australia",
-      "period": "FEB/2019 – FEB/2022",
-      "description": "Developed cutting edge hybrid deep learning algorithms for early warning forecasting hydrological scenarios for the Australian Murray Darling Basin.",
+      "title": "Doctoral Researcher",
+      "organization": "University of Southern Queensland",
+      "location": "Springfield Lakes, Queensland, Australia (On-site)",
+      "period": "FEB/2019 – JAN/2022",
+      "duration": "3 yrs",
+      "type": "Full-time",
+      "description": "Developing deep learning algorithms and preparing the appropriate datasets with potential feature optimization algorithms. The early warning (daily, weekly, and monthly ahead) forecasting of hydrological variables would give us an idea of future hydrological scenarios of MDB.",
+      "supervisor": "Prof Dr Ravinesh C Deo, USQ, AUS",
+      "skills": ["PyTorch"],
       "highlights": [
         "Predicting hydrological variables (water level, rainfall, and soil moisture)",
         "Developed hybrid deep learning models (i.e., LSTM, GRU, CNN-LSTM)",
@@ -81,17 +92,17 @@
       ]
     },
     {
-      "title": "Research Assistant",
-      "organization": "UniSQ, Australia",
-      "period": "NOV/2020 – OCT/2021",
-      "description": "Developed hybrid deep learning model for mean sea level forecasting. Dealt with NCEP and ECMWF reanalysis datasets.",
-      "highlights": []
-    },
-    {
-      "title": "Research Scholar (Australian Postgraduate Research Internship)",
-      "organization": "UniSQ and CS Energy, Australia",
-      "period": "FEB/2021 – FEB/2021",
-      "description": "Bias correction and solar energy forecasting for Queensland solar farms.",
+      "title": "APR.Intern",
+      "organization": "CS Energy",
+      "location": "Brisbane, Queensland, Australia",
+      "period": "FEB/2021 – MAY/2021",
+      "duration": "4 mos",
+      "type": "Internship",
+      "description": "Bias Correction in GFS Outputs for Solar Power Generation: Correction of biases of GFS forecast weather data using hybrid deep learning approaches compared with shallow machine learning methods and conventional bias correction methods (MRNBC).",
+      "supervisors": {
+        "academic": "Prof Dr Ravinesh C Deo, USQ, AUS",
+        "industry": "Yanshan YU, Sr Quantitative Risk Analyst, CS Energy"
+      },
       "highlights": [
         "Developed cutting edge machine learning models for bias correction of cloud cover",
         "Used Global Forecast System Model datasets for solar farms of QLD, Australia"
@@ -99,16 +110,72 @@
     },
     {
       "title": "Assistant Professor",
-      "organization": "Leading University, Bangladesh",
-      "period": "NOV/2013 – MAR/2022",
+      "organization": "Leading University",
+      "location": "Sylhet, Bangladesh",
+      "period": "NOV/2013 – FEB/2019",
+      "duration": "5 yrs 4 mos",
+      "type": "Full-time",
       "description": "Taught courses like research methods, hydrology, fluid mechanics, water resources engineering. I led different research projects. Also served as a Head (acting) of the Civil Engineering Department.",
       "highlights": []
     },
     {
-      "title": "Research Assistant",
-      "organization": "Shahjalal University of Science & Technology",
-      "period": "JUL/2012 – JUN/2013",
-      "description": "Development of Artificial Neural Networks (ANN) model to predict the dissolved oxygen concentration of the Surma River.",
+      "title": "Advisor of Leading University Sports Club",
+      "organization": "Leading University",
+      "location": "Sylhet, Bangladesh",
+      "period": "OCT/2014 – JUN/2018",
+      "duration": "3 yrs 9 mos",
+      "type": "Full-time",
+      "description": "Led and advised the university sports club, organizing tournaments and team building activities.",
+      "highlights": []
+    },
+    {
+      "title": "Head (Self Assessment Committee of Dept of Civil Engineering)",
+      "organization": "Leading University",
+      "location": "Sylhet, Bangladesh",
+      "period": "APR/2017 – APR/2018",
+      "duration": "1 yr 1 mo",
+      "type": "Contract",
+      "description": "Led the self-assessment committee for departmental evaluation and quality assurance.",
+      "highlights": []
+    },
+    {
+      "title": "Head (Acting) of Department of Civil Engineering",
+      "organization": "Leading University",
+      "location": "Sylhet, Bangladesh",
+      "period": "JAN/2015 – JAN/2018",
+      "duration": "3 yrs 1 mo",
+      "type": "Full-time",
+      "description": "Served as acting department head, overseeing academic programs, faculty coordination, and departmental administration.",
+      "highlights": []
+    },
+    {
+      "title": "Assistant Proctor",
+      "organization": "Leading University",
+      "location": "Sylhet, Bangladesh",
+      "period": "JAN/2014 – JAN/2017",
+      "duration": "3 yrs 1 mo",
+      "type": "Full-time",
+      "description": "Maintained discipline and coordinated student affairs across the university.",
+      "highlights": []
+    },
+    {
+      "title": "Senior Lecturer",
+      "organization": "Leading University",
+      "location": "Sylhet, Bangladesh",
+      "period": "NOV/2011 – NOV/2013",
+      "duration": "2 yrs 1 mo",
+      "type": "Full-time",
+      "description": "Taught undergraduate civil engineering courses and supervised student research projects.",
+      "highlights": []
+    },
+    {
+      "title": "Lecturer",
+      "organization": "Leading University",
+      "location": "Sylhet, Bangladesh",
+      "period": "NOV/2009 – NOV/2011",
+      "duration": "2 yrs 1 mo",
+      "type": "Full-time",
+      "description": "Taught undergraduate civil engineering courses and participated in departmental activities.",
       "highlights": []
     }
   ],
