@@ -217,7 +217,7 @@ export function Hero({ data, contact, publications, metrics }: HeroProps) {
                     <Brain size={22} weight="duotone" className="text-primary" />
                   </div>
                   <div>
-                    <div className="text-xl font-bold text-foreground">{metrics?.citations.toLocaleString() || '1000+'}+</div>
+                    <div className="text-xl font-bold text-foreground">{metrics?.citations ? metrics.citations.toLocaleString() : '1000+'}</div>
                     <div className="text-xs text-muted-foreground">Citations</div>
                   </div>
                 </div>
@@ -229,8 +229,8 @@ export function Hero({ data, contact, publications, metrics }: HeroProps) {
                     <ChartLine size={22} weight="duotone" className="text-accent" />
                   </div>
                   <div>
-                    <div className="text-xl font-bold text-foreground">h-{metrics?.hIndex || 16}</div>
-                    <div className="text-xs text-muted-foreground">Index</div>
+                    <div className="text-xl font-bold text-foreground">h-index: {metrics?.hIndex || 16}</div>
+                    <div className="text-xs text-muted-foreground">h-index</div>
                   </div>
                 </div>
               </div>
@@ -410,7 +410,7 @@ export function Hero({ data, contact, publications, metrics }: HeroProps) {
                     <Brain size={36} weight="duotone" className="text-primary" />
                   </div>
                   <div>
-                    <div className="text-4xl font-bold text-foreground">{metrics?.citations.toLocaleString() || '1000+'}+</div>
+                    <div className="text-4xl font-bold text-foreground">{metrics?.citations ? metrics.citations.toLocaleString() : '1000+'}</div>
                     <div className="text-sm text-muted-foreground">Citations</div>
                   </div>
                 </div>
@@ -422,8 +422,8 @@ export function Hero({ data, contact, publications, metrics }: HeroProps) {
                     <ChartLine size={36} weight="duotone" className="text-accent" />
                   </div>
                   <div>
-                    <div className="text-4xl font-bold text-foreground">h-{metrics?.hIndex || 16}</div>
-                    <div className="text-sm text-muted-foreground">Index</div>
+                    <div className="text-4xl font-bold text-foreground">h-index: {metrics?.hIndex || 16}</div>
+                    <div className="text-sm text-muted-foreground">h-index</div>
                   </div>
                 </div>
               </div>
