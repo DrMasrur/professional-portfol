@@ -4,6 +4,16 @@ import { Badge } from './ui/badge'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import profileImage from '@/assets/images/profile.jpg'
+import { QuickAccessCards } from './QuickAccessCards'
+
+interface Publication {
+  title: string
+  authors: string
+  year: number
+  journal: string
+  volume: string
+  pages: string
+}
 
 interface HeroProps {
   data: {
@@ -18,9 +28,10 @@ interface HeroProps {
     workEmail: string
     linkedin: string
   }
+  publications: Publication[]
 }
 
-export function Hero({ data, contact }: HeroProps) {
+export function Hero({ data, contact, publications }: HeroProps) {
   const heroRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -235,6 +246,10 @@ export function Hero({ data, contact }: HeroProps) {
             >
               {data.bio}
             </motion.p>
+
+            <div className="mt-8">
+              <QuickAccessCards publications={publications} contact={contact} />
+            </div>
 
             <div className="mt-12 flex flex-wrap gap-6 justify-center">
               <motion.div
