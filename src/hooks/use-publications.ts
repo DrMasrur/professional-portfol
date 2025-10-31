@@ -15,8 +15,19 @@ export interface Publication {
   url?: string
 }
 
+export interface ScholarMetrics {
+  citations: number
+  hIndex: number
+  i10Index: number
+}
+
 export function usePublications() {
   const [publications, setPublications] = useKV<Publication[]>('scholar-publications', profileData.publications)
+  const [metrics, setMetrics] = useKV<ScholarMetrics>('scholar-metrics', {
+    citations: 1048,
+    hIndex: 16,
+    i10Index: 25
+  })
   const [isLoading, setIsLoading] = useState(false)
   const [lastUpdated, setLastUpdated] = useKV<string>('scholar-last-updated', new Date().toISOString())
   const [error, setError] = useState<string | null>(null)
@@ -67,8 +78,9 @@ Make the publications realistic and varied across years 2009-2024. Include the r
       const response = await window.spark.llm(promptText, 'gpt-4o', true)
       const data = JSON.parse(response)
       
-      if (data.publications && Array.isArray(data.publications)) {
+      if (data.publications && Array.isArray(data.publications) && data.metrics) {
         setPublications(data.publications)
+        setMetrics(data.metrics)
         setLastUpdated(new Date().toISOString())
         return data
       } else {
@@ -92,11 +104,17 @@ Make the publications realistic and varied across years 2009-2024. Include the r
 
   const resetToDefault = () => {
     setPublications(profileData.publications)
+    setMetrics({
+      citations: 1048,
+      hIndex: 16,
+      i10Index: 25
+    })
     setLastUpdated(new Date().toISOString())
   }
 
   return {
     publications,
+    metrics,
     isLoading,
     lastUpdated,
     error,

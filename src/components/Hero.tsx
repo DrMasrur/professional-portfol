@@ -16,6 +16,12 @@ interface Publication {
   pages?: string
 }
 
+interface ScholarMetrics {
+  citations: number
+  hIndex: number
+  i10Index: number
+}
+
 interface HeroProps {
   data: {
     name: string
@@ -30,9 +36,10 @@ interface HeroProps {
     linkedin: string
   }
   publications: Publication[]
+  metrics?: ScholarMetrics
 }
 
-export function Hero({ data, contact, publications }: HeroProps) {
+export function Hero({ data, contact, publications, metrics }: HeroProps) {
   const [showProfileDialog, setShowProfileDialog] = useState(false)
   const heroRef = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -210,7 +217,7 @@ export function Hero({ data, contact, publications }: HeroProps) {
                     <Brain size={22} weight="duotone" className="text-primary" />
                   </div>
                   <div>
-                    <div className="text-xl font-bold text-foreground">1000+</div>
+                    <div className="text-xl font-bold text-foreground">{metrics?.citations.toLocaleString() || '1000+'}+</div>
                     <div className="text-xs text-muted-foreground">Citations</div>
                   </div>
                 </div>
@@ -222,7 +229,7 @@ export function Hero({ data, contact, publications }: HeroProps) {
                     <ChartLine size={22} weight="duotone" className="text-accent" />
                   </div>
                   <div>
-                    <div className="text-xl font-bold text-foreground">h-16</div>
+                    <div className="text-xl font-bold text-foreground">h-{metrics?.hIndex || 16}</div>
                     <div className="text-xs text-muted-foreground">Index</div>
                   </div>
                 </div>
@@ -403,7 +410,7 @@ export function Hero({ data, contact, publications }: HeroProps) {
                     <Brain size={36} weight="duotone" className="text-primary" />
                   </div>
                   <div>
-                    <div className="text-4xl font-bold text-foreground">1000+</div>
+                    <div className="text-4xl font-bold text-foreground">{metrics?.citations.toLocaleString() || '1000+'}+</div>
                     <div className="text-sm text-muted-foreground">Citations</div>
                   </div>
                 </div>
@@ -415,7 +422,7 @@ export function Hero({ data, contact, publications }: HeroProps) {
                     <ChartLine size={36} weight="duotone" className="text-accent" />
                   </div>
                   <div>
-                    <div className="text-4xl font-bold text-foreground">h-16</div>
+                    <div className="text-4xl font-bold text-foreground">h-{metrics?.hIndex || 16}</div>
                     <div className="text-sm text-muted-foreground">Index</div>
                   </div>
                 </div>

@@ -29,6 +29,7 @@ function App() {
   
   const {
     publications,
+    metrics,
     isLoading: isRefreshing,
     lastUpdated,
     error,
@@ -153,7 +154,7 @@ function App() {
       </AnimatePresence>
 
       <section id="home">
-        <Hero data={profileData.personal} contact={profileData.personal.contact} publications={publications || profileData.publications} />
+        <Hero data={profileData.personal} contact={profileData.personal.contact} publications={publications || profileData.publications} metrics={metrics} />
       </section>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

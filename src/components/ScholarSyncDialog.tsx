@@ -64,7 +64,11 @@ export function ScholarSyncDialog() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-accent">•</span>
-                <span>Citation counts and metrics updated in real-time</span>
+                <span>Sync citation counts and h-index in real-time</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-accent">•</span>
+                <span>Updated metrics display in the hero section</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-accent">•</span>
