@@ -11,6 +11,7 @@ import { Experience } from './components/Experience'
 import { Skills } from './components/Skills'
 import { Awards } from './components/Awards'
 import { Publications } from './components/Publications'
+import { PublicationsTimeline } from './components/PublicationsTimeline'
 import { Blogs } from './components/Blogs'
 import { ContactUs } from './components/ContactUs'
 import { ScholarSyncDialog } from './components/ScholarSyncDialog'
@@ -234,7 +235,21 @@ function App() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
-              Publications
+              Publications Timeline
+            </h2>
+            <PublicationsTimeline publications={(publications && publications.length > 0) ? publications : profileData.publications} />
+          </motion.div>
+
+          <Separator className="my-16" />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Publications List
             </h2>
             <Publications 
               publications={filteredPublications}
