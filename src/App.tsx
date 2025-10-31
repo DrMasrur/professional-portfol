@@ -9,15 +9,19 @@ import { Education } from './components/Education'
 import { Experience } from './components/Experience'
 import { Skills } from './components/Skills'
 import { Awards } from './components/Awards'
+import { Publications } from './components/Publications'
+import { Blogs } from './components/Blogs'
+import { ContactUs } from './components/ContactUs'
 import { Separator } from './components/ui/separator'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs'
 import { Toaster } from './components/ui/sonner'
 import { Button } from './components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUp } from '@phosphor-icons/react'
+import { ArrowUp, BookOpen, Article, Envelope } from '@phosphor-icons/react'
 
 function App() {
   const [showBackToTop, setShowBackToTop] = useState(false)
+  const [publicationsSearchQuery, setPublicationsSearchQuery] = useState('')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +34,17 @@ function App() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+
+  const filteredPublications = profileData.publications.filter(pub => {
+    if (!publicationsSearchQuery) return true
+    const query = publicationsSearchQuery.toLowerCase()
+    return (
+      pub.title.toLowerCase().includes(query) ||
+      pub.authors.toLowerCase().includes(query) ||
+      pub.journal.toLowerCase().includes(query) ||
+      pub.year.toString().includes(query)
+    )
+  })
 
   return (
     <div className="min-h-screen bg-background">
@@ -60,6 +75,44 @@ function App() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8">
           <main className="w-full">
+            <section className="py-16 md:py-20">
+              <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
+                Resources & Contact
+              </h2>
+              <Tabs defaultValue="publications" className="w-full">
+                <TabsList className="grid w-full grid-cols-3 mb-8">
+                  <TabsTrigger value="publications">
+                    <BookOpen size={18} className="mr-2" />
+                    <span className="hidden sm:inline">Publications ({profileData.publications.length})</span>
+                    <span className="sm:hidden">Pubs</span>
+                  </TabsTrigger>
+                  <TabsTrigger value="blogs">
+                    <Article size={18} className="mr-2" />
+                    Blogs
+                  </TabsTrigger>
+                  <TabsTrigger value="contact">
+                    <Envelope size={18} className="mr-2" />
+                    Contact
+                  </TabsTrigger>
+                </TabsList>
+                <TabsContent value="publications">
+                  <Publications 
+                    publications={filteredPublications}
+                    searchQuery={publicationsSearchQuery}
+                    onSearchChange={setPublicationsSearchQuery}
+                    totalCount={profileData.publications.length}
+                  />
+                </TabsContent>
+                <TabsContent value="blogs">
+                  <Blogs />
+                </TabsContent>
+                <TabsContent value="contact">
+                  <ContactUs contact={profileData.personal.contact} />
+                </TabsContent>
+              </Tabs>
+            </section>
+
+            <Separator className="my-12" />
             <section className="py-16 md:py-20">
               <ResearchFocus />
             </section>

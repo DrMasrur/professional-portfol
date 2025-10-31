@@ -5,7 +5,6 @@ import { motion, useScroll, useTransform, PanInfo, useMotionValue } from 'framer
 import { useRef, useState } from 'react'
 import profileImage from '@/assets/images/profile.jpg'
 import { QuickAccessCards } from './QuickAccessCards'
-import { RightSidebar } from './RightSidebar'
 import { Dialog, DialogContent } from './ui/dialog'
 
 interface Publication {
@@ -70,9 +69,8 @@ export function Hero({ data, contact, publications }: HeroProps) {
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 md:py-20"
         style={{ y, opacity }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 gap-8">
           <motion.div
-            className="lg:col-span-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -230,13 +228,6 @@ export function Hero({ data, contact, publications }: HeroProps) {
               <QuickAccessCards publications={publications} contact={contact} />
             </div>
           </motion.div>
-
-          <aside className="lg:col-span-1">
-            <RightSidebar 
-              publications={publications}
-              contact={contact}
-            />
-          </aside>
         </div>
       </motion.div>
 
