@@ -15,11 +15,12 @@ import { PublicationsTimeline } from './components/PublicationsTimeline'
 import { Blogs } from './components/Blogs'
 import { ContactUs } from './components/ContactUs'
 import { ScholarSyncDialog } from './components/ScholarSyncDialog'
+import { VisitorAnalytics } from './components/VisitorAnalytics'
 import { Separator } from './components/ui/separator'
 import { Toaster } from './components/ui/sonner'
 import { Button } from './components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUp, BookOpen, Article, Envelope, Briefcase, GraduationCap, Lightbulb, Trophy, House, ChartBar } from '@phosphor-icons/react'
+import { ArrowUp, BookOpen, Article, Envelope, Briefcase, GraduationCap, Lightbulb, Trophy, House, ChartBar, Users } from '@phosphor-icons/react'
 import { cn } from './lib/utils'
 import { toast } from 'sonner'
 
@@ -91,6 +92,7 @@ function App() {
     { id: 'education', label: 'Education', icon: GraduationCap },
     { id: 'skills', label: 'Skills', icon: Lightbulb },
     { id: 'awards', label: 'Awards', icon: Trophy },
+    { id: 'visitors', label: 'Visitors', icon: Users },
     { id: 'blogs', label: 'Blogs', icon: Article },
     { id: 'contact', label: 'Contact', icon: Envelope },
   ]
@@ -328,6 +330,22 @@ function App() {
               Awards & Recognition
             </h2>
             <Awards awards={profileData.awards} />
+          </motion.div>
+        </section>
+
+        <Separator className="my-16" />
+
+        <section id="visitors" className="scroll-mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+              Visitor Analytics
+            </h2>
+            <VisitorAnalytics />
           </motion.div>
         </section>
 

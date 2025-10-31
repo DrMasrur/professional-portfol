@@ -68,6 +68,13 @@ A comprehensive academic portfolio website showcasing Dr. Masrur Ahmed's researc
 - Progression: Skills appear grouped by category → Visual indicators show proficiency
 - Success criteria: All technical skills clearly categorized and scannable
 
+**Visitor Analytics Dashboard**
+- Functionality: Track and display visitor statistics including total visits, unique countries, recent activity, and geographic distribution with location detection
+- Purpose: Provide insights into global reach and audience engagement to demonstrate research impact
+- Trigger: Automatic on page load (tracks current visitor) and section scroll
+- Progression: Visitor location detected → Data persisted → Stats calculated → Cards display metrics (total, countries, weekly, daily) → Top locations ranked → Current session details shown
+- Success criteria: Real-time visitor tracking with 30-day retention, location data properly aggregated, and privacy notice displayed
+
 ## Edge Case Handling
 - **Empty JSON fields**: Display placeholder text or hide section if data missing
 - **Long publication lists**: Implement pagination or "show more" to prevent overwhelming scroll
@@ -148,6 +155,8 @@ Dynamic, smooth animations that enhance engagement and create a modern, lively f
   - Briefcase for work experience
   - Lightbulb for skills
   - Trophy for awards
+  - Users for visitor analytics section
+  - Globe, MapPin, Eye, TrendUp, Clock for analytics metrics
   - ArrowUp for back to top
   
 - **Spacing**: 
