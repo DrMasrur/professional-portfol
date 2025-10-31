@@ -1,4 +1,4 @@
-import { Envelope, LinkedinLogo, Phone, Brain, Cpu, Network, CloudArrowUp, ChartLine, Database, Sparkle } from '@phosphor-icons/react'
+import { Envelope, LinkedinLogo, Brain, Cpu, Network, CloudArrowUp, ChartLine, Database, Sparkle } from '@phosphor-icons/react'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
 import { motion, useScroll, useTransform } from 'framer-motion'
@@ -91,18 +91,17 @@ export function Hero({ data, contact }: HeroProps) {
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 pb-16 md:pt-28 md:pb-24"
         style={{ y, opacity }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 gap-12">
           <motion.div
-            className="order-2 lg:order-1"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="mb-4"
+              className="mb-6 text-center"
             >
               <Badge variant="secondary" className="mb-4 px-4 py-1.5 text-sm font-medium">
                 <Sparkle className="mr-2 inline" size={16} weight="fill" />
@@ -110,21 +109,66 @@ export function Hero({ data, contact }: HeroProps) {
               </Badge>
             </motion.div>
 
-            <motion.h1 
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-4 font-[family-name:var(--font-heading)] leading-tight"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              {data.name}
-              <span className="block text-primary mt-2">{data.title}</span>
-            </motion.h1>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-6">
+              <motion.div
+                className="relative"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
+                <motion.div
+                  className="absolute -inset-2 bg-gradient-to-br from-primary/30 via-accent/30 to-primary/30 rounded-full blur-xl"
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    rotate: [0, 180, 360]
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                
+                <motion.div 
+                  className="relative w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden shadow-2xl ring-4 ring-primary/20"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 z-10"
+                    animate={{
+                      opacity: [0.2, 0.4, 0.2]
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  <img 
+                    src={profileImage} 
+                    alt={data.name}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+              </motion.div>
+
+              <motion.h1 
+                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground text-center md:text-left font-[family-name:var(--font-heading)] leading-tight"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                {data.name}
+                <span className="block text-primary mt-2">{data.title}</span>
+              </motion.h1>
+            </div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="mb-6"
+              className="mb-6 text-center max-w-4xl mx-auto"
             >
               <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-medium">
                 {data.tagline}
@@ -135,9 +179,9 @@ export function Hero({ data, contact }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="mb-8"
+              className="mb-8 flex justify-center"
             >
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 justify-center">
                 {keywords.map((keyword, idx) => (
                   <motion.span
                     key={keyword}
@@ -154,7 +198,7 @@ export function Hero({ data, contact }: HeroProps) {
             </motion.div>
             
             <motion.div 
-              className="flex flex-wrap gap-3 mb-8"
+              className="flex flex-wrap gap-3 mb-8 justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
@@ -176,17 +220,6 @@ export function Hero({ data, contact }: HeroProps) {
                 asChild 
                 className="hover:scale-105 hover:shadow-md transition-all"
               >
-                <a href={`tel:${contact.phone}`}>
-                  <Phone className="mr-2" size={20} />
-                  Call Me
-                </a>
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                asChild 
-                className="hover:scale-105 hover:shadow-md transition-all"
-              >
                 <a href={`https://${contact.linkedin}`} target="_blank" rel="noopener noreferrer">
                   <LinkedinLogo className="mr-2" size={20} />
                   LinkedIn
@@ -195,63 +228,20 @@ export function Hero({ data, contact }: HeroProps) {
             </motion.div>
 
             <motion.p 
-              className="text-base md:text-lg text-foreground/70 leading-relaxed max-w-2xl"
+              className="text-base md:text-lg text-foreground/70 leading-relaxed max-w-3xl mx-auto text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.9 }}
             >
               {data.bio}
             </motion.p>
-          </motion.div>
 
-          <motion.div
-            className="order-1 lg:order-2 flex justify-center lg:justify-end"
-            initial={{ opacity: 0, scale: 0.9, x: 50 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <div className="relative">
+            <div className="mt-12 flex flex-wrap gap-6 justify-center">
               <motion.div
-                className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-accent/20 to-primary/20 rounded-3xl blur-2xl"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  rotate: [0, 5, -5, 0]
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              
-              <motion.div 
-                className="relative w-72 h-72 md:w-96 md:h-96 lg:w-[450px] lg:h-[450px] rounded-3xl overflow-hidden shadow-2xl ring-4 ring-primary/10"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-accent/30 z-10"
-                  animate={{
-                    opacity: [0.3, 0.5, 0.3]
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                <img 
-                  src={profileImage} 
-                  alt={data.name}
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-
-              <motion.div
-                className="absolute -bottom-6 -right-6 bg-card/95 backdrop-blur-sm rounded-2xl shadow-xl p-4 border border-border"
+                className="bg-card/95 backdrop-blur-sm rounded-2xl shadow-xl p-4 border border-border"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.2 }}
+                transition={{ duration: 0.6, delay: 1.0 }}
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="flex items-center gap-3">
@@ -266,18 +256,18 @@ export function Hero({ data, contact }: HeroProps) {
               </motion.div>
 
               <motion.div
-                className="absolute -top-4 -left-4 bg-card/95 backdrop-blur-sm rounded-2xl shadow-xl p-3 border border-border"
-                initial={{ opacity: 0, y: -20 }}
+                className="bg-card/95 backdrop-blur-sm rounded-2xl shadow-xl p-4 border border-border"
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.4 }}
+                transition={{ duration: 0.6, delay: 1.1 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="flex items-center gap-2">
-                  <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center">
-                    <ChartLine size={24} weight="duotone" className="text-accent" />
+                <div className="flex items-center gap-3">
+                  <div className="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center">
+                    <ChartLine size={28} weight="duotone" className="text-accent" />
                   </div>
                   <div>
-                    <div className="text-xl font-bold text-foreground">h-16</div>
+                    <div className="text-2xl font-bold text-foreground">h-16</div>
                     <div className="text-xs text-muted-foreground">Index</div>
                   </div>
                 </div>
