@@ -1,7 +1,7 @@
-import { Envelope, LinkedinLogo, Brain, Cpu, Network, CloudArrowUp, ChartLine, Database, Sparkle } from '@phosphor-icons/react'
+import { Envelope, LinkedinLogo, Brain, Cpu, Network, CloudArrowUp, ChartLine, Database, Sparkle, X } from '@phosphor-icons/react'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, PanInfo, useMotionValue } from 'framer-motion'
 import { useRef, useState } from 'react'
 import profileImage from '@/assets/images/profile.jpg'
 import { QuickAccessCards } from './QuickAccessCards'
@@ -43,6 +43,15 @@ export function Hero({ data, contact, publications }: HeroProps) {
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 100])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+
+  const dialogY = useMotionValue(0)
+  const dialogOpacity = useTransform(dialogY, [0, 100], [1, 0])
+
+  const handleDialogDragEnd = (_: any, info: PanInfo) => {
+    if (info.offset.y > 100 || info.velocity.y > 500) {
+      setShowProfileDialog(false)
+    }
+  }
 
   const floatingElements = [
     { Icon: Brain, size: 64, className: 'top-20 left-[10%] text-primary/20', delay: 0, duration: 8 },
@@ -322,7 +331,27 @@ export function Hero({ data, contact, publications }: HeroProps) {
 
       <Dialog open={showProfileDialog} onOpenChange={setShowProfileDialog}>
         <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
-          <div className="space-y-8">
+          <motion.div
+            drag="y"
+            dragConstraints={{ top: 0, bottom: 0 }}
+            dragElastic={{ top: 0, bottom: 0.5 }}
+            onDragEnd={handleDialogDragEnd}
+            style={{ y: dialogY, opacity: dialogOpacity }}
+            className="space-y-8"
+          >
+            <div className="lg:hidden w-12 h-1 bg-muted-foreground/30 rounded-full mx-auto -mt-2 mb-4" />
+            
+            <motion.button
+              onClick={() => setShowProfileDialog(false)}
+              className="absolute top-4 right-4 lg:top-6 lg:right-6 h-10 w-10 rounded-full flex items-center justify-center hover:bg-accent transition-colors z-50 lg:hidden"
+              whileHover={{ scale: 1.1, rotate: 90 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 400 }}
+              aria-label="Close"
+            >
+              <X size={24} className="text-muted-foreground" />
+            </motion.button>
+
             <div className="flex flex-col md:flex-row items-center gap-8">
               <motion.div
                 className="relative"
@@ -485,7 +514,7 @@ export function Hero({ data, contact, publications }: HeroProps) {
                 </div>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
         </DialogContent>
       </Dialog>
     </section>

@@ -6,7 +6,7 @@ import { PublicationsSidebar } from './PublicationsSidebar'
 import { Publications } from './Publications'
 import { Blogs } from './Blogs'
 import { ContactUs } from './ContactUs'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, PanInfo, useMotionValue, useTransform } from 'framer-motion'
 import { BookOpen, Article, Envelope, CaretDown, X, ArrowsOut } from '@phosphor-icons/react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from './ui/tabs'
@@ -36,6 +36,9 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
   const [expandedCard, setExpandedCard] = useState<string | null>(null)
   const [fullPageSection, setFullPageSection] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
+  
+  const y = useMotionValue(0)
+  const opacity = useTransform(y, [0, 100], [1, 0])
 
   const toggleCard = (cardName: string) => {
     setExpandedCard(expandedCard === cardName ? null : cardName)
@@ -49,6 +52,12 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
   const closeFullPage = () => {
     setFullPageSection(null)
     setSearchQuery('')
+  }
+
+  const handleDragEnd = (_: any, info: PanInfo) => {
+    if (info.offset.y > 100 || info.velocity.y > 500) {
+      closeFullPage()
+    }
   }
 
   const filteredPublications = publications.filter(pub => {
@@ -195,12 +204,31 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
 
       <Dialog open={!!fullPageSection} onOpenChange={closeFullPage}>
         <DialogContent className="max-w-7xl h-[90vh] overflow-hidden p-0">
-          <div className="flex flex-col h-full">
-            <DialogHeader className="px-6 pt-6 pb-4 border-b border-border">
+          <motion.div
+            drag="y"
+            dragConstraints={{ top: 0, bottom: 0 }}
+            dragElastic={{ top: 0, bottom: 0.5 }}
+            onDragEnd={handleDragEnd}
+            style={{ y, opacity }}
+            className="flex flex-col h-full"
+          >
+            <div className="lg:hidden w-12 h-1 bg-muted-foreground/30 rounded-full mx-auto mt-2 mb-1" />
+            
+            <DialogHeader className="px-6 pt-4 lg:pt-6 pb-4 border-b border-border relative">
               <div className="flex items-center justify-between">
-                <DialogTitle className="text-3xl font-semibold font-[family-name:var(--font-heading)]">
+                <DialogTitle className="text-2xl lg:text-3xl font-semibold font-[family-name:var(--font-heading)]">
                   {cards.find(c => c.id === fullPageSection)?.title}
                 </DialogTitle>
+                <motion.button
+                  onClick={closeFullPage}
+                  className="h-10 w-10 rounded-full flex items-center justify-center hover:bg-accent transition-colors"
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                  aria-label="Close"
+                >
+                  <X size={24} className="text-muted-foreground" />
+                </motion.button>
               </div>
             </DialogHeader>
             
@@ -209,7 +237,8 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
                 {cards.map((card) => (
                   <TabsTrigger key={card.id} value={card.id}>
                     <card.icon size={18} className="mr-2" />
-                    {card.tabLabel}
+                    <span className="hidden sm:inline">{card.tabLabel}</span>
+                    <span className="sm:hidden">{card.title}</span>
                   </TabsTrigger>
                 ))}
               </TabsList>
@@ -231,7 +260,7 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
                 <ContactUs contact={contact} />
               </TabsContent>
             </Tabs>
-          </div>
+          </motion.div>
         </DialogContent>
       </Dialog>
     </>
