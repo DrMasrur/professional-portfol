@@ -1,13 +1,11 @@
 import { useState } from 'react'
 import { Card } from './ui/card'
 import { Badge } from './ui/badge'
-import { Button } from './ui/button'
-import { PublicationsSidebar } from './PublicationsSidebar'
 import { Publications } from './Publications'
 import { Blogs } from './Blogs'
 import { ContactUs } from './ContactUs'
-import { motion, AnimatePresence, PanInfo, useMotionValue, useTransform } from 'framer-motion'
-import { BookOpen, Article, Envelope, CaretDown, X, ArrowsOut } from '@phosphor-icons/react'
+import { motion, PanInfo, useMotionValue, useTransform } from 'framer-motion'
+import { BookOpen, Article, Envelope, X, ArrowsOut } from '@phosphor-icons/react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from './ui/tabs'
 
@@ -33,20 +31,14 @@ interface RightSidebarProps {
 }
 
 export function RightSidebar({ publications, contact }: RightSidebarProps) {
-  const [expandedCard, setExpandedCard] = useState<string | null>(null)
   const [fullPageSection, setFullPageSection] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   
   const y = useMotionValue(0)
   const opacity = useTransform(y, [0, 100], [1, 0])
 
-  const toggleCard = (cardName: string) => {
-    setExpandedCard(expandedCard === cardName ? null : cardName)
-  }
-
   const openFullPage = (sectionId: string) => {
     setFullPageSection(sectionId)
-    setExpandedCard(null)
   }
 
   const closeFullPage = () => {
@@ -79,7 +71,6 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
       count: publications.length,
       gradient: 'from-primary/20 to-primary/5',
       iconColor: 'text-primary',
-      content: <PublicationsSidebar publications={publications} />,
       tabLabel: `Publications (${publications.length})`
     },
     {
@@ -89,7 +80,6 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
       count: 5,
       gradient: 'from-accent/20 to-accent/5',
       iconColor: 'text-accent',
-      content: <Blogs />,
       tabLabel: 'Blogs'
     },
     {
@@ -99,7 +89,6 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
       count: null,
       gradient: 'from-blue-500/20 to-blue-500/5',
       iconColor: 'text-blue-600',
-      content: <ContactUs contact={contact} />,
       tabLabel: 'Contact'
     }
   ]
@@ -110,7 +99,7 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="lg:sticky lg:top-6 h-fit space-y-4"
+        className="lg:sticky lg:top-6 h-fit space-y-2"
       >
         {cards.map((card, index) => (
           <motion.div
@@ -120,26 +109,24 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
             transition={{ duration: 0.4, delay: 0.1 * index }}
           >
             <Card 
-              className={`overflow-hidden border-primary/20 shadow-lg backdrop-blur-sm bg-card/95 cursor-pointer transition-all hover:shadow-xl ${
-                expandedCard === card.id ? 'ring-2 ring-primary/30' : ''
-              }`}
-              onClick={() => toggleCard(card.id)}
+              className="overflow-hidden border-primary/20 shadow-sm backdrop-blur-sm bg-card/95 cursor-pointer transition-all hover:shadow-md hover:border-primary/40"
+              onClick={() => openFullPage(card.id)}
             >
               <motion.div 
-                className={`bg-gradient-to-br ${card.gradient} p-4 flex items-center justify-between`}
-                whileHover={{ scale: 1.01 }}
+                className={`bg-gradient-to-br ${card.gradient} p-3 flex items-center justify-between`}
+                whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5">
                   <motion.div 
-                    className="h-12 w-12 rounded-xl bg-background/80 backdrop-blur-sm flex items-center justify-center shadow-md"
+                    className="h-9 w-9 rounded-lg bg-background/80 backdrop-blur-sm flex items-center justify-center shadow-sm"
                     whileHover={{ rotate: [0, -10, 10, 0] }}
                     transition={{ duration: 0.5 }}
                   >
-                    <card.icon size={24} className={card.iconColor} weight="duotone" />
+                    <card.icon size={18} className={card.iconColor} weight="duotone" />
                   </motion.div>
                   <div>
-                    <h3 className="font-semibold text-foreground text-lg">{card.title}</h3>
+                    <h3 className="font-semibold text-foreground text-sm">{card.title}</h3>
                     {card.count !== null && (
                       <p className="text-xs text-muted-foreground">
                         {card.count} {card.count === 1 ? 'item' : 'items'}
@@ -149,54 +136,18 @@ export function RightSidebar({ publications, contact }: RightSidebarProps) {
                 </div>
                 
                 <div className="flex items-center gap-2">
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      openFullPage(card.id)
-                    }}
-                    className="h-8 w-8 hover:bg-background/60"
-                    title="Open full view"
-                  >
-                    <ArrowsOut size={18} className="text-muted-foreground" />
-                  </Button>
                   {card.count !== null && (
-                    <Badge variant="secondary" className="h-6 min-w-[24px] px-2 text-sm font-bold">
+                    <Badge variant="secondary" className="h-5 min-w-[20px] px-1.5 text-xs font-bold">
                       {card.count}
                     </Badge>
                   )}
                   <motion.div
-                    animate={{ rotate: expandedCard === card.id ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
+                    whileHover={{ scale: 1.2 }}
                   >
-                    <CaretDown size={20} className="text-muted-foreground" />
+                    <ArrowsOut size={16} className="text-muted-foreground" />
                   </motion.div>
                 </div>
               </motion.div>
-
-              <AnimatePresence>
-                {expandedCard === card.id && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    className="overflow-hidden"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <div className="p-4 border-t border-border/50 max-h-[60vh] overflow-y-auto">
-                      <motion.div
-                        initial={{ y: -10, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.3, delay: 0.1 }}
-                      >
-                        {card.content}
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </Card>
           </motion.div>
         ))}
