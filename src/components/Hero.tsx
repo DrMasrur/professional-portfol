@@ -1,4 +1,4 @@
-import { Envelope, LinkedinLogo, Brain, ChartLine, Sparkle, X } from '@phosphor-icons/react'
+import { Envelope, LinkedinLogo, Brain, ChartLine, Sparkle, X, GithubLogo } from '@phosphor-icons/react'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
 import { motion, useScroll, useTransform, PanInfo, useMotionValue } from 'framer-motion'
@@ -186,6 +186,17 @@ export function Hero({ data, contact, publications, metrics, isLoadingMetrics }:
                     asChild
                     className="border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
                   >
+                    <a href="https://drmasrur.github.io" target="_blank" rel="noopener noreferrer">
+                      <GithubLogo className="mr-2" size={18} weight="fill" />
+                      Website
+                    </a>
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="default"
+                    asChild
+                    className="border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
+                  >
                     <a href={`https://${contact.linkedin}`} target="_blank" rel="noopener noreferrer">
                       <LinkedinLogo className="mr-2" size={18} weight="fill" />
                       LinkedIn
@@ -207,6 +218,7 @@ export function Hero({ data, contact, publications, metrics, isLoadingMetrics }:
             </motion.div>
 
             <motion.div
+              key={`metrics-${metrics?.citations}-${metrics?.hIndex}`}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.55 }}
@@ -225,7 +237,7 @@ export function Hero({ data, contact, publications, metrics, isLoadingMetrics }:
                       </>
                     ) : (
                       <>
-                        <div className="text-xl font-bold text-foreground">{metrics?.citations ? metrics.citations.toLocaleString() : '1000+'}</div>
+                        <div className="text-xl font-bold text-foreground">{metrics?.citations?.toLocaleString() || '1000+'}</div>
                         <div className="text-xs text-muted-foreground">Citations</div>
                       </>
                     )}
@@ -410,6 +422,17 @@ export function Hero({ data, contact, publications, metrics, isLoadingMetrics }:
                 asChild 
                 className="hover:scale-105 hover:shadow-md transition-all"
               >
+                <a href="https://drmasrur.github.io" target="_blank" rel="noopener noreferrer">
+                  <GithubLogo className="mr-2" size={22} />
+                  Website
+                </a>
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                asChild 
+                className="hover:scale-105 hover:shadow-md transition-all"
+              >
                 <a href={`https://${contact.linkedin}`} target="_blank" rel="noopener noreferrer">
                   <LinkedinLogo className="mr-2" size={22} />
                   LinkedIn
@@ -418,6 +441,7 @@ export function Hero({ data, contact, publications, metrics, isLoadingMetrics }:
             </motion.div>
 
             <motion.div
+              key={`dialog-metrics-${metrics?.citations}-${metrics?.hIndex}`}
               className="grid grid-cols-1 md:grid-cols-2 gap-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -436,7 +460,7 @@ export function Hero({ data, contact, publications, metrics, isLoadingMetrics }:
                       </>
                     ) : (
                       <>
-                        <div className="text-4xl font-bold text-foreground">{metrics?.citations ? metrics.citations.toLocaleString() : '1000+'}</div>
+                        <div className="text-4xl font-bold text-foreground">{metrics?.citations?.toLocaleString() || '1000+'}</div>
                         <div className="text-sm text-muted-foreground">Citations</div>
                       </>
                     )}
