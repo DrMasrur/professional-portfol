@@ -2,10 +2,11 @@ import { Envelope, LinkedinLogo, Brain, Cpu, Network, CloudArrowUp, ChartLine, D
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import profileImage from '@/assets/images/profile.jpg'
 import { QuickAccessCards } from './QuickAccessCards'
 import { RightSidebar } from './RightSidebar'
+import { Dialog, DialogContent } from './ui/dialog'
 
 interface Publication {
   title: string
@@ -33,6 +34,7 @@ interface HeroProps {
 }
 
 export function Hero({ data, contact, publications }: HeroProps) {
+  const [showProfileDialog, setShowProfileDialog] = useState(false)
   const heroRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -122,12 +124,14 @@ export function Hero({ data, contact, publications }: HeroProps) {
               </Badge>
             </motion.div>
 
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-6">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-6 mt-8">
               <motion.div
-                className="relative"
+                className="relative cursor-pointer"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
+                onClick={() => setShowProfileDialog(true)}
+                whileHover={{ scale: 1.05 }}
               >
                 <motion.div
                   className="absolute -inset-2 bg-gradient-to-br from-primary/30 via-accent/30 to-primary/30 rounded-full blur-xl"
@@ -143,8 +147,7 @@ export function Hero({ data, contact, publications }: HeroProps) {
                 />
                 
                 <motion.div 
-                  className="relative w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden shadow-2xl ring-4 ring-primary/20"
-                  whileHover={{ scale: 1.05 }}
+                  className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden shadow-2xl ring-4 ring-primary/20"
                   transition={{ duration: 0.3 }}
                 >
                   <motion.div
@@ -167,10 +170,12 @@ export function Hero({ data, contact, publications }: HeroProps) {
               </motion.div>
 
               <motion.h1 
-                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground text-center md:text-left font-[family-name:var(--font-heading)] leading-tight"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center md:text-left font-[family-name:var(--font-heading)] leading-tight cursor-pointer"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
+                onClick={() => setShowProfileDialog(true)}
+                whileHover={{ scale: 1.02 }}
               >
                 {data.name}
                 <span className="block text-primary mt-2">{data.title}</span>
@@ -314,6 +319,175 @@ export function Hero({ data, contact, publications }: HeroProps) {
           />
         </div>
       </motion.div>
+
+      <Dialog open={showProfileDialog} onOpenChange={setShowProfileDialog}>
+        <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
+          <div className="space-y-8">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <motion.div
+                className="relative"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <motion.div
+                  className="absolute -inset-4 bg-gradient-to-br from-primary/30 via-accent/30 to-primary/30 rounded-full blur-2xl"
+                  animate={{
+                    scale: [1, 1.15, 1],
+                    rotate: [0, 180, 360]
+                  }}
+                  transition={{
+                    duration: 10,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                
+                <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl ring-8 ring-primary/20">
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 z-10"
+                    animate={{
+                      opacity: [0.2, 0.5, 0.2]
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  <img 
+                    src={profileImage} 
+                    alt={data.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </motion.div>
+
+              <div className="flex-1 text-center md:text-left space-y-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground font-[family-name:var(--font-heading)] leading-tight">
+                    {data.name}
+                  </h2>
+                  <p className="text-2xl md:text-3xl text-primary font-semibold mt-3 font-[family-name:var(--font-heading)]">
+                    {data.title}
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <Badge variant="secondary" className="mb-4 px-4 py-2 text-base">
+                    <Sparkle className="mr-2 inline" size={18} weight="fill" />
+                    Available for Collaboration
+                  </Badge>
+                </motion.div>
+
+                <motion.p
+                  className="text-xl md:text-2xl text-muted-foreground font-medium"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                >
+                  {data.tagline}
+                </motion.p>
+              </div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                {keywords.map((keyword, idx) => (
+                  <Badge key={keyword} variant="outline" className="px-4 py-2 text-base">
+                    {keyword}
+                  </Badge>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="bg-secondary/50 rounded-2xl p-6 border border-border"
+            >
+              <h3 className="text-xl font-semibold mb-4 text-foreground">About</h3>
+              <p className="text-lg text-foreground/80 leading-relaxed">
+                {data.bio}
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="flex flex-wrap gap-4 justify-center md:justify-start"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+            >
+              <Button 
+                variant="default" 
+                size="lg" 
+                asChild 
+                className="hover:scale-105 hover:shadow-lg transition-all"
+              >
+                <a href={`mailto:${contact.email}`}>
+                  <Envelope className="mr-2" size={22} />
+                  Get in Touch
+                </a>
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                asChild 
+                className="hover:scale-105 hover:shadow-md transition-all"
+              >
+                <a href={`https://${contact.linkedin}`} target="_blank" rel="noopener noreferrer">
+                  <LinkedinLogo className="mr-2" size={22} />
+                  LinkedIn
+                </a>
+              </Button>
+            </motion.div>
+
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+            >
+              <div className="bg-card rounded-2xl shadow-xl p-6 border border-border">
+                <div className="flex items-center gap-4">
+                  <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Brain size={36} weight="duotone" className="text-primary" />
+                  </div>
+                  <div>
+                    <div className="text-4xl font-bold text-foreground">1000+</div>
+                    <div className="text-sm text-muted-foreground">Citations</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-card rounded-2xl shadow-xl p-6 border border-border">
+                <div className="flex items-center gap-4">
+                  <div className="h-16 w-16 rounded-full bg-accent/10 flex items-center justify-center">
+                    <ChartLine size={36} weight="duotone" className="text-accent" />
+                  </div>
+                  <div>
+                    <div className="text-4xl font-bold text-foreground">h-16</div>
+                    <div className="text-sm text-muted-foreground">Index</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   )
 }
