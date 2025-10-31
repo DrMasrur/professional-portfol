@@ -246,7 +246,7 @@ export function Hero({ data, contact, publications, metrics, isLoadingMetrics }:
                       </>
                     ) : (
                       <>
-                        <div className="text-xl font-bold text-foreground">h-index: {metrics?.hIndex || 16}</div>
+                        <div className="text-xl font-bold text-foreground">{metrics?.hIndex || 16}</div>
                         <div className="text-xs text-muted-foreground">h-index</div>
                       </>
                     )}
@@ -457,7 +457,7 @@ export function Hero({ data, contact, publications, metrics, isLoadingMetrics }:
                       </>
                     ) : (
                       <>
-                        <div className="text-4xl font-bold text-foreground">h-index: {metrics?.hIndex || 16}</div>
+                        <div className="text-4xl font-bold text-foreground">{metrics?.hIndex || 16}</div>
                         <div className="text-sm text-muted-foreground">h-index</div>
                       </>
                     )}
