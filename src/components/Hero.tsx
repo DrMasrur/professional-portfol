@@ -62,8 +62,10 @@ export function Hero({ data, contact, publications }: HeroProps) {
   ]
 
   return (
-    <section ref={heroRef} className="relative bg-background overflow-hidden border-b border-border">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,_var(--primary)_0%,_transparent_60%)] opacity-[0.02]" />
+    <section ref={heroRef} className="relative bg-gradient-to-br from-background via-background to-muted overflow-hidden border-b border-border">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--primary)_0%,_transparent_50%)] opacity-[0.08]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--secondary)_0%,_transparent_50%)] opacity-[0.08]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--accent)_0%,_transparent_70%)] opacity-[0.05]" />
       
       <motion.div 
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 md:py-20"
@@ -82,12 +84,14 @@ export function Hero({ data, contact, publications }: HeroProps) {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 onClick={() => setShowProfileDialog(true)}
-                whileHover={{ scale: 1.03 }}
+                whileHover={{ scale: 1.05 }}
               >
                 <motion.div 
-                  className="relative w-28 h-28 md:w-32 md:h-32 rounded-2xl overflow-hidden shadow-lg ring-1 ring-border"
+                  className="relative w-28 h-28 md:w-32 md:h-32 rounded-2xl overflow-hidden shadow-xl ring-2 ring-primary/20 hover:ring-primary/40 transition-all duration-300"
                   transition={{ duration: 0.2 }}
+                  whileHover={{ boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}
                 >
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 mix-blend-overlay" />
                   <img 
                     src={profileImage} 
                     alt={data.name}
@@ -161,10 +165,10 @@ export function Hero({ data, contact, publications }: HeroProps) {
                     variant="default" 
                     size="default"
                     asChild 
-                    className="shadow-sm"
+                    className="shadow-md bg-gradient-to-r from-primary to-secondary hover:shadow-lg transition-all duration-300"
                   >
                     <a href={`mailto:${contact.email}`}>
-                      <Envelope className="mr-2" size={18} />
+                      <Envelope className="mr-2" size={18} weight="fill" />
                       Get in Touch
                     </a>
                   </Button>
@@ -172,9 +176,10 @@ export function Hero({ data, contact, publications }: HeroProps) {
                     variant="outline" 
                     size="default"
                     asChild
+                    className="border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
                   >
                     <a href={`https://${contact.linkedin}`} target="_blank" rel="noopener noreferrer">
-                      <LinkedinLogo className="mr-2" size={18} />
+                      <LinkedinLogo className="mr-2" size={18} weight="fill" />
                       LinkedIn
                     </a>
                   </Button>

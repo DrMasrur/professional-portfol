@@ -69,20 +69,21 @@ A comprehensive academic portfolio website showcasing Dr. Masrur Ahmed's researc
 - **Missing research metrics**: Display available metrics only, hide missing ones
 
 ## Design Direction
-The design should evoke academic sophistication and data-driven precision - clean, professional, and modern like a refined research institution's faculty page. A minimal interface best serves the purpose, allowing the impressive credentials to take center stage without visual competition.
+The design should evoke modern professional dynamism with vibrant yet sophisticated colors - clean, engaging, and contemporary like a forward-thinking tech company or innovative research institution. A balanced interface with colorful gradients and smooth animations creates visual interest while maintaining professionalism.
 
 ## Color Selection
-Complementary color scheme with deep professional blue paired with warm accent to create trust and approachability.
+Triadic color scheme with vibrant blue, teal, and golden yellow creating an energetic, professional, and modern feel.
 
-- **Primary Color**: Deep Academic Blue `oklch(0.35 0.08 250)` - Communicates trust, intelligence, and professionalism reminiscent of scholarly institutions
-- **Secondary Colors**: Light Neutral `oklch(0.96 0.005 250)` for backgrounds providing breathing room, Soft Gray `oklch(0.65 0.01 250)` for supporting text
-- **Accent Color**: Warm Amber `oklch(0.68 0.15 65)` for highlighting achievements and interactive elements, creating energy without overwhelming
+- **Primary Color**: Vibrant Blue `oklch(0.55 0.20 250)` - Communicates innovation, trust, and modern professionalism with higher saturation for visual impact
+- **Secondary Color**: Fresh Teal `oklch(0.60 0.18 180)` - Adds dynamic energy and contemporary feel, complementing the primary while maintaining professionalism
+- **Accent Color**: Bright Golden Yellow `oklch(0.65 0.22 50)` - Creates excitement and highlights key elements with warm, inviting energy
 - **Foreground/Background Pairings**: 
-  - Background (Soft White `oklch(0.99 0.002 250)`): Dark Text `oklch(0.25 0.02 250)` - Ratio 13.8:1 ✓
-  - Card (White `oklch(1 0 0)`): Dark Text `oklch(0.25 0.02 250)` - Ratio 14.2:1 ✓
-  - Primary (Deep Blue `oklch(0.35 0.08 250)`): White text `oklch(0.99 0.002 250)` - Ratio 9.4:1 ✓
-  - Accent (Warm Amber `oklch(0.68 0.15 65)`): Dark text `oklch(0.25 0.02 250)` - Ratio 4.6:1 ✓
-  - Muted (Light Gray `oklch(0.95 0.005 250)`): Medium text `oklch(0.50 0.03 250)` - Ratio 6.2:1 ✓
+  - Background (Light Blue-tinted White `oklch(0.98 0.01 240)`): Rich Dark Text `oklch(0.20 0.03 250)` - Ratio 15.2:1 ✓
+  - Card (Pure White `oklch(1 0 0)`): Rich Dark Text `oklch(0.20 0.03 250)` - Ratio 16.1:1 ✓
+  - Primary (Vibrant Blue `oklch(0.55 0.20 250)`): White text `oklch(0.99 0.01 250)` - Ratio 6.8:1 ✓
+  - Secondary (Fresh Teal `oklch(0.60 0.18 180)`): White text `oklch(0.99 0.01 250)` - Ratio 5.9:1 ✓
+  - Accent (Bright Yellow `oklch(0.65 0.22 50)`): White text `oklch(0.99 0.01 250)` - Ratio 4.9:1 ✓
+  - Muted (Soft Blue-Gray `oklch(0.96 0.01 240)`): Medium text `oklch(0.48 0.03 250)` - Ratio 7.1:1 ✓
 
 ## Font Selection
 Google Fonts: Inter for its exceptional readability and modern academic feel, paired with Crimson Pro for elegant heading contrast that adds scholarly gravitas.
@@ -97,56 +98,63 @@ Google Fonts: Inter for its exceptional readability and modern academic feel, pa
   - Citation (Publications): Inter Regular/15px/line-height 1.7 - Optimized for scanning references
 
 ## Animations
-Subtle, purposeful animations that enhance professionalism - gentle fades and slides that guide attention without distraction, reflecting the measured precision of scientific inquiry.
+Dynamic, smooth animations that enhance engagement and create a modern, lively feel - gradient shifts, smooth scrolling, and responsive hover states that reflect innovation and forward-thinking while remaining professional.
 
-- **Purposeful Meaning**: Smooth scrolling between sections suggests fluid knowledge transfer; cards that gently lift on hover indicate interactivity while maintaining dignity
-- **Hierarchy of Movement**: Hero elements fade in sequentially (name → title → contact) to build narrative; section reveals triggered by scroll position to maintain engagement; publication list items stagger for scanability
+- **Purposeful Meaning**: Gradient backgrounds subtly animate to create living surfaces; smooth scroll-to-section navigation with offset for sticky header; section headers fade in as they enter viewport to maintain engagement; menu items have smooth active state transitions with color fills
+- **Hierarchy of Movement**: Navigation menu items transition smoothly between states with color and scale; gradient text in headers creates visual interest; cards lift and glow on hover; staggered fade-ins for section content; floating animations for decorative elements
 
 ## Component Selection
 
 - **Components**: 
-  - Card for education/experience items and research highlights with subtle shadow on hover
-  - Tabs for switching between different content views (Experience/Education/Skills)
-  - Badge for skills, programming languages, and awards with accent color
+  - Card for education/experience items and research highlights with colorful gradient borders on hover
+  - Top sticky navigation menu with smooth scroll-to-section behavior
+  - Badge for skills, programming languages, and awards with gradient backgrounds
   - Separator for visual breaks between major sections
-  - Button for external links (Google Scholar, LinkedIn, ORCID) with primary styling
-  - Input with search icon for publication filtering
-  - Avatar for professional photo placeholder
+  - Button with gradient backgrounds for CTAs and interactive elements
+  - Input with colorful focus rings for search functionality
+  - Avatar with gradient border for professional photo
   - ScrollArea for contained lists that might overflow
+  - Gradient text headings using background-clip for visual interest
   
 - **Customizations**: 
-  - Custom Timeline component connecting experience/education cards with vertical line
-  - Custom PublicationCard with citation formatting and copy-to-clipboard functionality
-  - Custom MetricDisplay for research statistics with large numbers and visual emphasis
+  - Custom Navigation component with sticky header and scroll-to-section functionality
+  - Custom gradient backgrounds and borders throughout
+  - Logo initials component with multi-color gradient background
+  - Enhanced hover states with scale and shadow effects
+  - Gradient text for section headings
+  - Animated back-to-top button with gradient background
   
 - **States**: 
-  - Buttons: Default (primary blue), Hover (darker blue with lift), Active (pressed state), Disabled (grayed for inactive links)
-  - Cards: Default (white with subtle border), Hover (elevated shadow with slight scale), Selected (accent border for filtered items)
-  - Inputs: Default (light border), Focus (accent ring), Filled (darker text)
+  - Navigation items: Default (transparent), Hover (muted background), Active (gradient primary fill with shadow)
+  - Buttons: Default (gradient background), Hover (elevated with enhanced glow), Active (pressed scale)
+  - Cards: Default (white with subtle border), Hover (elevated shadow with colorful border glow)
+  - Inputs: Default (light border), Focus (colorful ring matching primary)
   
 - **Icon Selection**: 
+  - House for home/hero section
+  - ChartBar for research overview
+  - BookOpen for publications
+  - Article for blogs
   - Envelope for email contact
   - LinkedinLogo for professional network
   - GraduationCap for education
   - Briefcase for work experience
-  - Flask or Atom for research
-  - FileText for publications
-  - Code for programming skills
-  - MagnifyingGlass for search
-  - Copy for citation copying
+  - Lightbulb for skills
+  - Trophy for awards
+  - ArrowUp for back to top
   
 - **Spacing**: 
-  - Section padding: py-16 md:py-24 for generous breathing room
-  - Container max-width: max-w-6xl for optimal reading line length
+  - Section padding: py-8 md:py-12 for comfortable spacing
+  - Container max-width: max-w-7xl for wide, modern layout
   - Card gaps: gap-6 md:gap-8 for clear separation
   - Content padding: p-6 md:p-8 within cards
-  - Element margins: mb-4 for related content, mb-8 for distinct blocks
+  - Navigation height: h-16 for prominent top menu
+  - Scroll offset: 80px to account for sticky header
   
 - **Mobile**: 
-  - Stack sections vertically on mobile with increased touch targets (min-h-12)
-  - Timeline switches from side-by-side to vertical single-column flow
-  - Tabs convert to full-width stacked buttons for easy thumb access
-  - Publication cards expand to full width with adjusted padding
-  - Hero text sizes scale down (H1: 32px mobile vs 48px desktop)
-  - Navigation becomes sticky header with hamburger menu (if needed)
-  - Contact buttons stack vertically on small screens
+  - Horizontal scrolling navigation menu on small screens
+  - Icon-only navigation items on mobile, full labels on desktop
+  - Stack sections vertically with adjusted padding
+  - Gradient text remains visible and impactful
+  - Enhanced touch targets for navigation (min 44x44px)
+  - Back-to-top button repositioned for thumb access

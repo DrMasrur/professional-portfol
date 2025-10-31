@@ -60,7 +60,7 @@ export function QuickAccessCards({ publications, contact }: QuickAccessCardsProp
       title: 'Publications',
       icon: BookOpen,
       count: publications.length,
-      gradient: 'from-primary/20 to-primary/5',
+      gradient: 'from-primary via-primary/60 to-primary/20',
       iconColor: 'text-primary',
       tabLabel: `Publications (${publications.length})`
     },
@@ -69,8 +69,8 @@ export function QuickAccessCards({ publications, contact }: QuickAccessCardsProp
       title: 'Blogs',
       icon: Article,
       count: 5,
-      gradient: 'from-accent/20 to-accent/5',
-      iconColor: 'text-accent',
+      gradient: 'from-secondary via-secondary/60 to-secondary/20',
+      iconColor: 'text-secondary',
       tabLabel: 'Blogs'
     },
     {
@@ -78,8 +78,8 @@ export function QuickAccessCards({ publications, contact }: QuickAccessCardsProp
       title: 'Contact',
       icon: Envelope,
       count: null,
-      gradient: 'from-blue-500/20 to-blue-500/5',
-      iconColor: 'text-blue-600',
+      gradient: 'from-accent via-accent/60 to-accent/20',
+      iconColor: 'text-accent',
       tabLabel: 'Contact'
     }
   ]
@@ -102,13 +102,13 @@ export function QuickAccessCards({ publications, contact }: QuickAccessCardsProp
             <Button
               variant="outline"
               size="sm"
-              className="h-auto px-3 py-2 hover:bg-accent/5 transition-colors"
+              className="h-auto px-4 py-2.5 hover:shadow-md hover:scale-105 transition-all duration-300 border-2"
               onClick={() => openFullPage(card.id)}
             >
-              <card.icon size={16} className={`mr-2 ${card.iconColor}`} weight="duotone" />
-              <span className="text-sm font-medium">{card.title}</span>
+              <card.icon size={18} className={`mr-2 ${card.iconColor}`} weight="fill" />
+              <span className="text-sm font-semibold">{card.title}</span>
               {card.count !== null && (
-                <Badge variant="secondary" className="ml-2 h-5 px-1.5 text-xs">
+                <Badge variant="secondary" className="ml-2 h-5 px-2 text-xs bg-gradient-to-r from-primary/20 to-secondary/20">
                   {card.count}
                 </Badge>
               )}

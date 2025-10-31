@@ -13,23 +13,20 @@ import { Publications } from './components/Publications'
 import { Blogs } from './components/Blogs'
 import { ContactUs } from './components/ContactUs'
 import { Separator } from './components/ui/separator'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs'
 import { Toaster } from './components/ui/sonner'
 import { Button } from './components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUp, BookOpen, Article, Envelope, Briefcase, GraduationCap, Lightbulb, Trophy } from '@phosphor-icons/react'
+import { ArrowUp, BookOpen, Article, Envelope, Briefcase, GraduationCap, Lightbulb, Trophy, House, ChartBar } from '@phosphor-icons/react'
 import { cn } from './lib/utils'
 
 function App() {
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [publicationsSearchQuery, setPublicationsSearchQuery] = useState('')
-  const [activeTab, setActiveTab] = useState('publications')
-  const [isMenuSticky, setIsMenuSticky] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 500)
-      setIsMenuSticky(window.scrollY > 100)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -37,6 +34,20 @@ function App() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const scrollToSection = (sectionId: string) => {
+    setActiveSection(sectionId)
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const offset = 80
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - offset
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
   }
 
   const filteredPublications = profileData.publications.filter(pub => {
@@ -50,73 +61,55 @@ function App() {
     )
   })
 
+  const menuItems = [
+    { id: 'home', label: 'Home', icon: House },
+    { id: 'research', label: 'Research', icon: ChartBar },
+    { id: 'publications', label: 'Publications', icon: BookOpen },
+    { id: 'experience', label: 'Experience', icon: Briefcase },
+    { id: 'education', label: 'Education', icon: GraduationCap },
+    { id: 'skills', label: 'Skills', icon: Lightbulb },
+    { id: 'awards', label: 'Awards', icon: Trophy },
+    { id: 'blogs', label: 'Blogs', icon: Article },
+    { id: 'contact', label: 'Contact', icon: Envelope },
+  ]
+
   return (
     <div className="min-h-screen bg-background">
       <Toaster />
       
-      <div className={cn(
-        "sticky top-0 z-50 transition-all duration-300",
-        isMenuSticky ? "bg-background/95 backdrop-blur-sm border-b border-border shadow-sm" : ""
-      )}>
+      <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="w-full h-14 bg-transparent justify-start gap-2 border-b-0 p-0">
-              <TabsTrigger 
-                value="publications" 
-                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6 py-2 rounded-md"
-              >
-                <BookOpen size={18} className="mr-2" />
-                <span className="hidden sm:inline">Publications</span>
-                <span className="sm:hidden">Pubs</span>
-              </TabsTrigger>
-              <TabsTrigger 
-                value="blogs"
-                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6 py-2 rounded-md"
-              >
-                <Article size={18} className="mr-2" />
-                Blogs
-              </TabsTrigger>
-              <TabsTrigger 
-                value="contact"
-                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6 py-2 rounded-md"
-              >
-                <Envelope size={18} className="mr-2" />
-                Contact
-              </TabsTrigger>
-              <TabsTrigger 
-                value="experience"
-                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6 py-2 rounded-md"
-              >
-                <Briefcase size={18} className="mr-2" />
-                <span className="hidden sm:inline">Experience</span>
-                <span className="sm:hidden">Exp</span>
-              </TabsTrigger>
-              <TabsTrigger 
-                value="education"
-                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6 py-2 rounded-md"
-              >
-                <GraduationCap size={18} className="mr-2" />
-                <span className="hidden sm:inline">Education</span>
-                <span className="sm:hidden">Edu</span>
-              </TabsTrigger>
-              <TabsTrigger 
-                value="skills"
-                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6 py-2 rounded-md"
-              >
-                <Lightbulb size={18} className="mr-2" />
-                Skills
-              </TabsTrigger>
-              <TabsTrigger 
-                value="awards"
-                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-6 py-2 rounded-md"
-              >
-                <Trophy size={18} className="mr-2" />
-                Awards
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center text-white font-bold text-lg">
+                MA
+              </div>
+              <span className="font-semibold text-foreground hidden sm:inline">Dr. Masrur Ahmed</span>
+            </div>
+            
+            <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
+              {menuItems.map((item) => {
+                const Icon = item.icon
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={cn(
+                      "flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 whitespace-nowrap text-sm font-medium",
+                      activeSection === item.id
+                        ? "bg-primary text-primary-foreground shadow-md"
+                        : "text-foreground hover:bg-muted"
+                    )}
+                  >
+                    <Icon size={18} weight={activeSection === item.id ? "fill" : "regular"} />
+                    <span className="hidden md:inline">{item.label}</span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
         </div>
-      </div>
+      </nav>
       
       <AnimatePresence>
         {showBackToTop && (
@@ -130,112 +123,204 @@ function App() {
             <Button
               onClick={scrollToTop}
               size="icon"
-              className="h-12 w-12 rounded-full shadow-lg hover:shadow-xl transition-shadow"
+              className="h-12 w-12 rounded-full shadow-lg hover:shadow-xl transition-all bg-gradient-to-br from-primary to-secondary"
             >
-              <ArrowUp size={24} />
+              <ArrowUp size={24} weight="bold" />
             </Button>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <Hero data={profileData.personal} contact={profileData.personal.contact} publications={profileData.publications} />
+      <section id="home">
+        <Hero data={profileData.personal} contact={profileData.personal.contact} publications={profileData.publications} />
+      </section>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8">
-          <main className="w-full">
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsContent value="publications" className="mt-8">
-                <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
-                  Publications
-                </h2>
-                <Publications 
-                  publications={filteredPublications}
-                  searchQuery={publicationsSearchQuery}
-                  onSearchChange={setPublicationsSearchQuery}
-                  totalCount={profileData.publications.length}
-                />
-              </TabsContent>
-              
-              <TabsContent value="blogs" className="mt-8">
-                <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
-                  Blogs & Articles
-                </h2>
-                <Blogs />
-              </TabsContent>
-              
-              <TabsContent value="contact" className="mt-8">
-                <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
-                  Contact Information
-                </h2>
-                <ContactUs contact={profileData.personal.contact} />
-              </TabsContent>
-              
-              <TabsContent value="experience" className="mt-8">
-                <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
-                  Professional Experience
-                </h2>
-                <Experience data={profileData.experience} />
-              </TabsContent>
-              
-              <TabsContent value="education" className="mt-8">
-                <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
-                  Education
-                </h2>
-                <Education data={profileData.education} />
-              </TabsContent>
-              
-              <TabsContent value="skills" className="mt-8">
-                <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
-                  Skills & Expertise
-                </h2>
-                <Skills 
-                  skills={profileData.skills}
-                  memberships={profileData.memberships}
-                  training={profileData.training}
-                />
-              </TabsContent>
-              
-              <TabsContent value="awards" className="mt-8">
-                <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
-                  Awards & Recognition
-                </h2>
-                <Awards awards={profileData.awards} />
-              </TabsContent>
-            </Tabs>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <section id="research" className="scroll-mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+              Research Focus
+            </h2>
+            <ResearchFocus />
+          </motion.div>
+          
+          <Separator className="my-16" />
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-secondary via-accent to-primary bg-clip-text text-transparent">
+              Research Highlights
+            </h2>
+            <ResearchHighlights 
+              research={profileData.research} 
+              areas={profileData.researchAreas}
+              expertise={profileData.expertise}
+            />
+          </motion.div>
+          
+          <Separator className="my-16" />
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-accent via-primary to-secondary bg-clip-text text-transparent">
+              Research Gallery
+            </h2>
+            <ResearchGallery />
+          </motion.div>
+          
+          <Separator className="my-16" />
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Technology Stack
+            </h2>
+            <TechnologyStack />
+          </motion.div>
+        </section>
 
-            <Separator className="my-12" />
-            <section className="py-16 md:py-20">
-              <ResearchFocus />
-            </section>
+        <Separator className="my-16" />
 
-            <Separator className="my-12" />
+        <section id="publications" className="scroll-mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
+              Publications
+            </h2>
+            <Publications 
+              publications={filteredPublications}
+              searchQuery={publicationsSearchQuery}
+              onSearchChange={setPublicationsSearchQuery}
+              totalCount={profileData.publications.length}
+            />
+          </motion.div>
+        </section>
 
-            <section className="py-16 md:py-20">
-              <ResearchHighlights 
-                research={profileData.research} 
-                areas={profileData.researchAreas}
-                expertise={profileData.expertise}
-              />
-            </section>
+        <Separator className="my-16" />
 
-            <Separator className="my-12" />
+        <section id="experience" className="scroll-mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent">
+              Professional Experience
+            </h2>
+            <Experience data={profileData.experience} />
+          </motion.div>
+        </section>
 
-            <section className="py-16 md:py-20">
-              <ResearchGallery />
-            </section>
+        <Separator className="my-16" />
 
-            <Separator className="my-12" />
+        <section id="education" className="scroll-mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Education
+            </h2>
+            <Education data={profileData.education} />
+          </motion.div>
+        </section>
 
-            <section className="py-16 md:py-20">
-              <TechnologyStack />
-            </section>
+        <Separator className="my-16" />
 
-            <footer className="py-12 text-center text-muted-foreground text-sm">
-              <p>© {new Date().getFullYear()} {profileData.personal.name}. All rights reserved.</p>
-              <p className="mt-2">Last updated: {new Date().toLocaleDateString()}</p>
-            </footer>
-          </main>
-        </div>
+        <section id="skills" className="scroll-mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-secondary via-accent to-primary bg-clip-text text-transparent">
+              Skills & Expertise
+            </h2>
+            <Skills 
+              skills={profileData.skills}
+              memberships={profileData.memberships}
+              training={profileData.training}
+            />
+          </motion.div>
+        </section>
+
+        <Separator className="my-16" />
+
+        <section id="awards" className="scroll-mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+              Awards & Recognition
+            </h2>
+            <Awards awards={profileData.awards} />
+          </motion.div>
+        </section>
+
+        <Separator className="my-16" />
+
+        <section id="blogs" className="scroll-mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+              Blogs & Articles
+            </h2>
+            <Blogs />
+          </motion.div>
+        </section>
+
+        <Separator className="my-16" />
+
+        <section id="contact" className="scroll-mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+              Contact Information
+            </h2>
+            <ContactUs contact={profileData.personal.contact} />
+          </motion.div>
+        </section>
+
+        <footer className="py-12 mt-16 text-center text-muted-foreground text-sm border-t border-border">
+          <p>© {new Date().getFullYear()} {profileData.personal.name}. All rights reserved.</p>
+          <p className="mt-2">Last updated: {new Date().toLocaleDateString()}</p>
+        </footer>
       </div>
     </div>
   )
