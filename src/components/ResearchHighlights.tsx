@@ -6,6 +6,7 @@ import airQualityImg from '@/assets/images/air-quality.svg'
 import emissionsImg from '@/assets/images/emissions.svg'
 import aiImg from '@/assets/images/ai-neural-network.svg'
 import mlImg from '@/assets/images/machine-learning.svg'
+import { motion } from 'framer-motion'
 
 interface ResearchHighlightsProps {
   research: {
@@ -34,134 +35,179 @@ export function ResearchHighlights({ research, areas, expertise }: ResearchHighl
     <div className="space-y-8">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
         {researchIcons.map((item, idx) => (
-          <div 
+          <motion.div 
             key={idx}
             className="relative group cursor-pointer"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: idx * 0.1 }}
+            viewport={{ once: true }}
+            whileHover={{ y: -8 }}
           >
             <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity rounded-xl blur-xl from-primary/20 to-accent/20" />
             <Card className="relative border-2 hover:border-primary/50 transition-all hover:shadow-xl overflow-hidden">
-              <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity">
+              <motion.div 
+                className="absolute inset-0 opacity-20"
+                whileHover={{ opacity: 0.30, scale: 1.1 }}
+                transition={{ duration: 0.3 }}
+              >
                 <img 
                   src={item.image} 
                   alt={item.title}
                   className="w-full h-full object-cover"
                 />
-              </div>
+              </motion.div>
               <CardContent className="relative p-6 flex flex-col items-center gap-3">
-                <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg`}>
+                <motion.div 
+                  className={`w-16 h-16 rounded-full bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg`}
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
                   <item.icon className="text-white" size={32} weight="duotone" />
-                </div>
+                </motion.div>
                 <span className="text-sm font-semibold text-center text-foreground">{item.title}</span>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
         ))}
       </div>
 
       <div>
-        <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]">
+        <motion.h2 
+          className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
           Research Impact
-        </h2>
+        </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <Card className="border-2 hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <CardTitle className="text-sm font-medium text-muted-foreground">Citations</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex items-baseline gap-2">
-                <span className="text-4xl md:text-5xl font-bold text-primary">{research.metrics.citations}</span>
-                <ChartBar className="text-muted-foreground" size={24} />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border-2 hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <CardTitle className="text-sm font-medium text-muted-foreground">h-index</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex items-baseline gap-2">
-                <span className="text-4xl md:text-5xl font-bold text-primary">{research.metrics.hIndex}</span>
-                <GraduationCap className="text-muted-foreground" size={24} />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border-2 hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <CardTitle className="text-sm font-medium text-muted-foreground">i10-index</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex items-baseline gap-2">
-                <span className="text-4xl md:text-5xl font-bold text-primary">{research.metrics.i10Index}</span>
-                <ChartBar className="text-muted-foreground" size={24} />
-              </div>
-            </CardContent>
-          </Card>
+          {[
+            { value: research.metrics.citations, label: 'Citations', Icon: ChartBar },
+            { value: research.metrics.hIndex, label: 'h-index', Icon: GraduationCap },
+            { value: research.metrics.i10Index, label: 'i10-index', Icon: ChartBar }
+          ].map((metric, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <Card className="border-2 hover:shadow-xl transition-all hover:border-primary/50">
+                <CardHeader>
+                  <CardTitle className="text-sm font-medium text-muted-foreground">{metric.label}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-baseline gap-2">
+                    <motion.span 
+                      className="text-4xl md:text-5xl font-bold text-primary"
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: idx * 0.1 + 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      {metric.value}
+                    </motion.span>
+                    <metric.Icon className="text-muted-foreground" size={24} />
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
 
-        <div className="flex flex-wrap gap-3 mb-8">
-          <Button variant="outline" asChild>
+        <motion.div 
+          className="flex flex-wrap gap-3 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <Button variant="outline" asChild className="hover:scale-105 transition-transform">
             <a href={research.googleScholar} target="_blank" rel="noopener noreferrer">
               Google Scholar Profile
             </a>
           </Button>
-          <Button variant="outline" asChild>
+          <Button variant="outline" asChild className="hover:scale-105 transition-transform">
             <a href={`https://orcid.org/${research.orcid}`} target="_blank" rel="noopener noreferrer">
               ORCID: {research.orcid}
             </a>
           </Button>
-        </div>
+        </motion.div>
 
         {research.roles.length > 0 && (
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Editorial Roles</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2">
-                {research.roles.map((role, idx) => (
-                  <li key={idx} className="text-foreground/80">{role}</li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-lg">Editorial Roles</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2">
+                  {research.roles.map((role, idx) => (
+                    <motion.li 
+                      key={idx} 
+                      className="text-foreground/80"
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: idx * 0.05 }}
+                      viewport={{ once: true }}
+                    >
+                      {role}
+                    </motion.li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          </motion.div>
         )}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Research Areas</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-3">
-              {areas.map((area, idx) => (
-                <li key={idx} className="flex items-start gap-2">
-                  <span className="text-accent mt-1">•</span>
-                  <span className="text-sm text-foreground/80">{area}</span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Core Expertise</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-3">
-              {expertise.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2">
-                  <span className="text-accent mt-1">•</span>
-                  <span className="text-sm text-foreground/80">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+        {[
+          { title: 'Research Areas', items: areas },
+          { title: 'Core Expertise', items: expertise }
+        ].map((section, sIdx) => (
+          <motion.div
+            key={sIdx}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: sIdx * 0.1 }}
+            viewport={{ once: true }}
+          >
+            <Card className="hover:shadow-lg transition-all h-full">
+              <CardHeader>
+                <CardTitle>{section.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3">
+                  {section.items.map((item, idx) => (
+                    <motion.li 
+                      key={idx} 
+                      className="flex items-start gap-2"
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: idx * 0.05 }}
+                      viewport={{ once: true }}
+                      whileHover={{ x: 4 }}
+                    >
+                      <span className="text-accent mt-1">•</span>
+                      <span className="text-sm text-foreground/80">{item}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
       </div>
     </div>
   )

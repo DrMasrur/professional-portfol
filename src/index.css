@@ -7,6 +7,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --background: oklch(0.99 0.002 250);
   --foreground: oklch(0.25 0.02 250);

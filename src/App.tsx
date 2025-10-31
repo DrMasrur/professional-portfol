@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import profileData from './data/profile.json'
 import { Hero } from './components/Hero'
 import { ResearchFocus } from './components/ResearchFocus'
@@ -13,9 +13,31 @@ import { Awards } from './components/Awards'
 import { Separator } from './components/ui/separator'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs'
 import { Toaster } from './components/ui/sonner'
+import { Button } from './components/ui/button'
+import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion'
+import { ArrowUp } from '@phosphor-icons/react'
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('')
+  const [showBackToTop, setShowBackToTop] = useState(false)
+  const { scrollYProgress } = useScroll()
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  })
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 500)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   const filteredPublications = useMemo(() => {
     if (!searchQuery) return profileData.publications
@@ -30,7 +52,32 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background">
+      <motion.div 
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary z-50 origin-left"
+        style={{ scaleX }}
+      />
       <Toaster />
+      
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.div
+            className="fixed bottom-8 right-8 z-40"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Button
+              onClick={scrollToTop}
+              size="icon"
+              className="h-12 w-12 rounded-full shadow-lg hover:shadow-xl transition-shadow"
+            >
+              <ArrowUp size={24} />
+            </Button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <Hero data={profileData.personal} contact={profileData.personal.contact} />
       
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
