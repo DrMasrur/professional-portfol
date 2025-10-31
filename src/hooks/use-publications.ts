@@ -37,7 +37,7 @@ export function usePublications() {
     setError(null)
     
     try {
-      const promptText = `You are helping to fetch publication data from Google Scholar.
+      const prompt = (window.spark.llmPrompt as any)`You are helping to fetch publication data from Google Scholar.
       
 Given the Google Scholar profile ID: ${scholarId}
 
@@ -75,13 +75,13 @@ Return ONLY a valid JSON object with this exact structure:
 
 Make the publications realistic and varied across years 2009-2024. Include the researcher as first or co-author.`
 
-      const response = await window.spark.llm(promptText, 'gpt-4o', true)
+      const response = await window.spark.llm(prompt, 'gpt-4o', true)
       const data = JSON.parse(response)
       
       if (data.publications && Array.isArray(data.publications) && data.metrics) {
-        setPublications(data.publications)
-        setMetrics(data.metrics)
-        setLastUpdated(new Date().toISOString())
+        setPublications((current) => data.publications)
+        setMetrics((current) => data.metrics)
+        setLastUpdated((current) => new Date().toISOString())
         return data
       } else {
         throw new Error('Invalid response format')
@@ -103,13 +103,13 @@ Make the publications realistic and varied across years 2009-2024. Include the r
   }
 
   const resetToDefault = () => {
-    setPublications(profileData.publications)
-    setMetrics({
+    setPublications((current) => profileData.publications)
+    setMetrics((current) => ({
       citations: 1048,
       hIndex: 16,
       i10Index: 25
-    })
-    setLastUpdated(new Date().toISOString())
+    }))
+    setLastUpdated((current) => new Date().toISOString())
   }
 
   return {
