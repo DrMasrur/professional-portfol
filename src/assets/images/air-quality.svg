@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="pollutionGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#94A3B8;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#64748B;stop-opacity:0.4" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Sky -->
+  <rect width="800" height="600" fill="url(#skyGradient)"/>
+  
+  <!-- City Skyline -->
+  <rect x="50" y="350" width="120" height="250" fill="#1E293B" opacity="0.9"/>
+  <rect x="190" y="300" width="100" height="300" fill="#1E293B" opacity="0.9"/>
+  <rect x="310" y="380" width="80" height="220" fill="#1E293B" opacity="0.9"/>
+  <rect x="410" y="320" width="110" height="280" fill="#1E293B" opacity="0.9"/>
+  <rect x="540" y="360" width="90" height="240" fill="#1E293B" opacity="0.9"/>
+  <rect x="650" y="310" width="100" height="290" fill="#1E293B" opacity="0.9"/>
+  
+  <!-- Windows on buildings -->
+  <g fill="#FCD34D" opacity="0.7">
+    <rect x="70" y="370" width="15" height="20"/>
+    <rect x="100" y="370" width="15" height="20"/>
+    <rect x="130" y="370" width="15" height="20"/>
+    <rect x="70" y="410" width="15" height="20"/>
+    <rect x="100" y="410" width="15" height="20"/>
+    <rect x="130" y="410" width="15" height="20"/>
+    
+    <rect x="210" y="330" width="15" height="20"/>
+    <rect x="240" y="330" width="15" height="20"/>
+    <rect x="210" y="370" width="15" height="20"/>
+    <rect x="240" y="370" width="15" height="20"/>
+    
+    <rect x="670" y="340" width="15" height="20"/>
+    <rect x="700" y="340" width="15" height="20"/>
+    <rect x="670" y="380" width="15" height="20"/>
+    <rect x="700" y="380" width="15" height="20"/>
+  </g>
+  
+  <!-- Pollution/Smog Clouds -->
+  <ellipse cx="150" cy="320" rx="100" ry="50" fill="url(#pollutionGradient)"/>
+  <ellipse cx="280" cy="280" rx="120" ry="60" fill="url(#pollutionGradient)"/>
+  <ellipse cx="450" cy="300" rx="110" ry="55" fill="url(#pollutionGradient)"/>
+  <ellipse cx="620" cy="290" rx="130" ry="65" fill="url(#pollutionGradient)"/>
+  
+  <!-- Monitoring Station/Sensor -->
+  <g transform="translate(350, 480)">
+    <rect x="-30" y="0" width="60" height="100" fill="#475569" rx="5"/>
+    <rect x="-25" y="10" width="50" height="30" fill="#0EA5E9" rx="3"/>
+    <circle cx="0" cy="60" r="15" fill="#22C55E"/>
+    <circle cx="0" cy="60" r="8" fill="#10B981" opacity="0.7">
+      <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <rect x="-3" y="100" width="6" height="20" fill="#334155"/>
+  </g>
+  
+  <!-- Data Visualization Lines -->
+  <g opacity="0.6">
+    <path d="M 100 150 Q 200 120, 300 140 T 500 130 T 700 150" 
+          stroke="#10B981" stroke-width="3" fill="none" stroke-dasharray="5,5">
+      <animate attributeName="stroke-dashoffset" from="0" to="10" dur="1s" repeatCount="indefinite"/>
+    </path>
+    <circle cx="100" cy="150" r="6" fill="#10B981"/>
+    <circle cx="300" cy="140" r="6" fill="#10B981"/>
+    <circle cx="500" cy="130" r="6" fill="#10B981"/>
+    <circle cx="700" cy="150" r="6" fill="#10B981"/>
+  </g>
+  
+  <!-- Air Quality Index Label -->
+  <g transform="translate(600, 80)">
+    <rect x="0" y="0" width="160" height="80" fill="white" opacity="0.95" rx="10"/>
+    <text x="80" y="30" font-size="14" font-weight="600" fill="#1E293B" text-anchor="middle">Air Quality Index</text>
+    <text x="80" y="55" font-size="32" font-weight="700" fill="#0EA5E9" text-anchor="middle">78</text>
+    <text x="80" y="70" font-size="10" fill="#64748B" text-anchor="middle">Moderate</text>
+  </g>
+</svg>

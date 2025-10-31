@@ -2,6 +2,10 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { Badge } from './ui/badge'
 import { Button } from './ui/button'
 import { ChartBar, GraduationCap, Wind, Cloud, Brain, ChartLineUp, Cpu, TreeStructure, Globe, CloudArrowUp } from '@phosphor-icons/react'
+import airQualityImg from '@/assets/images/air-quality.svg'
+import emissionsImg from '@/assets/images/emissions.svg'
+import aiImg from '@/assets/images/ai-neural-network.svg'
+import mlImg from '@/assets/images/machine-learning.svg'
 
 interface ResearchHighlightsProps {
   research: {
@@ -20,10 +24,10 @@ interface ResearchHighlightsProps {
 
 export function ResearchHighlights({ research, areas, expertise }: ResearchHighlightsProps) {
   const researchIcons = [
-    { icon: Wind, title: 'Air Quality', gradient: 'from-blue-400 to-cyan-500' },
-    { icon: CloudArrowUp, title: 'Emissions', gradient: 'from-gray-400 to-slate-500' },
-    { icon: Brain, title: 'Deep Learning', gradient: 'from-purple-400 to-pink-500' },
-    { icon: TreeStructure, title: 'Machine Learning', gradient: 'from-green-400 to-emerald-500' },
+    { icon: Wind, title: 'Air Quality', gradient: 'from-blue-400 to-cyan-500', image: airQualityImg },
+    { icon: CloudArrowUp, title: 'Emissions', gradient: 'from-gray-400 to-slate-500', image: emissionsImg },
+    { icon: Brain, title: 'Deep Learning', gradient: 'from-purple-400 to-pink-500', image: aiImg },
+    { icon: TreeStructure, title: 'Machine Learning', gradient: 'from-green-400 to-emerald-500', image: mlImg },
   ]
 
   return (
@@ -35,8 +39,15 @@ export function ResearchHighlights({ research, areas, expertise }: ResearchHighl
             className="relative group cursor-pointer"
           >
             <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity rounded-xl blur-xl from-primary/20 to-accent/20" />
-            <Card className="relative border-2 hover:border-primary/50 transition-all hover:shadow-xl">
-              <CardContent className="p-6 flex flex-col items-center gap-3">
+            <Card className="relative border-2 hover:border-primary/50 transition-all hover:shadow-xl overflow-hidden">
+              <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity">
+                <img 
+                  src={item.image} 
+                  alt={item.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <CardContent className="relative p-6 flex flex-col items-center gap-3">
                 <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg`}>
                   <item.icon className="text-white" size={32} weight="duotone" />
                 </div>
