@@ -157,7 +157,7 @@ function App() {
                     </span>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56 max-h-[70vh] overflow-y-auto">
+                <DropdownMenuContent align="end" className="w-56 max-h-[calc(100vh-120px)] overflow-y-auto">
                   {menuItems.map((item) => {
                     const Icon = item.icon
                     return (

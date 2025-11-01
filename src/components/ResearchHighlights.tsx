@@ -57,15 +57,15 @@ export function ResearchHighlights({ research, areas, expertise }: ResearchHighl
                   className="w-full h-full object-cover"
                 />
               </motion.div>
-              <CardContent className="relative p-6 flex flex-col items-center gap-3">
+              <CardContent className="relative p-4 flex flex-col items-center gap-2">
                 <motion.div 
-                  className={`w-10 h-10 rounded-full bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg`}
+                  className={`w-8 h-8 rounded-full bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg`}
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <item.icon className="text-white" size={20} weight="duotone" />
+                  <item.icon className="text-white" size={16} weight="duotone" />
                 </motion.div>
-                <span className="text-sm font-semibold text-center text-foreground">{item.title}</span>
+                <span className="text-xs font-semibold text-center text-foreground">{item.title}</span>
               </CardContent>
             </Card>
           </motion.div>
