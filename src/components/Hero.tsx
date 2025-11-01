@@ -217,56 +217,6 @@ export function Hero({ data, contact, publications, metrics, isLoadingMetrics }:
               </p>
             </motion.div>
 
-            <motion.div
-              key={`metrics-${metrics?.citations}-${metrics?.hIndex}`}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.55 }}
-              className="grid grid-cols-2 gap-4 mb-8"
-            >
-              <div className="bg-card border border-border rounded-xl p-4">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-lg bg-primary/5 flex items-center justify-center">
-                    <Brain size={22} weight="duotone" className="text-primary" />
-                  </div>
-                  <div>
-                    {isLoadingMetrics ? (
-                      <>
-                        <div className="h-6 w-20 bg-muted animate-pulse rounded mb-1" />
-                        <div className="h-3 w-16 bg-muted animate-pulse rounded" />
-                      </>
-                    ) : (
-                      <>
-                        <div className="text-xl font-bold text-foreground">{metrics?.citations?.toLocaleString() || '1000+'}</div>
-                        <div className="text-xs text-muted-foreground">Citations</div>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-card border border-border rounded-xl p-4">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-lg bg-accent/5 flex items-center justify-center">
-                    <ChartLine size={22} weight="duotone" className="text-accent" />
-                  </div>
-                  <div>
-                    {isLoadingMetrics ? (
-                      <>
-                        <div className="h-6 w-24 bg-muted animate-pulse rounded mb-1" />
-                        <div className="h-3 w-16 bg-muted animate-pulse rounded" />
-                      </>
-                    ) : (
-                      <>
-                        <div className="text-xl font-bold text-foreground">{metrics?.hIndex || 16}</div>
-                        <div className="text-xs text-muted-foreground">h-index</div>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
             <div>
               <QuickAccessCards publications={publications} contact={contact} />
             </div>
