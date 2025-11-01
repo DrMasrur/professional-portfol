@@ -249,55 +249,6 @@ function App() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-accent via-primary to-secondary bg-clip-text text-transparent">
-              Research Impact
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              {[
-                { value: metrics?.citations || profileData.research.metrics.citations, label: 'Citations', Icon: ChartBar },
-                { value: metrics?.hIndex || profileData.research.metrics.hIndex, label: 'h-index', Icon: GraduationCap },
-                { value: metrics?.i10Index || profileData.research.metrics.i10Index, label: 'i10-index', Icon: ChartBar }
-              ].map((metric, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <Card className="border-2 hover:shadow-xl transition-all hover:border-primary/50">
-                    <CardHeader>
-                      <CardTitle className="text-sm font-medium text-muted-foreground">{metric.label}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex items-baseline gap-2">
-                        <motion.span 
-                          className="text-4xl md:text-5xl font-bold text-primary"
-                          initial={{ opacity: 0, scale: 0 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.5, delay: idx * 0.1 + 0.2 }}
-                          viewport={{ once: true }}
-                        >
-                          {metric.value}
-                        </motion.span>
-                        <metric.Icon className="text-muted-foreground" size={24} />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-          
-          <Separator className="my-16" />
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
