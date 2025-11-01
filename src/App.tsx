@@ -25,7 +25,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from './components/ui/dropdown-menu'
-import { ScrollArea } from './components/ui/scroll-area'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUp, BookOpen, Article, Envelope, Briefcase, GraduationCap, Lightbulb, Trophy, House, ChartBar, Users, List } from '@phosphor-icons/react'
 import { cn } from './lib/utils'
@@ -154,25 +153,23 @@ function App() {
                     </span>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  <ScrollArea className="h-[400px]">
-                    {menuItems.map((item) => {
-                      const Icon = item.icon
-                      return (
-                        <DropdownMenuItem
-                          key={item.id}
-                          onClick={() => scrollToSection(item.id)}
-                          className={cn(
-                            "flex items-center gap-3 px-4 py-3 cursor-pointer",
-                            activeSection === item.id && "bg-primary text-primary-foreground"
-                          )}
-                        >
-                          <Icon size={20} weight={activeSection === item.id ? "fill" : "regular"} />
-                          <span className="font-medium">{item.label}</span>
-                        </DropdownMenuItem>
-                      )
-                    })}
-                  </ScrollArea>
+                <DropdownMenuContent align="end" className="w-56 max-h-[400px]">
+                  {menuItems.map((item) => {
+                    const Icon = item.icon
+                    return (
+                      <DropdownMenuItem
+                        key={item.id}
+                        onClick={() => scrollToSection(item.id)}
+                        className={cn(
+                          "flex items-center gap-3 px-4 py-3 cursor-pointer",
+                          activeSection === item.id && "bg-primary text-primary-foreground"
+                        )}
+                      >
+                        <Icon size={20} weight={activeSection === item.id ? "fill" : "regular"} />
+                        <span className="font-medium">{item.label}</span>
+                      </DropdownMenuItem>
+                    )
+                  })}
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
