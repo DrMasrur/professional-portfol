@@ -7,6 +7,7 @@ interface EducationItem {
   institution: string
   period: string
   thesis: string
+  logo?: string
 }
 
 interface EducationProps {
@@ -38,11 +39,19 @@ export function Education({ data }: EducationProps) {
             <CardHeader>
               <div className="flex items-start gap-4">
                 <motion.div 
-                  className="p-3 bg-primary/10 rounded-lg"
+                  className="p-3 bg-primary/10 rounded-lg flex items-center justify-center"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
-                  <GraduationCap className="text-primary" size={24} />
+                  {edu.logo ? (
+                    <img 
+                      src={edu.logo} 
+                      alt={`${edu.institution} logo`}
+                      className="w-12 h-12 object-contain"
+                    />
+                  ) : (
+                    <GraduationCap className="text-primary" size={24} />
+                  )}
                 </motion.div>
                 <div className="flex-1">
                   <CardTitle className="text-xl mb-1 group-hover:text-primary transition-colors">{edu.degree}</CardTitle>

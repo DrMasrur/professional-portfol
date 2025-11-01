@@ -29,19 +29,22 @@
       "degree": "PhD in Applied Artificial Intelligence",
       "institution": "University of Southern Queensland, Australia",
       "period": "2019 – 2022",
-      "thesis": "Development of Deep Learning Hybrid Models for Hydrological Prediction"
+      "thesis": "Development of Deep Learning Hybrid Models for Hydrological Prediction",
+      "logo": "/src/assets/images/logos/usq.svg"
     },
     {
       "degree": "MSc in Civil & Environmental Engineering",
       "institution": "Shahjalal University of Science & Technology",
       "period": "2011 – 2017",
-      "thesis": "Development of ANN model to predict the DO concentration of the Surma River"
+      "thesis": "Development of ANN model to predict the DO concentration of the Surma River",
+      "logo": "/src/assets/images/logos/sust.svg"
     },
     {
       "degree": "BSc in Civil & Environmental Engineering",
       "institution": "Shahjalal University of Science & Technology",
       "period": "2005 – 2009",
-      "thesis": ""
+      "thesis": "",
+      "logo": "/src/assets/images/logos/sust.svg"
     }
   ],
   "experience": [
@@ -53,7 +56,8 @@
       "duration": "1 yr 10 mos",
       "type": "Full-time",
       "description": "Developing machine learning and deep learning models to gain deeper insights into climate and atmospheric conditions, focusing on emission modelling and air quality forecasting.",
-      "highlights": []
+      "highlights": [],
+      "logo": "/src/assets/images/logos/nsw-dcceew.svg"
     },
     {
       "title": "Postdoctoral Research Fellow",
@@ -70,7 +74,8 @@
         "Water demand under global warming scenarios",
         "Reviewing Kc values for Australian crops",
         "Using the output of agricultural water market of sMDB"
-      ]
+      ],
+      "logo": "/src/assets/images/logos/unimelb.svg"
     },
     {
       "title": "Doctoral Researcher",
@@ -89,7 +94,8 @@
         "Applied multiple feature selection approaches (i.e., PSO, GA and GWO)",
         "Used different feature decomposition methods (EEMD and CEEMDAN)",
         "Used different datasets from ECMWF, GCM, AWRA, SILO and BOM"
-      ]
+      ],
+      "logo": "/src/assets/images/logos/usq.svg"
     },
     {
       "title": "APR.Intern",
@@ -106,7 +112,8 @@
       "highlights": [
         "Developed cutting edge machine learning models for bias correction of cloud cover",
         "Used Global Forecast System Model datasets for solar farms of QLD, Australia"
-      ]
+      ],
+      "logo": "/src/assets/images/logos/cs-energy.svg"
     },
     {
       "title": "Assistant Professor",
@@ -116,7 +123,8 @@
       "duration": "5 yrs 4 mos",
       "type": "Full-time",
       "description": "Taught courses like research methods, hydrology, fluid mechanics, water resources engineering. I led different research projects. Also served as a Head (acting) of the Civil Engineering Department.",
-      "highlights": []
+      "highlights": [],
+      "logo": "/src/assets/images/logos/leading-university.svg"
     },
     {
       "title": "Advisor of Leading University Sports Club",
@@ -126,7 +134,8 @@
       "duration": "3 yrs 9 mos",
       "type": "Full-time",
       "description": "Led and advised the university sports club, organizing tournaments and team building activities.",
-      "highlights": []
+      "highlights": [],
+      "logo": "/src/assets/images/logos/leading-university.svg"
     },
     {
       "title": "Head (Self Assessment Committee of Dept of Civil Engineering)",
@@ -136,7 +145,8 @@
       "duration": "1 yr 1 mo",
       "type": "Contract",
       "description": "Led the self-assessment committee for departmental evaluation and quality assurance.",
-      "highlights": []
+      "highlights": [],
+      "logo": "/src/assets/images/logos/leading-university.svg"
     },
     {
       "title": "Head (Acting) of Department of Civil Engineering",
@@ -146,7 +156,8 @@
       "duration": "3 yrs 1 mo",
       "type": "Full-time",
       "description": "Served as acting department head, overseeing academic programs, faculty coordination, and departmental administration.",
-      "highlights": []
+      "highlights": [],
+      "logo": "/src/assets/images/logos/leading-university.svg"
     },
     {
       "title": "Assistant Proctor",
@@ -156,7 +167,8 @@
       "duration": "3 yrs 1 mo",
       "type": "Full-time",
       "description": "Maintained discipline and coordinated student affairs across the university.",
-      "highlights": []
+      "highlights": [],
+      "logo": "/src/assets/images/logos/leading-university.svg"
     },
     {
       "title": "Senior Lecturer",
@@ -166,7 +178,8 @@
       "duration": "2 yrs 1 mo",
       "type": "Full-time",
       "description": "Taught undergraduate civil engineering courses and supervised student research projects.",
-      "highlights": []
+      "highlights": [],
+      "logo": "/src/assets/images/logos/leading-university.svg"
     },
     {
       "title": "Lecturer",
@@ -176,7 +189,8 @@
       "duration": "2 yrs 1 mo",
       "type": "Full-time",
       "description": "Taught undergraduate civil engineering courses and participated in departmental activities.",
-      "highlights": []
+      "highlights": [],
+      "logo": "/src/assets/images/logos/leading-university.svg"
     }
   ],
   "skills": {

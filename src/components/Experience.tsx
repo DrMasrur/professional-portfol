@@ -20,6 +20,7 @@ interface ExperienceItem {
     industry?: string
   }
   skills?: string[]
+  logo?: string
 }
 
 interface ExperienceProps {
@@ -32,6 +33,7 @@ interface GroupedExperience {
   roles: ExperienceItem[]
   overallPeriod: string
   totalDuration: string
+  logo?: string
 }
 
 function calculateTotalDuration(roles: ExperienceItem[]): string {
@@ -89,7 +91,8 @@ export function Experience({ data }: ExperienceProps) {
           location: roles[0].location,
           roles: roles,
           overallPeriod: getOverallPeriod(roles),
-          totalDuration: calculateTotalDuration(roles)
+          totalDuration: calculateTotalDuration(roles),
+          logo: roles[0].logo
         })
       } else {
         groupedData.push(roles[0])
@@ -122,21 +125,37 @@ export function Experience({ data }: ExperienceProps) {
             >
               <Card className="relative hover:shadow-xl transition-all md:ml-16 group">
                 <motion.div 
-                  className="absolute -left-16 top-8 hidden md:flex items-center justify-center w-12 h-12 bg-secondary rounded-full ring-4 ring-background"
+                  className="absolute -left-16 top-8 hidden md:flex items-center justify-center w-12 h-12 bg-secondary rounded-full ring-4 ring-background overflow-hidden"
                   whileHover={{ scale: 1.2, rotate: 360 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Buildings className="text-secondary-foreground" size={20} />
+                  {group.logo ? (
+                    <img 
+                      src={group.logo} 
+                      alt={`${group.organization} logo`}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <Buildings className="text-secondary-foreground" size={20} />
+                  )}
                 </motion.div>
                 <Collapsible open={isOpen} onOpenChange={() => toggleGroup(group.organization)}>
                   <CollapsibleTrigger className="w-full">
                     <CardHeader className="cursor-pointer hover:bg-muted/30 transition-colors rounded-t-lg">
                       <div className="flex items-start gap-4 md:gap-0">
                         <motion.div 
-                          className="md:hidden p-3 bg-secondary/10 rounded-lg"
+                          className="md:hidden p-3 bg-secondary/10 rounded-lg flex items-center justify-center"
                           whileHover={{ scale: 1.1, rotate: 5 }}
                         >
-                          <Buildings className="text-secondary" size={20} />
+                          {group.logo ? (
+                            <img 
+                              src={group.logo} 
+                              alt={`${group.organization} logo`}
+                              className="w-8 h-8 object-contain"
+                            />
+                          ) : (
+                            <Buildings className="text-secondary" size={20} />
+                          )}
                         </motion.div>
                         <div className="flex-1 text-left">
                           <div className="flex items-start justify-between gap-2 flex-wrap">
@@ -233,19 +252,35 @@ export function Experience({ data }: ExperienceProps) {
                   </motion.div>
                 )}
                 <motion.div 
-                  className="absolute -left-16 top-8 hidden md:flex items-center justify-center w-12 h-12 bg-primary rounded-full ring-4 ring-background"
+                  className="absolute -left-16 top-8 hidden md:flex items-center justify-center w-12 h-12 bg-primary rounded-full ring-4 ring-background overflow-hidden"
                   whileHover={{ scale: 1.2, rotate: 360 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Briefcase className="text-primary-foreground" size={20} />
+                  {exp.logo ? (
+                    <img 
+                      src={exp.logo} 
+                      alt={`${exp.organization} logo`}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <Briefcase className="text-primary-foreground" size={20} />
+                  )}
                 </motion.div>
                 <CardHeader>
                   <div className="flex items-start gap-4 md:gap-0">
                     <motion.div 
-                      className="md:hidden p-3 bg-primary/10 rounded-lg"
+                      className="md:hidden p-3 bg-primary/10 rounded-lg flex items-center justify-center"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                     >
-                      <Briefcase className="text-primary" size={20} />
+                      {exp.logo ? (
+                        <img 
+                          src={exp.logo} 
+                          alt={`${exp.organization} logo`}
+                          className="w-8 h-8 object-contain"
+                        />
+                      ) : (
+                        <Briefcase className="text-primary" size={20} />
+                      )}
                     </motion.div>
                     <div className="flex-1">
                       <div className="flex items-start justify-between gap-2 flex-wrap">
