@@ -4,7 +4,6 @@ import { Badge } from './ui/badge'
 import { motion, useScroll, useTransform, PanInfo, useMotionValue } from 'framer-motion'
 import { useRef, useState } from 'react'
 import profileImage from '@/assets/images/profile.jpg'
-import { QuickAccessCards } from './QuickAccessCards'
 import { Dialog, DialogContent } from './ui/dialog'
 
 interface Publication {
@@ -210,16 +209,11 @@ export function Hero({ data, contact, publications, metrics, isLoadingMetrics }:
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="mb-8"
             >
               <p className="text-sm text-foreground/80 leading-relaxed">
                 {data.bio}
               </p>
             </motion.div>
-
-            <div>
-              <QuickAccessCards publications={publications} contact={contact} />
-            </div>
           </motion.div>
         </div>
       </motion.div>

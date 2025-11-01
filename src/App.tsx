@@ -157,7 +157,7 @@ function App() {
                     </span>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56 max-h-[400px]">
+                <DropdownMenuContent align="end" className="w-56 max-h-[70vh] overflow-y-auto">
                   {menuItems.map((item) => {
                     const Icon = item.icon
                     return (
@@ -296,7 +296,7 @@ function App() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Publications List
+              Publications
             </h2>
             <Publications 
               publications={filteredPublications}
