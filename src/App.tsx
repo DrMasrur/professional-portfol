@@ -218,10 +218,14 @@ function App() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-              Research Focus
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-secondary via-accent to-primary bg-clip-text text-transparent">
+              Research Highlights
             </h2>
-            <ResearchFocus />
+            <ResearchHighlights 
+              research={profileData.research} 
+              areas={profileData.researchAreas}
+              expertise={profileData.expertise}
+            />
           </motion.div>
           
           <Separator className="my-16" />
@@ -232,14 +236,10 @@ function App() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-secondary via-accent to-primary bg-clip-text text-transparent">
-              Research Highlights
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+              Research Focus
             </h2>
-            <ResearchHighlights 
-              research={profileData.research} 
-              areas={profileData.researchAreas}
-              expertise={profileData.expertise}
-            />
+            <ResearchFocus />
           </motion.div>
           
           <Separator className="my-16" />
@@ -265,7 +265,7 @@ function App() {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Technology Stack
+              Technology & Methods
             </h2>
             <TechnologyStack />
           </motion.div>
