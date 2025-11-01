@@ -236,6 +236,20 @@ function App() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
+              Publications Timeline
+            </h2>
+            <PublicationsTimeline publications={last43Publications} />
+          </motion.div>
+          
+          <Separator className="my-16" />
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
               Research Focus
             </h2>
@@ -248,7 +262,7 @@ function App() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-accent via-primary to-secondary bg-clip-text text-transparent">
               Research Gallery
@@ -262,7 +276,7 @@ function App() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Technology & Methods
@@ -274,20 +288,6 @@ function App() {
         <Separator className="my-16" />
 
         <section id="publications" className="scroll-mt-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
-              Publications Timeline
-            </h2>
-            <PublicationsTimeline publications={last43Publications} />
-          </motion.div>
-
-          <Separator className="my-16" />
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
