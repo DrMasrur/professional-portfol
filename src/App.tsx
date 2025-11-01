@@ -70,7 +70,10 @@ function App() {
     }
   }
 
-  const filteredPublications = (publications && publications.length > 0 ? publications : profileData.publications).filter(pub => {
+  const allPublications = publications && publications.length > 0 ? publications : profileData.publications
+  const last43Publications = allPublications.slice(-43)
+  
+  const filteredPublications = last43Publications.filter(pub => {
     if (!publicationsSearchQuery) return true
     const query = publicationsSearchQuery.toLowerCase()
     return (
@@ -201,7 +204,7 @@ function App() {
         <Hero 
           data={profileData.personal} 
           contact={profileData.personal.contact} 
-          publications={(publications && publications.length > 0) ? publications : profileData.publications} 
+          publications={last43Publications} 
           metrics={metrics || profileData.research.metrics}
           isLoadingMetrics={isRefreshing && !metrics}
         />
@@ -280,7 +283,7 @@ function App() {
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
               Publications Timeline
             </h2>
-            <PublicationsTimeline publications={(publications && publications.length > 0) ? publications : profileData.publications} />
+            <PublicationsTimeline publications={last43Publications} />
           </motion.div>
 
           <Separator className="my-16" />
@@ -298,7 +301,7 @@ function App() {
               publications={filteredPublications}
               searchQuery={publicationsSearchQuery}
               onSearchChange={setPublicationsSearchQuery}
-              totalCount={(publications && publications.length > 0) ? publications.length : profileData.publications.length}
+              totalCount={last43Publications.length}
               onRefresh={handleRefreshPublications}
               isRefreshing={isRefreshing}
               lastUpdated={lastUpdated}
