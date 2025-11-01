@@ -73,78 +73,13 @@ export function ResearchHighlights({ research, areas, expertise }: ResearchHighl
       </div>
 
       <div>
-        <motion.h2 
-          className="text-3xl md:text-4xl font-semibold text-foreground mb-8 font-[family-name:var(--font-heading)]"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          Research Impact
-        </motion.h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {[
-            { value: research.metrics.citations, label: 'Citations', Icon: ChartBar },
-            { value: research.metrics.hIndex, label: 'h-index', Icon: GraduationCap },
-            { value: research.metrics.i10Index, label: 'i10-index', Icon: ChartBar }
-          ].map((metric, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <Card className="border-2 hover:shadow-xl transition-all hover:border-primary/50">
-                <CardHeader>
-                  <CardTitle className="text-sm font-medium text-muted-foreground">{metric.label}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-baseline gap-2">
-                    <motion.span 
-                      className="text-4xl md:text-5xl font-bold text-primary"
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, delay: idx * 0.1 + 0.2 }}
-                      viewport={{ once: true }}
-                    >
-                      {metric.value}
-                    </motion.span>
-                    <metric.Icon className="text-muted-foreground" size={24} />
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.div 
-          className="flex flex-wrap gap-3 mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <Button variant="outline" asChild className="hover:scale-105 transition-transform">
-            <a href={research.googleScholar} target="_blank" rel="noopener noreferrer">
-              Google Scholar Profile
-            </a>
-          </Button>
-          <Button variant="outline" asChild className="hover:scale-105 transition-transform">
-            <a href={`https://orcid.org/${research.orcid}`} target="_blank" rel="noopener noreferrer">
-              ORCID: {research.orcid}
-            </a>
-          </Button>
-        </motion.div>
-
         {research.roles.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
+            className="mb-8"
           >
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>
@@ -169,6 +104,25 @@ export function ResearchHighlights({ research, areas, expertise }: ResearchHighl
             </Card>
           </motion.div>
         )}
+
+        <motion.div 
+          className="flex flex-wrap gap-3 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <Button variant="outline" asChild className="hover:scale-105 transition-transform">
+            <a href={research.googleScholar} target="_blank" rel="noopener noreferrer">
+              Google Scholar Profile
+            </a>
+          </Button>
+          <Button variant="outline" asChild className="hover:scale-105 transition-transform">
+            <a href={`https://orcid.org/${research.orcid}`} target="_blank" rel="noopener noreferrer">
+              ORCID: {research.orcid}
+            </a>
+          </Button>
+        </motion.div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
