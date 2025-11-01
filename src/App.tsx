@@ -19,8 +19,15 @@ import { VisitorAnalytics } from './components/VisitorAnalytics'
 import { Separator } from './components/ui/separator'
 import { Toaster } from './components/ui/sonner'
 import { Button } from './components/ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from './components/ui/dropdown-menu'
+import { ScrollArea } from './components/ui/scroll-area'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUp, BookOpen, Article, Envelope, Briefcase, GraduationCap, Lightbulb, Trophy, House, ChartBar, Users } from '@phosphor-icons/react'
+import { ArrowUp, BookOpen, Article, Envelope, Briefcase, GraduationCap, Lightbulb, Trophy, House, ChartBar, Users, List } from '@phosphor-icons/react'
 import { cn } from './lib/utils'
 import { toast } from 'sonner'
 
@@ -112,25 +119,62 @@ function App() {
               <span className="font-semibold text-foreground hidden sm:inline">Dr. Masrur Ahmed</span>
             </div>
             
-            <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
-              {menuItems.map((item) => {
-                const Icon = item.icon
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className={cn(
-                      "flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 whitespace-nowrap text-sm font-medium",
-                      activeSection === item.id
-                        ? "bg-primary text-primary-foreground shadow-md"
-                        : "text-foreground hover:bg-muted"
-                    )}
+            <div className="flex items-center gap-1">
+              <div className="hidden lg:flex items-center gap-1">
+                {menuItems.slice(0, 6).map((item) => {
+                  const Icon = item.icon
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className={cn(
+                        "flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 whitespace-nowrap text-sm font-medium",
+                        activeSection === item.id
+                          ? "bg-primary text-primary-foreground shadow-md"
+                          : "text-foreground hover:bg-muted"
+                      )}
+                    >
+                      <Icon size={18} weight={activeSection === item.id ? "fill" : "regular"} />
+                      <span>{item.label}</span>
+                    </button>
+                  )
+                })}
+              </div>
+
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="flex items-center gap-2"
                   >
-                    <Icon size={18} weight={activeSection === item.id ? "fill" : "regular"} />
-                    <span className="hidden md:inline">{item.label}</span>
-                  </button>
-                )
-              })}
+                    <List size={20} weight="bold" />
+                    <span className="hidden sm:inline">
+                      {menuItems.find(item => item.id === activeSection)?.label || 'Menu'}
+                    </span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <ScrollArea className="h-[400px]">
+                    {menuItems.map((item) => {
+                      const Icon = item.icon
+                      return (
+                        <DropdownMenuItem
+                          key={item.id}
+                          onClick={() => scrollToSection(item.id)}
+                          className={cn(
+                            "flex items-center gap-3 px-4 py-3 cursor-pointer",
+                            activeSection === item.id && "bg-primary text-primary-foreground"
+                          )}
+                        >
+                          <Icon size={20} weight={activeSection === item.id ? "fill" : "regular"} />
+                          <span className="font-medium">{item.label}</span>
+                        </DropdownMenuItem>
+                      )
+                    })}
+                  </ScrollArea>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </div>
