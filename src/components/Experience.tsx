@@ -1,9 +1,9 @@
+import { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
 import { Briefcase, MapPin, Clock, Buildings } from '@phosphor-icons/react'
 import { Badge } from './ui/badge'
 import { motion } from 'framer-motion'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible'
-import { useState } from 'react'
 
 interface ExperienceItem {
   title: string
@@ -74,26 +74,28 @@ export function Experience({ data }: ExperienceProps) {
   const groupedData: (ExperienceItem | GroupedExperience)[] = []
   const organizationMap = new Map<string, ExperienceItem[]>()
   
-  data.forEach(exp => {
-    if (!organizationMap.has(exp.organization)) {
-      organizationMap.set(exp.organization, [])
-    }
-    organizationMap.get(exp.organization)!.push(exp)
-  })
-  
-  organizationMap.forEach((roles, org) => {
-    if (roles.length > 1) {
-      groupedData.push({
-        organization: org,
-        location: roles[0].location,
-        roles: roles,
-        overallPeriod: getOverallPeriod(roles),
-        totalDuration: calculateTotalDuration(roles)
-      })
-    } else {
-      groupedData.push(roles[0])
-    }
-  })
+  if (data && Array.isArray(data)) {
+    data.forEach(exp => {
+      if (!organizationMap.has(exp.organization)) {
+        organizationMap.set(exp.organization, [])
+      }
+      organizationMap.get(exp.organization)!.push(exp)
+    })
+    
+    organizationMap.forEach((roles, org) => {
+      if (roles.length > 1) {
+        groupedData.push({
+          organization: org,
+          location: roles[0].location,
+          roles: roles,
+          overallPeriod: getOverallPeriod(roles),
+          totalDuration: calculateTotalDuration(roles)
+        })
+      } else {
+        groupedData.push(roles[0])
+      }
+    })
+  }
   
   const toggleGroup = (org: string) => {
     setOpenGroups(prev => ({ ...prev, [org]: !prev[org] }))
