@@ -233,9 +233,9 @@ def create_publications():
         citations_span = Span(f"{pub['citations']} citations", cls="pub-citations") if pub.get('citations', 0) > 0 else None
         pub_items.append(
             Div(
-                Div(cls="pub-title", children=[Span(pub['title'])] + ([citations_span] if citations_span else [])),
-                Div(cls="pub-authors", children=pub['authors']),
-                Div(cls="pub-journal", children=f"{pub['journal']}, {pub['year']}"),
+                Div(Span(pub['title']), *([citations_span] if citations_span else []), cls="pub-title"),
+                Div(pub['authors'], cls="pub-authors"),
+                Div(f"{pub['journal']}, {pub['year']}", cls="pub-journal"),
                 cls="pub-item"
             )
         )
