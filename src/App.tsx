@@ -31,11 +31,15 @@ import { ArrowUp, BookOpen, Article, Envelope, Briefcase, GraduationCap, Lightbu
 import { cn } from './lib/utils'
 import { toast } from 'sonner'
 
+const dashboardSectionId = 'dashboard'
+const sectionAliases: Record<string, string> = {
+  visitors: dashboardSectionId,
+}
+
 function App() {
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [publicationsSearchQuery, setPublicationsSearchQuery] = useState('')
   const [activeSection, setActiveSection] = useState('home')
-  const dashboardSectionId = 'dashboard'
   
   const {
     publications,
@@ -55,10 +59,6 @@ function App() {
   }, [])
 
   useEffect(() => {
-    const sectionAliases: Record<string, string> = {
-      visitors: dashboardSectionId,
-    }
-
     const scrollToHashSection = () => {
       const hashSection = window.location.hash.replace('#', '')
       if (!hashSection) return
@@ -89,18 +89,22 @@ function App() {
   }
 
   const scrollToSection = (sectionId: string) => {
-    setActiveSection(sectionId)
-    window.history.replaceState(null, '', `#${sectionId}`)
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const offset = 80
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - offset
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      })
+    if (window.location.hash !== `#${sectionId}`) {
+      window.location.hash = sectionId
+      return
     }
+
+    setActiveSection(sectionId)
+    const element = document.getElementById(sectionId)
+    if (!element) return
+
+    const offset = 80
+    const elementPosition = element.getBoundingClientRect().top
+    const offsetPosition = elementPosition + window.pageYOffset - offset
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    })
   }
 
   const allPublications = publications && publications.length > 0 ? publications : profileData.publications
