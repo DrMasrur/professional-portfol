@@ -35,6 +35,7 @@ function App() {
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [publicationsSearchQuery, setPublicationsSearchQuery] = useState('')
   const [activeSection, setActiveSection] = useState('home')
+  const dashboardSectionId = 'dashboard'
   
   const {
     publications,
@@ -53,12 +54,43 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    const sectionAliases: Record<string, string> = {
+      visitors: dashboardSectionId,
+    }
+
+    const scrollToHashSection = () => {
+      const hashSection = window.location.hash.replace('#', '')
+      if (!hashSection) return
+
+      const sectionId = sectionAliases[hashSection] || hashSection
+      const element = document.getElementById(sectionId)
+      if (!element) return
+
+      setTimeout(() => {
+        setActiveSection(sectionId)
+        const offset = 80
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - offset
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+      }, 0)
+    }
+
+    scrollToHashSection()
+    window.addEventListener('hashchange', scrollToHashSection)
+    return () => window.removeEventListener('hashchange', scrollToHashSection)
+  }, [])
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId)
+    window.history.replaceState(null, '', `#${sectionId}`)
     const element = document.getElementById(sectionId)
     if (element) {
       const offset = 80
@@ -102,7 +134,7 @@ function App() {
     { id: 'education', label: 'Education', icon: GraduationCap },
     { id: 'skills', label: 'Skills', icon: Lightbulb },
     { id: 'awards', label: 'Awards', icon: Trophy },
-    { id: 'visitors', label: 'Visitors', icon: Users },
+    { id: dashboardSectionId, label: 'Dashboard', icon: Users },
     { id: 'blogs', label: 'Blogs', icon: Article },
     { id: 'contact', label: 'Contact', icon: Envelope },
   ]
@@ -208,6 +240,7 @@ function App() {
           publications={last43Publications} 
           metrics={metrics || profileData.research.metrics}
           isLoadingMetrics={isRefreshing && !metrics}
+          onOpenDashboard={() => scrollToSection(dashboardSectionId)}
         />
       </section>
       
@@ -380,7 +413,7 @@ function App() {
 
         <Separator className="my-16" />
 
-        <section id="visitors" className="scroll-mt-20">
+        <section id={dashboardSectionId} className="scroll-mt-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -388,7 +421,7 @@ function App() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-              Visitor Analytics
+              Dashboard
             </h2>
             <VisitorAnalytics />
           </motion.div>
