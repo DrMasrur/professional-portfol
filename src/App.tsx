@@ -31,6 +31,11 @@ import { ArrowUp, BookOpen, Article, Envelope, Briefcase, GraduationCap, Lightbu
 import { cn } from './lib/utils'
 import { toast } from 'sonner'
 
+const dashboardSectionId = 'dashboard'
+const sectionAliases: Record<string, string> = {
+  visitors: dashboardSectionId,
+}
+
 function App() {
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [publicationsSearchQuery, setPublicationsSearchQuery] = useState('')
@@ -53,22 +58,53 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    const scrollToHashSection = () => {
+      const hashSection = window.location.hash.replace('#', '')
+      if (!hashSection) return
+
+      const sectionId = sectionAliases[hashSection] || hashSection
+      const element = document.getElementById(sectionId)
+      if (!element) return
+
+      setTimeout(() => {
+        setActiveSection(sectionId)
+        const offset = 80
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.scrollY - offset
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+      }, 0)
+    }
+
+    scrollToHashSection()
+    window.addEventListener('hashchange', scrollToHashSection)
+    return () => window.removeEventListener('hashchange', scrollToHashSection)
+  }, [])
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const scrollToSection = (sectionId: string) => {
+    if (window.location.hash !== `#${sectionId}`) {
+      window.location.hash = sectionId
+      return
+    }
+
     setActiveSection(sectionId)
     const element = document.getElementById(sectionId)
-    if (element) {
-      const offset = 80
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - offset
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      })
-    }
+    if (!element) return
+
+    const offset = 80
+    const elementPosition = element.getBoundingClientRect().top
+    const offsetPosition = elementPosition + window.scrollY - offset
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    })
   }
 
   const allPublications = publications && publications.length > 0 ? publications : profileData.publications
@@ -102,7 +138,7 @@ function App() {
     { id: 'education', label: 'Education', icon: GraduationCap },
     { id: 'skills', label: 'Skills', icon: Lightbulb },
     { id: 'awards', label: 'Awards', icon: Trophy },
-    { id: 'visitors', label: 'Visitors', icon: Users },
+    { id: dashboardSectionId, label: 'Dashboard', icon: Users },
     { id: 'blogs', label: 'Blogs', icon: Article },
     { id: 'contact', label: 'Contact', icon: Envelope },
   ]
@@ -208,6 +244,7 @@ function App() {
           publications={last43Publications} 
           metrics={metrics || profileData.research.metrics}
           isLoadingMetrics={isRefreshing && !metrics}
+          onOpenDashboard={() => scrollToSection(dashboardSectionId)}
         />
       </section>
       
@@ -380,7 +417,7 @@ function App() {
 
         <Separator className="my-16" />
 
-        <section id="visitors" className="scroll-mt-20">
+        <section id={dashboardSectionId} className="scroll-mt-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -388,7 +425,7 @@ function App() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-[family-name:var(--font-heading)] bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-              Visitor Analytics
+              Dashboard
             </h2>
             <VisitorAnalytics />
           </motion.div>

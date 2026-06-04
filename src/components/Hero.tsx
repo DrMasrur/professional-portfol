@@ -1,4 +1,4 @@
-import { Envelope, LinkedinLogo, Brain, ChartLine, Sparkle, X, GithubLogo } from '@phosphor-icons/react'
+import { Envelope, LinkedinLogo, Brain, ChartLine, Sparkle, X, GithubLogo, ChartBar } from '@phosphor-icons/react'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
 import { motion, useScroll, useTransform, PanInfo, useMotionValue } from 'framer-motion'
@@ -37,9 +37,10 @@ interface HeroProps {
   publications: Publication[]
   metrics?: ScholarMetrics
   isLoadingMetrics?: boolean
+  onOpenDashboard: () => void
 }
 
-export function Hero({ data, contact, publications, metrics, isLoadingMetrics }: HeroProps) {
+export function Hero({ data, contact, publications, metrics, isLoadingMetrics, onOpenDashboard }: HeroProps) {
   const [showProfileDialog, setShowProfileDialog] = useState(false)
   const heroRef = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -178,6 +179,15 @@ export function Hero({ data, contact, publications, metrics, isLoadingMetrics }:
                       <Envelope className="mr-2" size={18} weight="fill" />
                       Get in Touch
                     </a>
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="default"
+                    onClick={onOpenDashboard}
+                    className="border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
+                  >
+                    <ChartBar className="mr-2" size={18} weight="fill" />
+                    Open Dashboard
                   </Button>
                   <Button 
                     variant="outline" 
