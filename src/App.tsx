@@ -71,7 +71,7 @@ function App() {
         setActiveSection(sectionId)
         const offset = 80
         const elementPosition = element.getBoundingClientRect().top
-        const offsetPosition = elementPosition + window.pageYOffset - offset
+        const offsetPosition = elementPosition + window.scrollY - offset
         window.scrollTo({
           top: offsetPosition,
           behavior: 'smooth'
@@ -100,7 +100,7 @@ function App() {
 
     const offset = 80
     const elementPosition = element.getBoundingClientRect().top
-    const offsetPosition = elementPosition + window.pageYOffset - offset
+    const offsetPosition = elementPosition + window.scrollY - offset
     window.scrollTo({
       top: offsetPosition,
       behavior: 'smooth'
